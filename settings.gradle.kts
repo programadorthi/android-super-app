@@ -11,3 +11,5 @@ rootProject.name = "Super App"
 
 includeBuild("dependencies")
 includeBuild("configurations")
+
+include(":shared-domain")
