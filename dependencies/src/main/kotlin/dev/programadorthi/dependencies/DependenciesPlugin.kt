@@ -1,4 +1,4 @@
-package com.example.dependencies
+package dev.programadorthi.dependencies
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project

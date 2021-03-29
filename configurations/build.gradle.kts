@@ -24,4 +24,8 @@ gradlePlugin {
         id = "configurations"
         implementationClass = "dev.programadorthi.configurations.ConfigurationsPlugin"
     }
+    plugins.register("project") {
+        id = "project"
+        implementationClass = "dev.programadorthi.configurations.ProjectPlugin"
+    }
 }

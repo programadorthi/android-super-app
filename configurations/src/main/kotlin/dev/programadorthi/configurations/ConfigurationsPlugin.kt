@@ -1,4 +1,4 @@
-package com.example.configurations
+package dev.programadorthi.configurations
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
