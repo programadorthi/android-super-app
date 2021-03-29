@@ -50,21 +50,21 @@ class NetworkManagerTest {
 
             assertThatThrownBy {
                 runBlocking {
-                    networkManager.performAndDone {}
+                    networkManager.send {}
                 }
             }.isEqualTo(NetworkingError.NoInternetConnection)
             assertThat(crashReportFake.cause).isEqualTo(null)
 
             assertThatThrownBy {
                 runBlocking {
-                    networkManager.performAndReturnsData {}
+                    networkManager.sendAndGet {}
                 }
             }.isEqualTo(NetworkingError.NoInternetConnection)
             assertThat(crashReportFake.cause).isEqualTo(null)
 
             assertThatThrownBy {
                 runBlocking {
-                    networkManager.performAndReturnsMappedData(RemoteMapperFake()) {
+                    networkManager.sendAndGetMapped(RemoteMapperFake()) {
                         "some response body"
                     }
                 }
@@ -77,7 +77,7 @@ class NetworkManagerTest {
         testDispatcher.runBlockingTest {
             assertThatThrownBy {
                 runBlocking {
-                    networkManager.performAndReturnsMappedData(
+                    networkManager.sendAndGetMapped(
                         RemoteMapperFake(throwException = true)
                     ) {
                         "some response body"
@@ -94,7 +94,7 @@ class NetworkManagerTest {
 
             assertThatThrownBy {
                 runBlocking {
-                    networkManager.performAndDone { throw completableError }
+                    networkManager.send { throw completableError }
                 }
             }.isInstanceOf(NetworkingError.InvalidDataFormat::class.java)
             assertThat(crashReportFake.cause).isEqualTo(completableError)
@@ -103,7 +103,7 @@ class NetworkManagerTest {
 
             assertThatThrownBy {
                 runBlocking {
-                    networkManager.performAndReturnsData { throw singleError }
+                    networkManager.sendAndGet { throw singleError }
                 }
             }.isInstanceOf(NetworkingError.InvalidDataFormat::class.java)
             assertThat(crashReportFake.cause).isEqualTo(singleError)
@@ -112,7 +112,7 @@ class NetworkManagerTest {
 
             assertThatThrownBy {
                 runBlocking {
-                    networkManager.performAndReturnsMappedData(RemoteMapperFake()) {
+                    networkManager.sendAndGetMapped(RemoteMapperFake()) {
                         throw singleMappedError
                     }
                 }
@@ -126,21 +126,21 @@ class NetworkManagerTest {
 
             assertThatThrownBy {
                 runBlocking {
-                    networkManager.performAndDone { throw SocketTimeoutException() }
+                    networkManager.send { throw SocketTimeoutException() }
                 }
             }.isInstanceOf(NetworkingError.ConnectionTimeout::class.java)
             assertThat(crashReportFake.cause).isNull()
 
             assertThatThrownBy {
                 runBlocking {
-                    networkManager.performAndReturnsData { throw SocketTimeoutException() }
+                    networkManager.sendAndGet { throw SocketTimeoutException() }
                 }
             }.isInstanceOf(NetworkingError.ConnectionTimeout::class.java)
             assertThat(crashReportFake.cause).isNull()
 
             assertThatThrownBy {
                 runBlocking {
-                    networkManager.performAndReturnsMappedData(RemoteMapperFake()) { throw SocketTimeoutException() }
+                    networkManager.sendAndGetMapped(RemoteMapperFake()) { throw SocketTimeoutException() }
                 }
             }.isInstanceOf(NetworkingError.ConnectionTimeout::class.java)
             assertThat(crashReportFake.cause).isNull()
@@ -153,7 +153,7 @@ class NetworkManagerTest {
 
             assertThatThrownBy {
                 runBlocking {
-                    networkManager.performAndDone { throw completableError }
+                    networkManager.send { throw completableError }
                 }
             }.isInstanceOf(NetworkingError.UnknownEndpoint::class.java)
             assertThat(crashReportFake.cause).isEqualTo(completableError)
@@ -162,7 +162,7 @@ class NetworkManagerTest {
 
             assertThatThrownBy {
                 runBlocking {
-                    networkManager.performAndReturnsData { throw singleError }
+                    networkManager.sendAndGet { throw singleError }
                 }
             }.isInstanceOf(NetworkingError.UnknownEndpoint::class.java)
             assertThat(crashReportFake.cause).isEqualTo(singleError)
@@ -171,7 +171,7 @@ class NetworkManagerTest {
 
             assertThatThrownBy {
                 runBlocking {
-                    networkManager.performAndReturnsMappedData(RemoteMapperFake()) {
+                    networkManager.sendAndGetMapped(RemoteMapperFake()) {
                         throw singleMappedError
                     }
                 }
@@ -186,7 +186,7 @@ class NetworkManagerTest {
 
             assertThatThrownBy {
                 runBlocking {
-                    networkManager.performAndDone { throw completableError }
+                    networkManager.send { throw completableError }
                 }
             }.isInstanceOf(NetworkingError.UnknownNetworkException::class.java)
             assertThat(crashReportFake.cause).isEqualTo(completableError)
@@ -195,7 +195,7 @@ class NetworkManagerTest {
 
             assertThatThrownBy {
                 runBlocking {
-                    networkManager.performAndReturnsData { throw singleError }
+                    networkManager.sendAndGet { throw singleError }
                 }
             }.isInstanceOf(NetworkingError.UnknownNetworkException::class.java)
             assertThat(crashReportFake.cause).isEqualTo(singleError)
@@ -204,7 +204,7 @@ class NetworkManagerTest {
 
             assertThatThrownBy {
                 runBlocking {
-                    networkManager.performAndReturnsMappedData(RemoteMapperFake()) {
+                    networkManager.sendAndGetMapped(RemoteMapperFake()) {
                         throw  singleMappedError
                     }
                 }

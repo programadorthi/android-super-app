@@ -9,7 +9,7 @@ class CrashReportFake : CrashReport {
     var cause: Throwable? = null
         private set
 
-    override suspend fun report(message: String, cause: Throwable) {
+    override fun report(message: String, cause: Throwable) {
         this.message = message
         this.cause = cause
     }

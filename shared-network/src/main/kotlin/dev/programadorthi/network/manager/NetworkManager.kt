@@ -5,9 +5,9 @@ import dev.programadorthi.network.exception.NetworkingErrorMapper
 import kotlinx.coroutines.CoroutineDispatcher
 
 interface NetworkManager {
-    suspend fun performAndDone(request: suspend () -> Unit)
-    suspend fun <Data> performAndReturnsData(request: suspend () -> Data): Data
-    suspend fun <From, To> performAndReturnsMappedData(
+    suspend fun send(request: suspend () -> Unit)
+    suspend fun <Data> sendAndGet(request: suspend () -> Data): Data
+    suspend fun <From, To> sendAndGetMapped(
         mapper: (From) -> To,
         request: suspend () -> From
     ): To

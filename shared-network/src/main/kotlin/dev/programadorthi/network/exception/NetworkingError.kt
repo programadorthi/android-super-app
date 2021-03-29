@@ -18,15 +18,15 @@ sealed class NetworkingError constructor(
 
     class UnknownEndpoint(
         override val cause: Throwable?
-    ) : NetworkingError("Unknown endpoint. Cause: $cause")
+    ) : NetworkingError("Unknown endpoint. $cause", cause)
 
     class UnknownNetworkException(
         override val cause: Throwable?
-    ) : NetworkingError("Unknown network exception. Cause: $cause")
-
-    fun needsReport(): Boolean =
-        this is UnknownEndpoint ||
-                this is EssentialParamMissing ||
-                this is InvalidDataFormat ||
-                this is UnknownNetworkException
+    ) : NetworkingError("Unknown network exception. $cause", cause)
 }
+
+internal fun NetworkingError.needsReport(): Boolean =
+    this is NetworkingError.UnknownEndpoint ||
+            this is NetworkingError.EssentialParamMissing ||
+            this is NetworkingError.InvalidDataFormat ||
+            this is NetworkingError.UnknownNetworkException

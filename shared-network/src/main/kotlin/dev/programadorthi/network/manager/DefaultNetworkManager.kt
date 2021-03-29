@@ -11,7 +11,7 @@ internal class DefaultNetworkManager(
     private val networkingErrorMapper: NetworkingErrorMapper,
     private val ioDispatcher: CoroutineDispatcher
 ) : NetworkManager {
-    override suspend fun performAndDone(request: suspend () -> Unit) {
+    override suspend fun send(request: suspend () -> Unit) {
         withContext(ioDispatcher) {
             checkConnection()
             try {
@@ -22,7 +22,7 @@ internal class DefaultNetworkManager(
         }
     }
 
-    override suspend fun <Data> performAndReturnsData(request: suspend () -> Data): Data =
+    override suspend fun <Data> sendAndGet(request: suspend () -> Data): Data =
         withContext(ioDispatcher) {
             checkConnection()
             try {
@@ -32,7 +32,7 @@ internal class DefaultNetworkManager(
             }
         }
 
-    override suspend fun <From, To> performAndReturnsMappedData(
+    override suspend fun <From, To> sendAndGetMapped(
         mapper: (From) -> To,
         request: suspend () -> From
     ): To = withContext(ioDispatcher) {
