@@ -205,7 +205,7 @@ class NetworkManagerTest {
             assertThatThrownBy {
                 runBlocking {
                     networkManager.sendAndGetMapped(RemoteMapperFake()) {
-                        throw  singleMappedError
+                        throw singleMappedError
                     }
                 }
             }.isInstanceOf(NetworkingError.UnknownNetworkException::class.java)

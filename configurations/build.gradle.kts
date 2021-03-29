@@ -1,4 +1,4 @@
-import dev.programadorthi.dependencies.Dependencies
+import dev.programadorthi.dependencies.BuildPlugins
 
 plugins {
     `kotlin-dsl`
@@ -13,8 +13,10 @@ repositories {
 }
 
 dependencies {
-    implementation(Dependencies.Kotlin.plugin)
-    implementation(Dependencies.Android.plugin)
+    implementation(BuildPlugins.android)
+    implementation(BuildPlugins.kotlin)
+    implementation(BuildPlugins.ktlint)
+    implementation(BuildPlugins.testLogger)
 }
 
 kotlin.sourceSets.getByName("main").kotlin.srcDir("../dependencies/src/main/kotlin")

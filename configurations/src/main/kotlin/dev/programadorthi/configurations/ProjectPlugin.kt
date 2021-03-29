@@ -1,5 +1,6 @@
 package dev.programadorthi.configurations
 
+import dev.programadorthi.configurations.project.internal.commons.applyCommonPlugins
 import dev.programadorthi.configurations.project.internal.commons.configureCompatibilityAndJVMTarget
 import dev.programadorthi.configurations.project.internal.configureAndroidApplication
 import dev.programadorthi.configurations.project.internal.configureAndroidLibrary
@@ -14,6 +15,7 @@ class ProjectPlugin : Plugin<Project> {
         target.subprojects {
             logger().i("Configuring: $name")
             val spent = measureTimeMillis {
+                applyCommonPlugins()
                 configureCompatibilityAndJVMTarget()
                 configureAndroidApplication()
                 configureAndroidLibrary()

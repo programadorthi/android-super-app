@@ -27,6 +27,6 @@ sealed class NetworkingError constructor(
 
 internal fun NetworkingError.needsReport(): Boolean =
     this is NetworkingError.UnknownEndpoint ||
-            this is NetworkingError.EssentialParamMissing ||
-            this is NetworkingError.InvalidDataFormat ||
-            this is NetworkingError.UnknownNetworkException
+        this is NetworkingError.EssentialParamMissing ||
+        this is NetworkingError.InvalidDataFormat ||
+        this is NetworkingError.UnknownNetworkException
