@@ -13,3 +13,4 @@ includeBuild("dependencies")
 includeBuild("configurations")
 
 include(":shared-domain")
+include(":shared-network")
