@@ -14,3 +14,5 @@ includeBuild("configurations")
 
 include(":shared-domain")
 include(":shared-network")
+
+include(":applications:norris-facts:domain")

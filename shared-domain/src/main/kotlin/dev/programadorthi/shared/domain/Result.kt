@@ -22,13 +22,15 @@ class Result<out T> internal constructor(
      * Returns `true` if this instance represents a successful outcome.
      * In this case [isFailure] returns `false`.
      */
-    val isSuccess: Boolean get() = value !is Failure
+    val isSuccess: Boolean get() = value !is Failure && value !is Business
 
     /**
      * Returns `true` if this instance represents a failed outcome.
      * In this case [isSuccess] returns `false`.
      */
     val isFailure: Boolean get() = value is Failure
+
+    val isBusiness: Boolean get() = value is Business
 
     // value & exception retrieval
 
@@ -41,7 +43,7 @@ class Result<out T> internal constructor(
      */
     fun getOrNull(): T? =
         when {
-            isFailure -> null
+            isFailure || isBusiness -> null
             else -> value as T
         }
 
@@ -57,6 +59,12 @@ class Result<out T> internal constructor(
             else -> null
         }
 
+    fun businessOrNull(): Business? =
+        when (value) {
+            is Business -> value
+            else -> null
+        }
+
     /**
      * Returns a string `Success(v)` if this instance represents [success][Result.isSuccess]
      * where `v` is a string representation of the value or a string `Failure(x)` if
@@ -65,6 +73,7 @@ class Result<out T> internal constructor(
     override fun toString(): String =
         when (value) {
             is Failure -> value.toString() // "Failure($exception)"
+            is Business -> "Business($value)"
             else -> "Success($value)"
         }
 
@@ -85,6 +94,8 @@ class Result<out T> internal constructor(
          * Returns an instance that encapsulates the given [Throwable] [exception] as failure.
          */
         fun <T> failure(exception: Throwable): Result<T> = Result(createFailure(exception))
+
+        fun <T> business(value: Business): Result<T> = Result(value)
     }
 
     internal class Failure(
@@ -95,6 +106,8 @@ class Result<out T> internal constructor(
         override fun hashCode(): Int = exception.hashCode()
         override fun toString(): String = "Failure($exception)"
     }
+
+    interface Business
 }
 
 /**
