@@ -11,7 +11,12 @@ internal fun BaseExtension.configureDevelopmentFlavor() {
         create(Definitions.FLAVOR_DEVELOPMENT) {
             dimension = Definitions.DEFAULT_DIMENSION
             applicationIdSuffix = if (isApplication) ".dev" else null
-            resConfigs("xxxhdpi")
+            resConfigs(
+                "en-rUS", // Language and region
+                "ldltr", // Layout Direction
+                "port", // Screen orientation
+                "xxxhdpi" // Screen pixel density (dpi)
+            )
         }
     }
 }

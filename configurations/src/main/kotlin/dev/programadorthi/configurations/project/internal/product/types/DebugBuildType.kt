@@ -22,10 +22,6 @@ internal fun BaseExtension.configureDebugBuildType() {
                 extra["alwaysUpdateBuildId"] = false
                 extra["enableCrashlytics"] = false
             }
-
-            defaultConfig {
-                resConfigs("xxxhdpi")
-            }
         }
     }
 }

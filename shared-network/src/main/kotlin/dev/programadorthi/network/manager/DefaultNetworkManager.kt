@@ -3,6 +3,7 @@ package dev.programadorthi.network.manager
 import dev.programadorthi.network.ConnectionCheck
 import dev.programadorthi.network.exception.NetworkingError
 import dev.programadorthi.network.exception.NetworkingErrorMapper
+import dev.programadorthi.network.mapper.RemoteMapper
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
@@ -22,7 +23,7 @@ internal class DefaultNetworkManager(
         }
     }
 
-    override suspend fun <Data> sendAndGet(request: suspend () -> Data): Data =
+    override suspend fun <RawData> sendAndGet(request: suspend () -> RawData): RawData =
         withContext(ioDispatcher) {
             checkConnection()
             try {
@@ -32,10 +33,10 @@ internal class DefaultNetworkManager(
             }
         }
 
-    override suspend fun <From, To> sendAndGetMapped(
-        mapper: (From) -> To,
-        request: suspend () -> From
-    ): To = withContext(ioDispatcher) {
+    override suspend fun <Raw, Model> sendAndGetMapped(
+        mapper: RemoteMapper<Raw, Model>,
+        request: suspend () -> Raw
+    ): Model = withContext(ioDispatcher) {
         checkConnection()
         try {
             mapper.invoke(request.invoke())

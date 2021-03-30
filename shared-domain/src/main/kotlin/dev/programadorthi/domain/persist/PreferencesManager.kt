@@ -1,6 +1,6 @@
 package dev.programadorthi.domain.persist
 
 interface PreferencesManager {
-    fun getItem(key: String): String
-    fun putItem(key: String, item: String)
+    fun <T> getItem(key: String): T
+    fun <T> putItem(key: String, item: T)
 }

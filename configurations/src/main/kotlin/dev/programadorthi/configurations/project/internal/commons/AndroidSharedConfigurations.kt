@@ -29,7 +29,6 @@ private fun BaseExtension.configureDefaultConfig() {
         versionName = "1.0.0"
         minSdkVersion(23)
         targetSdkVersion(30)
-        resConfigs("pt-rBR")
         vectorDrawables {
             useSupportLibrary = true
             setGeneratedDensities(emptyList())

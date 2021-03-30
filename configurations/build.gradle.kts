@@ -26,8 +26,8 @@ gradlePlugin {
         id = "configurations"
         implementationClass = "dev.programadorthi.configurations.ConfigurationsPlugin"
     }
-    plugins.register("project") {
-        id = "project"
-        implementationClass = "dev.programadorthi.configurations.ProjectPlugin"
+    plugins.register("super-module") {
+        id = "super-module"
+        implementationClass = "dev.programadorthi.configurations.SuperModulePlugin"
     }
 }

@@ -4,12 +4,12 @@ plugins {
     kotlin("jvm")
     // We need set using complete classpath instead of import the class Version
     kotlin("plugin.serialization") version dev.programadorthi.dependencies.Version.KOTLIN
+    id("super-module")
 }
 
 dependencies {
     implementation(project(":shared-domain"))
 
-    implementation(Dependencies.Kotlin.stdLib)
     implementation(Dependencies.Kotlin.coroutines)
     implementation(Dependencies.Kotlin.serialization)
 

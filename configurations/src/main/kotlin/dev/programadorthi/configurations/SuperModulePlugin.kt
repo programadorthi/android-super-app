@@ -10,9 +10,9 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import kotlin.system.measureTimeMillis
 
-class ProjectPlugin : Plugin<Project> {
+class SuperModulePlugin : Plugin<Project> {
     override fun apply(target: Project) {
-        target.subprojects {
+        with(target) {
             logger().i("Configuring: $name")
             val spent = measureTimeMillis {
                 applyCommonPlugins()
