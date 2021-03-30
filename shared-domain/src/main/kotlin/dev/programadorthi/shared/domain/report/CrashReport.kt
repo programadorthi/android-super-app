@@ -1,4 +1,4 @@
-package dev.programadorthi.domain.report
+package dev.programadorthi.shared.domain.report
 
 interface CrashReport {
     fun report(message: String, cause: Throwable)

@@ -1,6 +1,6 @@
-package dev.programadorthi.network.exception
+package dev.programadorthi.shared.network.exception
 
-import dev.programadorthi.domain.report.CrashReport
+import dev.programadorthi.shared.domain.report.CrashReport
 
 interface NetworkingErrorMapper {
     suspend fun mapper(cause: Throwable): NetworkingError

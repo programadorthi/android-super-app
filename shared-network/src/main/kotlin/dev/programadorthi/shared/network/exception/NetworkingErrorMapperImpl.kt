@@ -1,6 +1,6 @@
-package dev.programadorthi.network.exception
+package dev.programadorthi.shared.network.exception
 
-import dev.programadorthi.domain.report.CrashReport
+import dev.programadorthi.shared.domain.report.CrashReport
 import kotlinx.serialization.SerializationException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException

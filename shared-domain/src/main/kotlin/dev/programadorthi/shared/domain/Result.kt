@@ -5,7 +5,7 @@
 
 @file:Suppress("UNCHECKED_CAST", "RedundantVisibilityModifier")
 
-package dev.programadorthi.domain
+package dev.programadorthi.shared.domain
 
 import java.io.Serializable
 

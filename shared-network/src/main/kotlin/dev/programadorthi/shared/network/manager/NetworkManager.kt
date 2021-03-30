@@ -1,8 +1,8 @@
-package dev.programadorthi.network.manager
+package dev.programadorthi.shared.network.manager
 
-import dev.programadorthi.network.ConnectionCheck
-import dev.programadorthi.network.exception.NetworkingErrorMapper
-import dev.programadorthi.network.mapper.RemoteMapper
+import dev.programadorthi.shared.network.ConnectionCheck
+import dev.programadorthi.shared.network.exception.NetworkingErrorMapper
+import dev.programadorthi.shared.network.mapper.RemoteMapper
 import kotlinx.coroutines.CoroutineDispatcher
 
 interface NetworkManager {

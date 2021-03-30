@@ -1,6 +1,6 @@
-package dev.programadorthi.network.fake
+package dev.programadorthi.shared.network.fake
 
-import dev.programadorthi.network.mapper.RemoteMapper
+import dev.programadorthi.shared.network.mapper.RemoteMapper
 
 class RemoteMapperFake(var throwException: Boolean = false) : RemoteMapper<String, Int>() {
 

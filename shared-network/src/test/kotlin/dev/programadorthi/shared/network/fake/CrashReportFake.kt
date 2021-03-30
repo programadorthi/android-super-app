@@ -1,6 +1,6 @@
-package dev.programadorthi.network.fake
+package dev.programadorthi.shared.network.fake
 
-import dev.programadorthi.domain.report.CrashReport
+import dev.programadorthi.shared.domain.report.CrashReport
 
 class CrashReportFake : CrashReport {
     var message: String? = null

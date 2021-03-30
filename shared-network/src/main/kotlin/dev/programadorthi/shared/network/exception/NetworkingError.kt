@@ -1,4 +1,4 @@
-package dev.programadorthi.network.exception
+package dev.programadorthi.shared.network.exception
 
 sealed class NetworkingError constructor(
     message: String? = "",

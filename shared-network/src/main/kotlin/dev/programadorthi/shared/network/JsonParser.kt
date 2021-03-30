@@ -1,4 +1,4 @@
-package dev.programadorthi.network
+package dev.programadorthi.shared.network
 
 import kotlinx.serialization.json.Json
 

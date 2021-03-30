@@ -1,4 +1,4 @@
-package dev.programadorthi.domain
+package dev.programadorthi.shared.domain
 
 object InjectionTags {
     const val IO_DISPATCHER = "io_dispatcher"

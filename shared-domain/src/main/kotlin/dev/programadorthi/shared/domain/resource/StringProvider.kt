@@ -1,4 +1,4 @@
-package dev.programadorthi.domain.resource
+package dev.programadorthi.shared.domain.resource
 
 interface StringProvider {
     fun getString(stringId: Int): String

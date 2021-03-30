@@ -1,9 +1,9 @@
-package dev.programadorthi.network.manager
+package dev.programadorthi.shared.network.manager
 
-import dev.programadorthi.network.exception.NetworkingError
-import dev.programadorthi.network.exception.NetworkingErrorMapper
-import dev.programadorthi.network.exception.NetworkingErrorMapperImpl
-import dev.programadorthi.network.fake.CrashReportFake
+import dev.programadorthi.shared.network.exception.NetworkingError
+import dev.programadorthi.shared.network.exception.NetworkingErrorMapper
+import dev.programadorthi.shared.network.exception.NetworkingErrorMapperImpl
+import dev.programadorthi.shared.network.fake.CrashReportFake
 import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.serialization.SerializationException
 import org.assertj.core.api.Assertions.assertThat
