@@ -1,0 +1,37 @@
+CREATE TABLE categories (
+  name TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE lastSearch (
+  term TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE facts (
+  id INTEGER NOT NULL PRIMARY KEY,
+  url TEXT NOT NULL,
+  text TEXT NOT NULL
+);
+
+selectCategories:
+SELECT *
+FROM categories;
+
+insertCategory:
+INSERT OR REPLACE INTO categories (name)
+VALUES ?;
+
+selectLastSearches:
+SELECT *
+FROM lastSearch;
+
+insertLastSearch:
+INSERT OR REPLACE INTO lastSearch (term)
+VALUES ?;
+
+selectFacts:
+SELECT *
+FROM facts;
+
+insertFacts:
+INSERT INTO facts
+VALUES ?;

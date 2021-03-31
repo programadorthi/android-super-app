@@ -1,4 +1,4 @@
-package dev.programadorthi.norris.domain
+package dev.programadorthi.norris.domain.model
 
 data class Fact(
     val id: String,

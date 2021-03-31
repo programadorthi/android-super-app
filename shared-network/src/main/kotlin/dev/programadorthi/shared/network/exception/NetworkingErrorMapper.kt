@@ -6,7 +6,7 @@ interface NetworkingErrorMapper {
     suspend fun mapper(cause: Throwable): NetworkingError
 
     companion object Instance {
-        fun create(crashReport: CrashReport): NetworkingErrorMapper =
+        operator fun invoke(crashReport: CrashReport): NetworkingErrorMapper =
             NetworkingErrorMapperImpl(crashReport)
     }
 }

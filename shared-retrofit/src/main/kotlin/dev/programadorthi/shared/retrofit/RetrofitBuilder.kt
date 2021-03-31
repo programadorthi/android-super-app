@@ -1,6 +1,7 @@
-package dev.programadorthi.shared.network
+package dev.programadorthi.shared.retrofit
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import dev.programadorthi.shared.network.JsonParser
 import kotlinx.serialization.ExperimentalSerializationApi
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient

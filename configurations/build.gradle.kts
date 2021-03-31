@@ -16,6 +16,7 @@ dependencies {
     implementation(BuildPlugins.android)
     implementation(BuildPlugins.kotlin)
     implementation(BuildPlugins.ktlint)
+    implementation(BuildPlugins.sqlDelight)
     implementation(BuildPlugins.testLogger)
 }
 

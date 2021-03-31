@@ -50,23 +50,7 @@ class NetworkManagerTest {
 
             assertThatThrownBy {
                 runBlocking {
-                    networkManager.send {}
-                }
-            }.isEqualTo(NetworkingError.NoInternetConnection)
-            assertThat(crashReportFake.cause).isEqualTo(null)
-
-            assertThatThrownBy {
-                runBlocking {
-                    networkManager.sendAndGet {}
-                }
-            }.isEqualTo(NetworkingError.NoInternetConnection)
-            assertThat(crashReportFake.cause).isEqualTo(null)
-
-            assertThatThrownBy {
-                runBlocking {
-                    networkManager.sendAndGetMapped(RemoteMapperFake()) {
-                        "some response body"
-                    }
+                    networkManager.execute { }
                 }
             }.isEqualTo(NetworkingError.NoInternetConnection)
             assertThat(crashReportFake.cause).isEqualTo(null)
@@ -77,10 +61,8 @@ class NetworkManagerTest {
         testDispatcher.runBlockingTest {
             assertThatThrownBy {
                 runBlocking {
-                    networkManager.sendAndGetMapped(
-                        RemoteMapperFake(throwException = true)
-                    ) {
-                        "some response body"
+                    networkManager.execute {
+                        RemoteMapperFake(throwException = true).invoke("some response body")
                     }
                 }
             }.isInstanceOf(NetworkingError.EssentialParamMissing::class.java)
@@ -94,30 +76,10 @@ class NetworkManagerTest {
 
             assertThatThrownBy {
                 runBlocking {
-                    networkManager.send { throw completableError }
+                    networkManager.execute { throw completableError }
                 }
             }.isInstanceOf(NetworkingError.InvalidDataFormat::class.java)
             assertThat(crashReportFake.cause).isEqualTo(completableError)
-
-            val singleError = SerializationException("0")
-
-            assertThatThrownBy {
-                runBlocking {
-                    networkManager.sendAndGet { throw singleError }
-                }
-            }.isInstanceOf(NetworkingError.InvalidDataFormat::class.java)
-            assertThat(crashReportFake.cause).isEqualTo(singleError)
-
-            val singleMappedError = SerializationException("class")
-
-            assertThatThrownBy {
-                runBlocking {
-                    networkManager.sendAndGetMapped(RemoteMapperFake()) {
-                        throw singleMappedError
-                    }
-                }
-            }.isInstanceOf(NetworkingError.InvalidDataFormat::class.java)
-            assertThat(crashReportFake.cause).isEqualTo(singleMappedError)
         }
 
     @Test
@@ -126,21 +88,7 @@ class NetworkManagerTest {
 
             assertThatThrownBy {
                 runBlocking {
-                    networkManager.send { throw SocketTimeoutException() }
-                }
-            }.isInstanceOf(NetworkingError.ConnectionTimeout::class.java)
-            assertThat(crashReportFake.cause).isNull()
-
-            assertThatThrownBy {
-                runBlocking {
-                    networkManager.sendAndGet { throw SocketTimeoutException() }
-                }
-            }.isInstanceOf(NetworkingError.ConnectionTimeout::class.java)
-            assertThat(crashReportFake.cause).isNull()
-
-            assertThatThrownBy {
-                runBlocking {
-                    networkManager.sendAndGetMapped(RemoteMapperFake()) { throw SocketTimeoutException() }
+                    networkManager.execute { throw SocketTimeoutException() }
                 }
             }.isInstanceOf(NetworkingError.ConnectionTimeout::class.java)
             assertThat(crashReportFake.cause).isNull()
@@ -153,30 +101,10 @@ class NetworkManagerTest {
 
             assertThatThrownBy {
                 runBlocking {
-                    networkManager.send { throw completableError }
+                    networkManager.execute { throw completableError }
                 }
             }.isInstanceOf(NetworkingError.UnknownEndpoint::class.java)
             assertThat(crashReportFake.cause).isEqualTo(completableError)
-
-            val singleError = UnknownHostException("two")
-
-            assertThatThrownBy {
-                runBlocking {
-                    networkManager.sendAndGet { throw singleError }
-                }
-            }.isInstanceOf(NetworkingError.UnknownEndpoint::class.java)
-            assertThat(crashReportFake.cause).isEqualTo(singleError)
-
-            val singleMappedError = UnknownHostException("three")
-
-            assertThatThrownBy {
-                runBlocking {
-                    networkManager.sendAndGetMapped(RemoteMapperFake()) {
-                        throw singleMappedError
-                    }
-                }
-            }.isInstanceOf(NetworkingError.UnknownEndpoint::class.java)
-            assertThat(crashReportFake.cause).isEqualTo(singleMappedError)
         }
 
     @Test
@@ -186,29 +114,9 @@ class NetworkManagerTest {
 
             assertThatThrownBy {
                 runBlocking {
-                    networkManager.send { throw completableError }
+                    networkManager.execute { throw completableError }
                 }
             }.isInstanceOf(NetworkingError.UnknownNetworkException::class.java)
             assertThat(crashReportFake.cause).isEqualTo(completableError)
-
-            val singleError = IOException("two")
-
-            assertThatThrownBy {
-                runBlocking {
-                    networkManager.sendAndGet { throw singleError }
-                }
-            }.isInstanceOf(NetworkingError.UnknownNetworkException::class.java)
-            assertThat(crashReportFake.cause).isEqualTo(singleError)
-
-            val singleMappedError = IOException("three")
-
-            assertThatThrownBy {
-                runBlocking {
-                    networkManager.sendAndGetMapped(RemoteMapperFake()) {
-                        throw singleMappedError
-                    }
-                }
-            }.isInstanceOf(NetworkingError.UnknownNetworkException::class.java)
-            assertThat(crashReportFake.cause).isEqualTo(singleMappedError)
         }
 }

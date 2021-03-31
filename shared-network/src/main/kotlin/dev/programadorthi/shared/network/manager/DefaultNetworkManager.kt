@@ -3,8 +3,8 @@ package dev.programadorthi.shared.network.manager
 import dev.programadorthi.shared.network.ConnectionCheck
 import dev.programadorthi.shared.network.exception.NetworkingError
 import dev.programadorthi.shared.network.exception.NetworkingErrorMapper
-import dev.programadorthi.shared.network.mapper.RemoteMapper
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.withContext
 
 internal class DefaultNetworkManager(
@@ -12,42 +12,16 @@ internal class DefaultNetworkManager(
     private val networkingErrorMapper: NetworkingErrorMapper,
     private val ioDispatcher: CoroutineDispatcher
 ) : NetworkManager {
-    override suspend fun send(request: suspend () -> Unit) {
-        withContext(ioDispatcher) {
-            checkConnection()
-            try {
-                request.invoke()
-            } catch (ex: Throwable) {
-                throw networkingErrorMapper.mapper(ex)
-            }
-        }
-    }
-
-    override suspend fun <RawData> sendAndGet(request: suspend () -> RawData): RawData =
-        withContext(ioDispatcher) {
-            checkConnection()
-            try {
-                request.invoke()
-            } catch (ex: Throwable) {
-                throw networkingErrorMapper.mapper(ex)
-            }
-        }
-
-    override suspend fun <Raw, Model> sendAndGetMapped(
-        mapper: RemoteMapper<Raw, Model>,
-        request: suspend () -> Raw
-    ): Model = withContext(ioDispatcher) {
-        checkConnection()
-        try {
-            mapper.invoke(request.invoke())
-        } catch (ex: Throwable) {
-            throw networkingErrorMapper.mapper(ex)
-        }
-    }
-
-    private suspend fun checkConnection() {
+    override suspend fun <T> execute(
+        request: suspend CoroutineScope.() -> T
+    ): T = withContext(ioDispatcher) {
         if (connectionCheck.hasInternetConnection().not()) {
             throw NetworkingError.NoInternetConnection
+        }
+        try {
+            request.invoke(this)
+        } catch (ex: Throwable) {
+            throw networkingErrorMapper.mapper(ex)
         }
     }
 }

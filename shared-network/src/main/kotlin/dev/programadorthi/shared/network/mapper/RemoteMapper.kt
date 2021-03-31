@@ -33,7 +33,7 @@ abstract class RemoteMapper<Raw, Model> : Mapper<Raw, Model> {
      */
     @Throws(EssentialParamMissing::class)
     private fun assertEssentialParams(raw: Raw) {
-        val missingFields = mutableListOf<String>()
+        val missingFields = mutableSetOf<String>()
         checkEssentialParams(missingFields, raw)
         if (missingFields.isNotEmpty()) {
             val params = missingFields.joinToString(prefix = "[", postfix = "]")
@@ -48,7 +48,7 @@ abstract class RemoteMapper<Raw, Model> : Mapper<Raw, Model> {
      * @param raw The server response data
      * @return A missing parameters list or empty list when is all ok
      */
-    protected abstract fun checkEssentialParams(missingFields: MutableList<String>, raw: Raw)
+    protected abstract fun checkEssentialParams(missingFields: MutableSet<String>, raw: Raw)
 
     /**
      * Create a [Model] using the [Raw] values
