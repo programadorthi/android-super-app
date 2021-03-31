@@ -1,4 +1,4 @@
-package dev.programadorthi.shared.network.exception
+package dev.programadorthi.shared.domain.exception
 
 import dev.programadorthi.shared.domain.report.CrashReport
 

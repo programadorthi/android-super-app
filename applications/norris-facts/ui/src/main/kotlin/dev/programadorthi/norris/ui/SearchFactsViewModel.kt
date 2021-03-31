@@ -3,9 +3,9 @@ package dev.programadorthi.norris.ui
 import androidx.lifecycle.ViewModel
 import dev.programadorthi.norris.domain.usecase.FactsUseCase
 import dev.programadorthi.shared.domain.Result
+import dev.programadorthi.shared.domain.exception.NetworkingError
 import dev.programadorthi.shared.domain.getOrDefault
 import dev.programadorthi.shared.domain.resource.StringProvider
-import dev.programadorthi.shared.network.exception.NetworkingError
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import dev.programadorthi.norris.ui.R as mainR
@@ -33,10 +33,11 @@ class SearchFactsViewModel(
                     result.exceptionOrNull(),
                     stringProvider.getString(result.exceptionOrNull().toStringRes())
                 )
-                else -> result
-                    .getOrDefault(emptyList())
-                    .map { category -> category.name }
-                    .let { categories -> UIState.Success(categories) }
+                else ->
+                    result
+                        .getOrDefault(emptyList())
+                        .map { category -> category.name }
+                        .let { categories -> UIState.Success(categories) }
             }
             mutableCategories.update(nextState)
         }
@@ -50,10 +51,11 @@ class SearchFactsViewModel(
                     result.exceptionOrNull(),
                     stringProvider.getString(result.exceptionOrNull().toStringRes())
                 )
-                else -> result
-                    .getOrDefault(emptyList())
-                    .map { search -> search.term }
-                    .let { searches -> UIState.Success(searches) }
+                else ->
+                    result
+                        .getOrDefault(emptyList())
+                        .map { search -> search.term }
+                        .let { searches -> UIState.Success(searches) }
             }
             mutableLastSearches.update(nextState)
         }

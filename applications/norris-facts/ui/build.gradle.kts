@@ -8,7 +8,6 @@ plugins {
 
 dependencies {
     implementation(project(":shared-domain"))
-    implementation(project(":shared-network"))
     implementation(project(":applications:norris-facts:domain"))
     implementation(Dependencies.Android.lifecycleRuntime)
     implementation(Dependencies.Android.lifecycleViewModel)

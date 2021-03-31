@@ -1,14 +1,13 @@
 package dev.programadorthi.norris.data
 
+import dev.programadorthi.norris.data.local.LocalFactsRepository
+import dev.programadorthi.norris.data.remote.RemoteFactsRepository
 import dev.programadorthi.norris.domain.model.Category
 import dev.programadorthi.norris.domain.model.Fact
-import dev.programadorthi.norris.local.LastSearch
-import dev.programadorthi.norris.local.LocalFactsRepository
-import dev.programadorthi.norris.remote.repository.RemoteFactsRepository
+import dev.programadorthi.norris.domain.model.LastSearch
 import dev.programadorthi.shared.domain.Result
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
-import dev.programadorthi.norris.domain.model.LastSearch as DomainLastSearch
 
 internal class FactsRepositoryImpl(
     private val localFactsRepository: LocalFactsRepository,
@@ -41,13 +40,13 @@ internal class FactsRepositoryImpl(
         return@withContext Result.success(result)
     }
 
-    override suspend fun getLastSearches(): Result<List<DomainLastSearch>> =
+    override suspend fun getLastSearches(): Result<List<LastSearch>> =
         withContext(ioDispatcher) {
             try {
                 Result.success(
                     localFactsRepository
                         .getLastSearches()
-                        .map { term -> DomainLastSearch(term = term) }
+                        .map { term -> LastSearch(term = term) }
                 )
             } catch (ex: Throwable) {
                 Result.failure(ex)

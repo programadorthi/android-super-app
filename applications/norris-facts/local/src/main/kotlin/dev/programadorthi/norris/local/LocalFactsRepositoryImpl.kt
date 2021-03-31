@@ -1,5 +1,10 @@
 package dev.programadorthi.norris.local
 
+import dev.programadorthi.norris.domain.model.Category
+import dev.programadorthi.norris.domain.model.Fact
+import dev.programadorthi.norris.domain.model.LastSearch
+import dev.programadorthi.norris.local.LastSearch as DBLastSearch
+
 internal class LocalFactsRepositoryImpl(
     private val database: NorrisQueries
 ) : LocalFactsRepository {
@@ -7,25 +12,43 @@ internal class LocalFactsRepositoryImpl(
     override suspend fun getCategories(): List<String> =
         database.selectCategories().executeAsList()
 
-    override suspend fun getFacts(): List<Facts> =
+    override suspend fun getFacts(): List<Fact> =
         database.selectFacts().executeAsList()
+            .map { fact ->
+                Fact(
+                    id = fact.id,
+                    url = fact.url,
+                    value = fact.text,
+                    categories = emptyList() // TODO: get category from INNER JOIN
+                )
+            }
 
     override suspend fun getLastSearches(): List<String> =
         database.selectLastSearches().executeAsList()
 
-    override suspend fun saveCategories(categories: List<Categories>) {
+    override suspend fun saveCategories(categories: List<Category>) {
         database.transaction {
-            categories.forEach(database::insertCategory)
+            categories
+                .map { category -> Categories(name = category.name) }
+                .forEach(database::insertCategory)
         }
     }
 
-    override suspend fun saveFacts(facts: List<Facts>) {
+    override suspend fun saveFacts(facts: List<Fact>) {
         database.transaction {
-            facts.forEach(database::insertFacts)
+            facts
+                .map { fact ->
+                    Facts(
+                        id = fact.id,
+                        text = fact.value,
+                        url = fact.url
+                    )
+                }
+                .forEach(database::insertFacts)
         }
     }
 
     override suspend fun saveNewSearch(lastSearch: LastSearch) {
-        database.insertLastSearch(lastSearch)
+        database.insertLastSearch(DBLastSearch(term = lastSearch.term))
     }
 }

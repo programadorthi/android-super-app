@@ -1,8 +1,8 @@
 package dev.programadorthi.norris.data
 
+import dev.programadorthi.norris.data.local.LocalFactsRepository
+import dev.programadorthi.norris.data.remote.RemoteFactsRepository
 import dev.programadorthi.norris.domain.repository.FactsRepository
-import dev.programadorthi.norris.local.LocalFactsRepository
-import dev.programadorthi.norris.remote.repository.RemoteFactsRepository
 import kotlinx.coroutines.CoroutineDispatcher
 
 interface FactsRepository : FactsRepository {

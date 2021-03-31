@@ -1,7 +1,7 @@
 package dev.programadorthi.shared.network.mapper
 
-import dev.programadorthi.shared.network.exception.NetworkingError
-import dev.programadorthi.shared.network.exception.NetworkingError.EssentialParamMissing
+import dev.programadorthi.shared.domain.exception.NetworkingError
+import dev.programadorthi.shared.domain.exception.NetworkingError.EssentialParamMissing
 
 typealias Mapper<From, To> = (From) -> To
 

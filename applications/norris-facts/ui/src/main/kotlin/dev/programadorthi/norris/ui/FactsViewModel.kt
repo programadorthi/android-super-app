@@ -34,10 +34,11 @@ class FactsViewModel(
                     cause = result.exceptionOrNull(),
                     message = stringProvider.getString(mainR.string.something_wrong)
                 )
-                else -> result
-                    .getOrDefault(emptyList())
-                    .map(::mapFact)
-                    .let { facts -> UIState.Success(facts) }
+                else ->
+                    result
+                        .getOrDefault(emptyList())
+                        .map(::mapFact)
+                        .let { facts -> UIState.Success(facts) }
             }
             mutableFacts.update(nextState)
         }

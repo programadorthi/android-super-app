@@ -1,8 +1,7 @@
 package dev.programadorthi.shared.network.manager
 
-import dev.programadorthi.shared.network.exception.NetworkingError
-import dev.programadorthi.shared.network.exception.NetworkingErrorMapper
-import dev.programadorthi.shared.network.exception.NetworkingErrorMapperImpl
+import dev.programadorthi.shared.domain.exception.NetworkingError
+import dev.programadorthi.shared.domain.exception.NetworkingErrorMapper
 import dev.programadorthi.shared.network.fake.ConnectionCheckFake
 import dev.programadorthi.shared.network.fake.CrashReportFake
 import dev.programadorthi.shared.network.fake.RemoteMapperFake
@@ -32,7 +31,7 @@ class NetworkManagerTest {
 
         crashReportFake = CrashReportFake()
 
-        networkingErrorMapper = NetworkingErrorMapperImpl(
+        networkingErrorMapper = NetworkingErrorMapper(
             crashReport = crashReportFake
         )
 

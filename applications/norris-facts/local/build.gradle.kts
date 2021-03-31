@@ -14,6 +14,7 @@ sqldelight {
 
 dependencies {
     implementation(project(":shared-domain"))
+    implementation(project(":applications:norris-facts:data"))
     implementation(project(":applications:norris-facts:domain"))
 
     implementation(Dependencies.Kotlin.coroutines)
