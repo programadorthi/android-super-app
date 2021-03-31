@@ -5,21 +5,18 @@ import org.gradle.api.tasks.SourceSetContainer
 
 internal fun BaseExtension.mapSourceSets() {
     logger().i(">>>> Mapping android source sets to: $this")
-
     sourceSets {
         map { source ->
-            val dir = source.addKotlinDir()
-
+            val dir = source.name.asKotlinDir()
             logger().i(">>>> $source kotlin dir: $dir")
-
             source.java.srcDir(dir)
         }
     }
 }
 
 internal fun SourceSetContainer.mapSourceSets() =
-    map { source ->
-        source.java.srcDir(source.addKotlinDir())
+    forEach { source ->
+        source.java.srcDir(source.name.asKotlinDir())
     }
 
-private fun Any.addKotlinDir() = "src/$this/kotlin"
+private fun String.asKotlinDir() = "src/$this/kotlin"

@@ -14,6 +14,7 @@ internal fun BaseExtension.configureCommonAndroidConfigs() {
     configureCompileOptions()
     configureLintOptions()
     configureTestOptions()
+    configureBuildFeatures()
     mapSourceSets()
 }
 
@@ -82,4 +83,9 @@ private fun BaseExtension.configureTestOptions() {
             isReturnDefaultValues = true
         }
     }
+}
+
+private fun BaseExtension.configureBuildFeatures() {
+    logger().i(">>>> Applying default config to: $this")
+    buildFeatures.viewBinding = true
 }

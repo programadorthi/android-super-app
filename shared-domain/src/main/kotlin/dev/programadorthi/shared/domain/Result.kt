@@ -22,7 +22,7 @@ class Result<out T> internal constructor(
      * Returns `true` if this instance represents a successful outcome.
      * In this case [isFailure] returns `false`.
      */
-    val isSuccess: Boolean get() = value !is Failure && value !is Business
+    val isSuccess: Boolean get() = value !is Failure && isBusiness.not()
 
     /**
      * Returns `true` if this instance represents a failed outcome.
@@ -30,7 +30,7 @@ class Result<out T> internal constructor(
      */
     val isFailure: Boolean get() = value is Failure
 
-    val isBusiness: Boolean get() = value is Business
+    private val isBusiness: Boolean get() = value is Business
 
     // value & exception retrieval
 
