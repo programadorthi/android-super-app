@@ -25,5 +25,6 @@ include(":shared-retrofit")
 
 include(":applications:norris-facts:di")
 include(":applications:norris-facts:domain")
+include(":applications:norris-facts:domain-fake")
 include(":applications:norris-facts:domain-impl")
 include(":applications:norris-facts:ui")
