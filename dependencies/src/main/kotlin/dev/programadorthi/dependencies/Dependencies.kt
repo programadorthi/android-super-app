@@ -39,6 +39,7 @@ object Dependencies {
     }
 
     object UnitTest {
+        const val sqlDelight = "com.squareup.sqldelight:sqlite-driver:1.4.4"
         val all = listOf(
             "junit:junit:4.13.2",
             "org.assertj:assertj-core:3.19.0",

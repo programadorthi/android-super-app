@@ -13,6 +13,8 @@ includeBuild("dependencies")
 includeBuild("configurations")
 
 include(":shared-database")
+include(":shared-database-fake")
+include(":shared-database-test")
 include(":shared-domain")
 include(":shared-domain-fake")
 include(":shared-domain-test")
