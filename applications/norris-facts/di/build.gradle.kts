@@ -6,8 +6,7 @@ plugins {
 }
 
 dependencies {
-    api(project(":applications:norris-facts:local"))
-    api(project(":applications:norris-facts:remote"))
+    api(project(":applications:norris-facts:domain-impl"))
     implementation(Dependencies.Kotlin.coroutines)
     implementation(Dependencies.DI.kodein)
     implementation(Dependencies.Network.retrofit)
