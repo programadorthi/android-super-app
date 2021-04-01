@@ -3,7 +3,7 @@ package dev.programadorthi.shared.network.manager
 import dev.programadorthi.shared.domain.exception.NetworkingError
 import dev.programadorthi.shared.domain.exception.NetworkingErrorMapper
 import dev.programadorthi.shared.domain.fake.CrashReportFake
-import dev.programadorthi.shared.network.fake.ConnectionCheckFake
+import dev.programadorthi.shared.domain.fake.ConnectionCheckFake
 import dev.programadorthi.shared.network.fake.RemoteMapperFake
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
@@ -28,9 +28,7 @@ class NetworkManagerTest {
     @Before
     fun `before each test`() {
         connectionCheckFake = ConnectionCheckFake()
-
         crashReportFake = CrashReportFake()
-
         networkingErrorMapper = NetworkingErrorMapper(
             crashReport = crashReportFake
         )
@@ -61,7 +59,7 @@ class NetworkManagerTest {
             assertThatThrownBy {
                 runBlocking {
                     networkManager.execute {
-                        RemoteMapperFake(throwException = true).invoke("some response body")
+                        throw NetworkingError.EssentialParamMissing("missing params", Unit)
                     }
                 }
             }.isInstanceOf(NetworkingError.EssentialParamMissing::class.java)

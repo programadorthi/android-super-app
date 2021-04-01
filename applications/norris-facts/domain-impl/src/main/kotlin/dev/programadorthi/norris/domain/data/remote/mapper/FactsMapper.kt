@@ -5,7 +5,7 @@ import dev.programadorthi.norris.domain.data.remote.raw.FactsResponseRaw
 import dev.programadorthi.norris.domain.model.Fact
 import dev.programadorthi.shared.network.mapper.RemoteMapper
 
-internal object FactsMapper : RemoteMapper<FactsResponseRaw, List<Fact>>() {
+object FactsMapper : RemoteMapper<FactsResponseRaw, List<Fact>>() {
 
     override fun checkEssentialParams(missingFields: MutableSet<String>, raw: FactsResponseRaw) {
         if (raw.result == null) {

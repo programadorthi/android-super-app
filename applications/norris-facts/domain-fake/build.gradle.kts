@@ -4,5 +4,5 @@ plugins {
 }
 
 dependencies {
-    api(project(":applications:norris-facts:domain"))
+    api(project(":applications:norris-facts:domain-impl"))
 }

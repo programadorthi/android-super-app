@@ -4,6 +4,7 @@ import com.squareup.sqldelight.db.SqlDriver
 import dev.programadorthi.norris.domain.data.FactsRepositoryFactory
 import dev.programadorthi.norris.domain.data.local.LocalFactsRepositoryFactory
 import dev.programadorthi.norris.domain.data.remote.FactsService
+import dev.programadorthi.norris.domain.data.remote.mapper.FactsMapper
 import dev.programadorthi.norris.domain.data.remote.repository.RemoteFactsRepositoryFactory
 import dev.programadorthi.norris.domain.usecase.FactsUseCaseFactory
 import dev.programadorthi.shared.database.SuperApp
@@ -31,6 +32,7 @@ object NorrisModule {
         }
         bindProvider {
             RemoteFactsRepositoryFactory(
+                factsMapper = FactsMapper,
                 factsService = instance(),
                 networkManager = instance()
             )

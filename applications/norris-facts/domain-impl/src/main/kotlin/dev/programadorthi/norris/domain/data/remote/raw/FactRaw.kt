@@ -11,13 +11,12 @@ data class FactRaw(
     val url: String? = null,
     @SerialName(VALUE_FIELD)
     val value: String? = null,
-    @SerialName(CATEGORIES_FIELD)
+    @SerialName("categories")
     val categories: List<String>? = null
 ) {
     companion object {
         const val ID_FIELD = "id"
         const val URL_FIELD = "url"
         const val VALUE_FIELD = "value"
-        const val CATEGORIES_FIELD = "categories"
     }
 }

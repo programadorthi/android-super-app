@@ -1,4 +1,4 @@
-package dev.programadorthi.shared.network.fake
+package dev.programadorthi.shared.domain.fake
 
 import dev.programadorthi.shared.domain.network.ConnectionCheck
 

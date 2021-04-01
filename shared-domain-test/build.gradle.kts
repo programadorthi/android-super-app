@@ -6,7 +6,7 @@ plugins {
 }
 
 dependencies {
-    api(project(":shared-domain-fake"))
+    testApi(project(":shared-domain-fake"))
     testImplementation(Dependencies.Kotlin.serialization)
     Dependencies.UnitTest.all.forEach { testImplementation(it) }
 }
