@@ -1,6 +1,5 @@
 package dev.programadorthi.norris.di
 
-import com.squareup.sqldelight.db.SqlDriver
 import dev.programadorthi.norris.domain.data.FactsRepositoryFactory
 import dev.programadorthi.norris.domain.data.local.LocalFactsRepositoryFactory
 import dev.programadorthi.norris.domain.data.remote.FactsService
@@ -8,6 +7,7 @@ import dev.programadorthi.norris.domain.data.remote.mapper.FactsMapper
 import dev.programadorthi.norris.domain.data.remote.repository.RemoteFactsRepositoryFactory
 import dev.programadorthi.norris.domain.usecase.FactsUseCaseFactory
 import dev.programadorthi.shared.database.SuperApp
+import dev.programadorthi.shared.database.di.SharedDatabaseModule
 import dev.programadorthi.shared.domain.InjectionTags
 import org.kodein.di.DI
 import org.kodein.di.bindProvider
@@ -17,10 +17,8 @@ import retrofit2.Retrofit
 
 object NorrisModule {
     operator fun invoke() = DI.Module(name = "norris") {
-        bindSingleton {
-            val driver = instance<SqlDriver>()
-            SuperApp(driver)
-        }
+        import(SharedDatabaseModule())
+
         bindSingleton {
             val retrofit = instance<Retrofit>()
             retrofit.create(FactsService::class.java)

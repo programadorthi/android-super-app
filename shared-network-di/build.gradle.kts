@@ -6,9 +6,7 @@ plugins {
 }
 
 dependencies {
-    api(project(":shared-database-di"))
-    api(project(":applications:norris-facts:domain-impl"))
+    api(project(":shared-network"))
     implementation(Dependencies.Kotlin.coroutines)
     implementation(Dependencies.DI.kodein)
-    implementation(Dependencies.Network.retrofit)
 }
