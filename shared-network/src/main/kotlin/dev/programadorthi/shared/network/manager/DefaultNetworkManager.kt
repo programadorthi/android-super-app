@@ -2,7 +2,7 @@ package dev.programadorthi.shared.network.manager
 
 import dev.programadorthi.shared.domain.exception.NetworkingError
 import dev.programadorthi.shared.domain.exception.NetworkingErrorMapper
-import dev.programadorthi.shared.network.ConnectionCheck
+import dev.programadorthi.shared.domain.network.ConnectionCheck
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.withContext

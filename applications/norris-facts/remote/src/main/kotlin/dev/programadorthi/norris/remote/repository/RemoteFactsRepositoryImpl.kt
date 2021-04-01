@@ -1,5 +1,6 @@
 package dev.programadorthi.norris.remote.repository
 
+import dev.programadorthi.norris.data.remote.RemoteFactsRepository
 import dev.programadorthi.norris.domain.model.Fact
 import dev.programadorthi.norris.remote.FactsService
 import dev.programadorthi.norris.remote.raw.FactsResponseRaw

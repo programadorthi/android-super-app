@@ -5,6 +5,7 @@ import dev.programadorthi.norris.data.remote.RemoteFactsRepository
 import dev.programadorthi.norris.domain.model.Category
 import dev.programadorthi.norris.domain.model.Fact
 import dev.programadorthi.norris.domain.model.LastSearch
+import dev.programadorthi.norris.domain.repository.FactsRepository
 import dev.programadorthi.shared.domain.Result
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext

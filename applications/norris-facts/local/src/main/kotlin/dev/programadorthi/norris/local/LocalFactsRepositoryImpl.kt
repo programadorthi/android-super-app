@@ -1,5 +1,6 @@
 package dev.programadorthi.norris.local
 
+import dev.programadorthi.norris.data.local.LocalFactsRepository
 import dev.programadorthi.norris.domain.model.Category
 import dev.programadorthi.norris.domain.model.Fact
 import dev.programadorthi.norris.domain.model.LastSearch
