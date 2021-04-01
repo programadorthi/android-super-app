@@ -6,8 +6,6 @@ plugins {
 }
 
 dependencies {
-    api(project(":shared-network"))
-
     implementation(Dependencies.Kotlin.serialization)
     implementation(Dependencies.Network.okhttp)
     implementation(Dependencies.Network.retrofit)

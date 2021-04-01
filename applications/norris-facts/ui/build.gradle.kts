@@ -7,6 +7,10 @@ plugins {
 }
 
 dependencies {
+    implementation(project(":shared-database-di"))
+    implementation(project(":shared-network-di"))
+    implementation(project(":shared-retrofit"))
+    implementation(project(":shared-ui-di"))
     implementation(project(":applications:norris-facts:di"))
     implementation(Dependencies.Android.lifecycleRuntime)
     implementation(Dependencies.Android.lifecycleViewModel)
@@ -14,6 +18,4 @@ dependencies {
     implementation(Dependencies.DI.kodein)
     implementation(Dependencies.DI.kodeinAndroid)
     Dependencies.Android.common.forEach { implementation(it) }
-    Dependencies.UnitTest.all.forEach { testImplementation(it) }
-    Dependencies.AndroidTest.all.forEach { androidTestImplementation(it) }
 }

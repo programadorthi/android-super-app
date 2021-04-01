@@ -24,6 +24,8 @@ include(":shared-network-di")
 include(":shared-network-fake")
 include(":shared-network-test")
 include(":shared-retrofit")
+include(":shared-ui")
+include(":shared-ui-di")
 
 include(":applications:norris-facts:di")
 include(":applications:norris-facts:domain")

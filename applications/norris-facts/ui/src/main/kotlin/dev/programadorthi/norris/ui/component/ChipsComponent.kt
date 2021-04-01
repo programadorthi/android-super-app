@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import dev.programadorthi.norris.ui.R
-import dev.programadorthi.norris.ui.UIState
-import dev.programadorthi.norris.ui.ext.lifecycleScope
+import dev.programadorthi.shared.ui.UIState
+import dev.programadorthi.shared.ui.ext.lifecycleScope
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch

@@ -7,24 +7,18 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import dev.programadorthi.norris.di.NorrisModule
 import dev.programadorthi.norris.ui.component.ErrorComponent
 import dev.programadorthi.norris.ui.component.LoadingComponent
 import dev.programadorthi.norris.ui.component.SuccessComponent
 import dev.programadorthi.norris.ui.databinding.ActivityFactsBinding
-import dev.programadorthi.norris.ui.di.NorrisUIModule
-import dev.programadorthi.norris.ui.ext.viewModel
 import dev.programadorthi.norris.ui.model.FactViewData
+import dev.programadorthi.shared.ui.di.ext.viewModel
 import org.kodein.di.DI
 import org.kodein.di.DIAware
 import org.kodein.di.android.closestDI
-import org.kodein.di.android.subDI
 
 class FactsActivity : AppCompatActivity(), DIAware {
-    override val di: DI by subDI(closestDI()) {
-        import(NorrisModule())
-        import(NorrisUIModule())
-    }
+    override val di: DI by closestDI()
 
     private val factsViewModel: FactsViewModel by viewModel()
     private val binding by lazy {

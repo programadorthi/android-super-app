@@ -8,5 +8,6 @@ plugins {
 dependencies {
     api(project(":shared-network"))
     implementation(Dependencies.Kotlin.coroutines)
+    implementation(Dependencies.Kotlin.serialization)
     implementation(Dependencies.DI.kodein)
 }

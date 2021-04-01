@@ -8,10 +8,15 @@ import androidx.core.view.isVisible
 import dev.programadorthi.norris.ui.component.ChipsComponent
 import dev.programadorthi.norris.ui.component.SearchEditTextComponent
 import dev.programadorthi.norris.ui.databinding.ActivitySearchFactsBinding
+import dev.programadorthi.shared.ui.di.ext.viewModel
+import org.kodein.di.DI
+import org.kodein.di.DIAware
+import org.kodein.di.android.closestDI
 
-class SearchFactsActivity : AppCompatActivity() {
-    private lateinit var searchFactsViewModel: SearchFactsViewModel
+class SearchFactsActivity : AppCompatActivity(), DIAware {
+    override val di: DI by closestDI()
 
+    private val searchFactsViewModel: SearchFactsViewModel by viewModel()
     private val viewBinding by lazy {
         ActivitySearchFactsBinding.inflate(layoutInflater)
     }

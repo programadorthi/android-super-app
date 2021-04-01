@@ -12,5 +12,9 @@ object SharedDatabaseModule {
             val driver = instance<SqlDriver>()
             SuperApp(driver)
         }
+
+        bindSingleton {
+            instance<SuperApp>().norrisQueries
+        }
     }
 }

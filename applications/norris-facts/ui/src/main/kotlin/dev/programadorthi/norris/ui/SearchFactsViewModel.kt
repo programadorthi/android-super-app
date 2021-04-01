@@ -1,28 +1,31 @@
 package dev.programadorthi.norris.ui
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dev.programadorthi.norris.domain.usecase.FactsUseCase
 import dev.programadorthi.shared.domain.Result
 import dev.programadorthi.shared.domain.exception.NetworkingError
 import dev.programadorthi.shared.domain.getOrDefault
 import dev.programadorthi.shared.domain.resource.StringProvider
-import kotlinx.coroutines.CoroutineScope
+import dev.programadorthi.shared.ui.UIState
+import dev.programadorthi.shared.ui.flow.PropertyStateFlow
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import dev.programadorthi.norris.ui.R as mainR
 
 class SearchFactsViewModel(
     private val factsUseCase: FactsUseCase,
     private val stringProvider: StringProvider,
-    private val ioScope: CoroutineScope
+    private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
-    private val mutableCategories = OurStateFlow<List<String>>()
+    private val mutableCategories = PropertyStateFlow<List<String>>()
     fun categories() = mutableCategories.stateFlow
 
-    private val mutableLastSearches = OurStateFlow<List<String>>()
+    private val mutableLastSearches = PropertyStateFlow<List<String>>()
     fun lastSearches() = mutableLastSearches.stateFlow
 
     fun fetchCategories() {
-        ioScope.launch {
+        viewModelScope.launch(ioDispatcher) {
             val result = factsUseCase.categories(limit = MAX_VISIBLE_CATEGORIES, shuffle = true)
             val nextState = when {
                 result is Result.Business -> UIState.Business(
@@ -44,7 +47,7 @@ class SearchFactsViewModel(
     }
 
     fun fetchLastSearches() {
-        ioScope.launch {
+        viewModelScope.launch(ioDispatcher) {
             val result = factsUseCase.lastSearches()
             val nextState = when {
                 result.isFailure -> UIState.Error(

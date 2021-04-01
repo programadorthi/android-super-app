@@ -1,6 +1,7 @@
 package dev.programadorthi.norris.ui
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dev.programadorthi.norris.domain.FactsBusiness
 import dev.programadorthi.norris.domain.model.Fact
 import dev.programadorthi.norris.domain.usecase.FactsUseCase
@@ -8,7 +9,9 @@ import dev.programadorthi.norris.ui.model.FactViewData
 import dev.programadorthi.shared.domain.Result
 import dev.programadorthi.shared.domain.getOrDefault
 import dev.programadorthi.shared.domain.resource.StringProvider
-import kotlinx.coroutines.CoroutineScope
+import dev.programadorthi.shared.ui.UIState
+import dev.programadorthi.shared.ui.flow.PropertyStateFlow
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import com.google.android.material.R as materialR
 import dev.programadorthi.norris.ui.R as mainR
@@ -16,13 +19,13 @@ import dev.programadorthi.norris.ui.R as mainR
 class FactsViewModel(
     private val factsUseCase: FactsUseCase,
     private val stringProvider: StringProvider,
-    private val ioScope: CoroutineScope
+    private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
-    private val mutableFacts = OurStateFlow<List<FactViewData>>()
+    private val mutableFacts = PropertyStateFlow<List<FactViewData>>()
     fun facts() = mutableFacts.stateFlow
 
     fun search(text: String) {
-        ioScope.launch {
+        viewModelScope.launch(ioDispatcher) {
             mutableFacts.update(UIState.Loading)
             val result = factsUseCase.search(text)
             val nextState = when {
