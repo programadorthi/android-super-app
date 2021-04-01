@@ -4,7 +4,10 @@ import dev.programadorthi.norris.data.local.LocalFactsRepository
 import dev.programadorthi.norris.domain.model.Category
 import dev.programadorthi.norris.domain.model.Fact
 import dev.programadorthi.norris.domain.model.LastSearch
-import dev.programadorthi.norris.local.LastSearch as DBLastSearch
+import dev.programadorthi.shared.database.Categories
+import dev.programadorthi.shared.database.Facts
+import dev.programadorthi.shared.database.NorrisQueries
+import dev.programadorthi.shared.database.LastSearch as DBLastSearch
 
 internal class LocalFactsRepositoryImpl(
     private val database: NorrisQueries

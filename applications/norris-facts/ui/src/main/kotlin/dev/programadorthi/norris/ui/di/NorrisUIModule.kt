@@ -17,7 +17,8 @@ import org.kodein.di.instance
 object NorrisUIModule {
     operator fun invoke() = DI.Module(name = "norris-ui") {
         // TODO: migrate to a global module
-        bindProvider(InjectionTags.IO_SCOPE) { CoroutineScope(Dispatchers.IO) }
+        bindProvider(InjectionTags.IO_DISPATCHER) { Dispatchers.IO }
+        bindProvider(InjectionTags.IO_SCOPE) { CoroutineScope(instance(InjectionTags.IO_DISPATCHER)) }
         bindProvider<ViewModelProvider.Factory> { ViewModelFactory(di) }
         bindSingleton<ConnectionCheck> { ConnectionCheckImpl(context = instance()) }
 

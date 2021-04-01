@@ -6,7 +6,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":shared-network"))
+    api(project(":shared-network"))
 
     implementation(Dependencies.Kotlin.serialization)
     implementation(Dependencies.Network.okhttp)

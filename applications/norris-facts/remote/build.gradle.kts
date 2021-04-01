@@ -8,10 +8,8 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":shared-domain"))
-    implementation(project(":shared-network"))
-    implementation(project(":applications:norris-facts:data"))
-    implementation(project(":applications:norris-facts:domain"))
+    api(project(":shared-network"))
+    api(project(":applications:norris-facts:data"))
 
     implementation(Dependencies.Kotlin.coroutines)
     implementation(Dependencies.Kotlin.serialization)

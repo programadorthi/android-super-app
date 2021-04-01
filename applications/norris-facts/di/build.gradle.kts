@@ -6,11 +6,9 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":shared-domain"))
-    implementation(project(":applications:norris-facts:data"))
-    implementation(project(":applications:norris-facts:domain"))
-    implementation(project(":applications:norris-facts:local"))
-    implementation(project(":applications:norris-facts:remote"))
+    api(project(":applications:norris-facts:local"))
+    api(project(":applications:norris-facts:remote"))
+    implementation(Dependencies.Kotlin.coroutines)
     implementation(Dependencies.DI.kodein)
     implementation(Dependencies.Network.retrofit)
 }

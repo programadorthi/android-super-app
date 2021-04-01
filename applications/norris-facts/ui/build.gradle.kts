@@ -7,7 +7,6 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":shared-domain"))
     implementation(project(":applications:norris-facts:di"))
     implementation(Dependencies.Android.lifecycleRuntime)
     implementation(Dependencies.Android.lifecycleViewModel)

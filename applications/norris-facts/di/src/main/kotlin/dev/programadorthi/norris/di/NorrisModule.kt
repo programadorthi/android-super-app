@@ -1,12 +1,12 @@
 package dev.programadorthi.norris.di
 
 import com.squareup.sqldelight.db.SqlDriver
-import dev.programadorthi.norris.Norris
 import dev.programadorthi.norris.data.FactsRepositoryFactory
 import dev.programadorthi.norris.domain.usecase.FactsUseCase
 import dev.programadorthi.norris.local.LocalFactsRepositoryFactory
 import dev.programadorthi.norris.remote.FactsService
 import dev.programadorthi.norris.remote.repository.RemoteFactsRepositoryFactory
+import dev.programadorthi.shared.database.SuperApp
 import dev.programadorthi.shared.domain.InjectionTags
 import org.kodein.di.DI
 import org.kodein.di.bindProvider
@@ -18,7 +18,7 @@ object NorrisModule {
     operator fun invoke() = DI.Module(name = "norris") {
         bindSingleton {
             val driver = instance<SqlDriver>()
-            Norris(driver)
+            SuperApp(driver)
         }
         bindSingleton {
             val retrofit = instance<Retrofit>()
@@ -26,7 +26,7 @@ object NorrisModule {
         }
         bindProvider {
             LocalFactsRepositoryFactory(
-                database = instance<Norris>().norrisQueries
+                database = instance<SuperApp>().norrisQueries
             )
         }
         bindProvider {
