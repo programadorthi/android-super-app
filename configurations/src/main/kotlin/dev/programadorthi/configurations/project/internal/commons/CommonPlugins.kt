@@ -5,35 +5,29 @@ import com.adarshr.gradle.testlogger.theme.ThemeType
 import dev.programadorthi.configurations.project.internal.utils.i
 import dev.programadorthi.configurations.project.internal.utils.logger
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.getByName
+import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.invoke
 import org.jmailen.gradle.kotlinter.tasks.LintTask
 
 internal fun Project.applyCommonPlugins() {
-    with(pluginManager) {
-        logger().i("Setting common plugins to project: $name")
-        withPlugin("org.jmailen.kotlinter") {
-            configureKotlinter(this.id)
-        }
-        withPlugin("com.adarshr.test-logger") {
-            configureTestLogger(this.id)
-        }
-    }
+    apply(plugin = "org.jmailen.kotlinter")
+    apply(plugin = "com.adarshr.test-logger")
+    configureKotlinter()
+    configureTestLogger()
 }
 
-private fun Project.configureKotlinter(pluginId: String) {
-    plugins.withId(pluginId) {
-        tasks.getByName<LintTask>("lintKotlinMain") {
+private fun Project.configureKotlinter() {
+    tasks {
+        "lintKotlinMain"(LintTask::class) {
             exclude("**/generated/**")
         }
     }
 }
 
-private fun Project.configureTestLogger(pluginId: String) {
-    plugins.withId(pluginId) {
-        extensions.getByType<TestLoggerExtension>().apply {
-            logger().i("Setting test logger to: $name")
-            theme = ThemeType.MOCHA_PARALLEL
-        }
+private fun Project.configureTestLogger() {
+    extensions.getByType<TestLoggerExtension>().apply {
+        logger().i("Setting test logger to: $name")
+        theme = ThemeType.MOCHA_PARALLEL
     }
 }

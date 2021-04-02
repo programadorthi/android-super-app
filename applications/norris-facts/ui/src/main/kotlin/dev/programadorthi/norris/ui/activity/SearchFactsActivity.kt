@@ -1,4 +1,4 @@
-package dev.programadorthi.norris.ui
+package dev.programadorthi.norris.ui.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import dev.programadorthi.norris.ui.component.ChipsComponent
 import dev.programadorthi.norris.ui.component.SearchEditTextComponent
 import dev.programadorthi.norris.ui.databinding.ActivitySearchFactsBinding
+import dev.programadorthi.norris.ui.viewmodel.SearchFactsViewModel
 import dev.programadorthi.shared.ui.di.ext.viewModel
 import org.kodein.di.DI
 import org.kodein.di.DIAware

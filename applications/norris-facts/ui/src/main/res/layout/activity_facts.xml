@@ -5,7 +5,7 @@
     android:id="@+id/factsContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FactsActivity">
+    tools:context=".activity.FactsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/factsRecyclerView"

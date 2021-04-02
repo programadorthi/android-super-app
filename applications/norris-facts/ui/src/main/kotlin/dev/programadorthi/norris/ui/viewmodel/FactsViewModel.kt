@@ -1,4 +1,4 @@
-package dev.programadorthi.norris.ui
+package dev.programadorthi.norris.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -26,7 +26,7 @@ class FactsViewModel(
 
     fun search(text: String) {
         viewModelScope.launch(ioDispatcher) {
-            mutableFacts.update(UIState.Loading)
+            mutableFacts.loading()
             val result = factsUseCase.search(text)
             val nextState = when {
                 result is Result.Business -> UIState.Business(

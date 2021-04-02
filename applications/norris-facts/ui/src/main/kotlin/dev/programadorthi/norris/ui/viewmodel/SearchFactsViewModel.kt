@@ -1,4 +1,4 @@
-package dev.programadorthi.norris.ui
+package dev.programadorthi.norris.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

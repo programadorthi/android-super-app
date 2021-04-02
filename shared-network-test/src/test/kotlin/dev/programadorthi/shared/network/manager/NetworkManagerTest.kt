@@ -2,9 +2,8 @@ package dev.programadorthi.shared.network.manager
 
 import dev.programadorthi.shared.domain.exception.NetworkingError
 import dev.programadorthi.shared.domain.exception.NetworkingErrorMapper
-import dev.programadorthi.shared.domain.fake.CrashReportFake
 import dev.programadorthi.shared.domain.fake.ConnectionCheckFake
-import dev.programadorthi.shared.network.fake.RemoteMapperFake
+import dev.programadorthi.shared.domain.fake.CrashReportFake
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest

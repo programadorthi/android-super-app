@@ -7,9 +7,9 @@ internal class CrashReportImpl : CrashReport {
     override fun report(message: String, cause: Throwable) {
         println(
             """
-        |message: $message
-        |cause: $cause
-        """.trimIndent()
+            |message: $message
+            |cause: $cause
+            """.trimIndent()
         )
     }
 }

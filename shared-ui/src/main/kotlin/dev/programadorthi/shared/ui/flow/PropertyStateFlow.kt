@@ -10,6 +10,10 @@ class PropertyStateFlow<T> {
     val stateFlow: StateFlow<UIState<T>>
         get() = mutableStateFlow.asStateFlow()
 
+    fun loading() {
+        mutableStateFlow.value = UIState.Loading
+    }
+
     fun update(value: UIState<T>) {
         mutableStateFlow.value = value
     }

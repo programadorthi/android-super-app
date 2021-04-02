@@ -1,4 +1,4 @@
-package dev.programadorthi.norris.ui
+package dev.programadorthi.norris.ui.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -7,11 +7,13 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import dev.programadorthi.norris.ui.R
 import dev.programadorthi.norris.ui.component.ErrorComponent
 import dev.programadorthi.norris.ui.component.LoadingComponent
 import dev.programadorthi.norris.ui.component.SuccessComponent
 import dev.programadorthi.norris.ui.databinding.ActivityFactsBinding
 import dev.programadorthi.norris.ui.model.FactViewData
+import dev.programadorthi.norris.ui.viewmodel.FactsViewModel
 import dev.programadorthi.shared.ui.di.ext.viewModel
 import org.kodein.di.DI
 import org.kodein.di.DIAware
