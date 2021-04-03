@@ -6,7 +6,7 @@ import dev.programadorthi.norris.domain.data.remote.FactsService
 import dev.programadorthi.norris.domain.data.remote.mapper.FactsMapper
 import dev.programadorthi.norris.domain.data.remote.repository.RemoteFactsRepositoryFactory
 import dev.programadorthi.norris.domain.usecase.FactsUseCaseFactory
-import dev.programadorthi.shared.domain.InjectionTags
+import dev.programadorthi.shared.domain.DomainInjectionTags
 import org.kodein.di.DI
 import org.kodein.di.bindProvider
 import org.kodein.di.bindSingleton
@@ -35,7 +35,7 @@ object NorrisModule {
             FactsRepositoryFactory(
                 localFactsRepository = instance(),
                 remoteFactsRepository = instance(),
-                ioDispatcher = instance(InjectionTags.IO_DISPATCHER)
+                ioDispatcher = instance(DomainInjectionTags.IO_DISPATCHER)
             )
         }
         bindProvider { FactsUseCaseFactory(factsRepository = instance()) }

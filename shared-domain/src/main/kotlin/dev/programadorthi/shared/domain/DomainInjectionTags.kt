@@ -1,6 +1,5 @@
 package dev.programadorthi.shared.domain
 
-object InjectionTags {
+object DomainInjectionTags {
     const val IO_DISPATCHER = "io_dispatcher"
-    const val IO_SCOPE = "io_scope"
 }

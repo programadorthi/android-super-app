@@ -1,6 +1,6 @@
 package dev.programadorthi.shared.network.di
 
-import dev.programadorthi.shared.domain.InjectionTags
+import dev.programadorthi.shared.domain.DomainInjectionTags
 import dev.programadorthi.shared.domain.exception.NetworkingErrorMapper
 import dev.programadorthi.shared.network.JsonParser
 import dev.programadorthi.shared.network.manager.NetworkManager
@@ -20,7 +20,7 @@ object SharedNetworkModule {
             NetworkManager(
                 connectionCheck = instance(),
                 networkingErrorMapper = instance(),
-                ioDispatcher = instance(InjectionTags.IO_DISPATCHER)
+                ioDispatcher = instance(DomainInjectionTags.IO_DISPATCHER)
             )
         }
         bindSingleton { JsonParser }

@@ -11,8 +11,8 @@ object RetrofitBuilder {
 
     operator fun invoke(
         baseUrl: String,
-        httpClient: OkHttpClient,
-        json: Json
+        json: Json,
+        httpClient: OkHttpClient = OkHttpClient()
     ): Retrofit = with(Retrofit.Builder()) {
         baseUrl(baseUrl)
         client(httpClient)
