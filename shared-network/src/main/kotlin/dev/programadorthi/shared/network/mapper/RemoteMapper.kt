@@ -36,8 +36,7 @@ abstract class RemoteMapper<Raw, Model> : Mapper<Raw, Model> {
         val missingFields = mutableSetOf<String>()
         checkEssentialParams(missingFields, raw)
         if (missingFields.isNotEmpty()) {
-            val params = missingFields.joinToString(prefix = "[", postfix = "]")
-            throw EssentialParamMissing(missingParams = params, rawObject = raw!!)
+            throw EssentialParamMissing(missingParams = missingFields.toString(), rawObject = raw!!)
         }
     }
 

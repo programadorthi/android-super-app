@@ -4,13 +4,13 @@ import android.view.View
 import android.widget.Toast
 import dev.programadorthi.shared.ui.UIState
 import dev.programadorthi.shared.ui.ext.lifecycleScope
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 // TODO: maybe move to an UI module
 class ErrorComponent(
-    uiState: StateFlow<UIState<*>>,
+    uiState: Flow<UIState<*>>,
     view: View
 ) {
     init {

@@ -7,12 +7,12 @@ import com.google.android.material.chip.ChipGroup
 import dev.programadorthi.norris.ui.R
 import dev.programadorthi.shared.ui.UIState
 import dev.programadorthi.shared.ui.ext.lifecycleScope
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class ChipsComponent(
-    uiState: StateFlow<UIState<List<String>>>,
+    uiState: Flow<UIState<List<String>>>,
     private val view: ChipGroup,
     private val onChipClicked: (String) -> Unit,
     private val hasChipsListener: (Boolean) -> Unit

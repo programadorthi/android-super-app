@@ -1,7 +1,6 @@
 package dev.programadorthi.shared.ui.resource
 
 import android.content.Context
-import dev.programadorthi.shared.domain.resource.StringProvider
 
 internal class StringProviderImpl(
     private val context: Context

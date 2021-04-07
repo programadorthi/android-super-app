@@ -34,7 +34,10 @@ class FactsMapperTest {
     fun `should have missing result field`() {
         val missingFields = setOf(FactsResponseRaw.RESULT_FIELD)
         val raw = FactsResponseRaw()
-        val expected = raw.toExpectation(missingFields)
+        val expected = NetworkingError.EssentialParamMissing(
+            missingParams = missingFields.toString(),
+            rawObject = raw
+        )
         assertThatThrownBy {
             mapper.invoke(raw)
         }.isInstanceOf(expected::class.java)
@@ -48,7 +51,10 @@ class FactsMapperTest {
         val raw = FactsResponseRaw(
             result = listOf(factRaw)
         )
-        val expected = raw.toExpectation(missingFields)
+        val expected = NetworkingError.EssentialParamMissing(
+            missingParams = missingFields.toString(),
+            rawObject = raw
+        )
         assertThatThrownBy {
             mapper.invoke(raw)
         }.isInstanceOf(expected::class.java)
@@ -74,12 +80,5 @@ class FactsMapperTest {
         val raw = FactsResponseRaw(result = listOf(factRaw))
         val result = mapper.invoke(raw)
         assertThat(result).isEqualTo(expected)
-    }
-
-    private fun FactsResponseRaw.toExpectation(
-        missingFields: Set<String>
-    ): NetworkingError.EssentialParamMissing {
-        val params = missingFields.joinToString(prefix = "[", postfix = "]")
-        return NetworkingError.EssentialParamMissing(missingParams = params, rawObject = this)
     }
 }

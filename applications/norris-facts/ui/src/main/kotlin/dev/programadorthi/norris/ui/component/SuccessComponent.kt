@@ -5,13 +5,13 @@ import dev.programadorthi.norris.ui.adapter.FactsAdapter
 import dev.programadorthi.norris.ui.model.FactViewData
 import dev.programadorthi.shared.ui.UIState
 import dev.programadorthi.shared.ui.ext.lifecycleScope
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 // Feature specific component. Avoid move to an UI module
 class SuccessComponent(
-    uiState: StateFlow<UIState<List<FactViewData>>>,
+    uiState: Flow<UIState<List<FactViewData>>>,
     view: RecyclerView,
     shareFact: (FactViewData) -> Unit,
     onEmptyDataSet: () -> Unit

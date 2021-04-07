@@ -6,19 +6,20 @@ import dev.programadorthi.norris.domain.FactsBusiness
 import dev.programadorthi.norris.domain.model.Fact
 import dev.programadorthi.norris.domain.usecase.FactsUseCase
 import dev.programadorthi.norris.ui.model.FactViewData
+import dev.programadorthi.norris.ui.provider.StyleProvider
 import dev.programadorthi.shared.domain.Result
 import dev.programadorthi.shared.domain.getOrDefault
-import dev.programadorthi.shared.domain.resource.StringProvider
 import dev.programadorthi.shared.ui.UIState
 import dev.programadorthi.shared.ui.flow.PropertyStateFlow
+import dev.programadorthi.shared.ui.resource.StringProvider
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
-import com.google.android.material.R as materialR
 import dev.programadorthi.norris.ui.R as mainR
 
 class FactsViewModel(
     private val factsUseCase: FactsUseCase,
     private val stringProvider: StringProvider,
+    private val styleProvider: StyleProvider,
     private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
     private val mutableFacts = PropertyStateFlow<List<FactViewData>>()
@@ -53,9 +54,9 @@ class FactsViewModel(
         url = fact.url,
         value = fact.value,
         style = if (fact.value.length > HIGH_FONT_CHARACTERS_LIMIT) {
-            materialR.style.TextAppearance_MaterialComponents_Subtitle1
+            styleProvider.providerSubtitle()
         } else {
-            materialR.style.TextAppearance_MaterialComponents_Headline4
+            styleProvider.providerHeadline()
         }
     )
 

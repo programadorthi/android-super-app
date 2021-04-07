@@ -6,7 +6,7 @@ import dev.programadorthi.norris.domain.usecase.FactsUseCase
 import dev.programadorthi.shared.domain.Result
 import dev.programadorthi.shared.domain.exception.NetworkingError
 import dev.programadorthi.shared.domain.getOrDefault
-import dev.programadorthi.shared.domain.resource.StringProvider
+import dev.programadorthi.shared.ui.resource.StringProvider
 import dev.programadorthi.shared.ui.UIState
 import dev.programadorthi.shared.ui.flow.PropertyStateFlow
 import kotlinx.coroutines.CoroutineDispatcher
