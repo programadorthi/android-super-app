@@ -12,6 +12,7 @@ class FactsUseCaseFake : FactsUseCase {
     private val lastSearches = mutableListOf<LastSearch>()
 
     var exceptionResult: Throwable? = null
+    var businessToResult: Result.Business? = null
 
     override suspend fun categories(
         limit: Int,
@@ -41,6 +42,7 @@ class FactsUseCaseFake : FactsUseCase {
     }
 
     private fun <T> mapResult(data: T) = when {
+        businessToResult != null -> Result.business(businessToResult!!)
         exceptionResult != null -> Result.failure(exceptionResult!!)
         else -> Result.success(data)
     }

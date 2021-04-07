@@ -30,7 +30,7 @@ class Result<out T> internal constructor(
      */
     val isFailure: Boolean get() = value is Failure
 
-    private val isBusiness: Boolean get() = value is Business
+    val isBusiness: Boolean get() = value is Business
 
     // value & exception retrieval
 
@@ -95,7 +95,7 @@ class Result<out T> internal constructor(
          */
         fun <T> failure(exception: Throwable): Result<T> = Result(createFailure(exception))
 
-        fun <T> business(value: Business): Result<T> = Result(value)
+        fun <T, B : Business> business(value: B): Result<T> = Result(value)
     }
 
     internal class Failure(

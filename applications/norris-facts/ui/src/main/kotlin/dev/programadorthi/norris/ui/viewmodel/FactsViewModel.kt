@@ -8,8 +8,8 @@ import dev.programadorthi.norris.domain.usecase.FactsUseCase
 import dev.programadorthi.norris.ui.model.FactViewData
 import dev.programadorthi.norris.ui.provider.StyleProvider
 import dev.programadorthi.shared.domain.Result
-import dev.programadorthi.shared.domain.getOrDefault
 import dev.programadorthi.shared.ui.UIState
+import dev.programadorthi.shared.ui.ext.toUIState
 import dev.programadorthi.shared.ui.flow.PropertyStateFlow
 import dev.programadorthi.shared.ui.resource.StringProvider
 import kotlinx.coroutines.CoroutineDispatcher
@@ -29,23 +29,20 @@ class FactsViewModel(
         viewModelScope.launch(ioDispatcher) {
             mutableFacts.loading()
             val result = factsUseCase.search(text)
-            val nextState = when {
-                result is Result.Business -> UIState.Business(
-                    cause = result,
-                    message = stringProvider.getString(result.toStringRes())
-                )
-                result.isFailure -> UIState.Error(
-                    cause = result.exceptionOrNull(),
-                    message = stringProvider.getString(mainR.string.something_wrong)
-                )
-                else ->
-                    result
-                        .getOrDefault(emptyList())
-                        .map(::mapFact)
-                        .let { facts -> UIState.Success(facts) }
-            }
+            val nextState = result.toUIState(
+                businessMessage = stringProvider.getString(result.businessToStringRes()),
+                failureMessage = stringProvider.getString(mainR.string.something_wrong),
+                successMapper = ::successMapper
+            )
             mutableFacts.update(nextState)
         }
+    }
+
+    private fun successMapper(
+        facts: List<Fact>?
+    ): UIState.Success<List<FactViewData>> {
+        val content = (facts ?: emptyList()).map(::mapFact)
+        return UIState.Success(content)
     }
 
     private fun mapFact(fact: Fact) = FactViewData(
@@ -53,20 +50,18 @@ class FactsViewModel(
             ?: stringProvider.getString(mainR.string.item_fact_view_holder_uncategorized_label),
         url = fact.url,
         value = fact.value,
-        style = if (fact.value.length > HIGH_FONT_CHARACTERS_LIMIT) {
-            styleProvider.providerSubtitle()
-        } else {
-            styleProvider.providerHeadline()
+        style = styleProvider.provideHeadlineOrSubtitle {
+            fact.value.length < HIGH_FONT_CHARACTERS_LIMIT
         }
     )
 
-    private fun Result.Business.toStringRes(): Int =
-        when (this) {
+    private fun <T> Result<T>.businessToStringRes(): Int =
+        when (this.businessOrNull()) {
             is FactsBusiness.EmptySearch -> mainR.string.activity_facts_empty_search_term
             else -> mainR.string.something_wrong
         }
 
-    private companion object {
-        private const val HIGH_FONT_CHARACTERS_LIMIT = 80
+    companion object {
+        const val HIGH_FONT_CHARACTERS_LIMIT = 80
     }
 }
