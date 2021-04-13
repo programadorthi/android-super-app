@@ -10,7 +10,7 @@ import dev.programadorthi.norris.ui.provider.StyleProvider
 import dev.programadorthi.shared.domain.Result
 import dev.programadorthi.shared.ui.UIState
 import dev.programadorthi.shared.ui.ext.toUIState
-import dev.programadorthi.shared.ui.flow.PropertyStateFlow
+import dev.programadorthi.shared.ui.flow.PropertyUIStateFlow
 import dev.programadorthi.shared.ui.resource.StringProvider
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
@@ -22,7 +22,7 @@ class FactsViewModel(
     private val styleProvider: StyleProvider,
     private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
-    private val mutableFacts = PropertyStateFlow<List<FactViewData>>()
+    private val mutableFacts = PropertyUIStateFlow<List<FactViewData>>()
     fun facts() = mutableFacts.stateFlow
 
     fun search(text: String) {

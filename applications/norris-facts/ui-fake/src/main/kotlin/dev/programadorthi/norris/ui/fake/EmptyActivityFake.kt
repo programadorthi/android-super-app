@@ -1,7 +1,7 @@
 package dev.programadorthi.norris.ui.fake
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import dev.programadorthi.norris.ui.fake.databinding.ActivityEmptyFakeBinding
 
 class EmptyActivityFake : AppCompatActivity() {

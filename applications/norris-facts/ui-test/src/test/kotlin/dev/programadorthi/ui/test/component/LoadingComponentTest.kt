@@ -5,7 +5,7 @@ import androidx.test.core.app.launchActivity
 import dev.programadorthi.norris.ui.component.LoadingComponent
 import dev.programadorthi.norris.ui.fake.EmptyActivityFake
 import dev.programadorthi.shared.ui.UIState
-import dev.programadorthi.shared.ui.flow.PropertyStateFlow
+import dev.programadorthi.shared.ui.flow.PropertyUIStateFlow
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -13,16 +13,19 @@ import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
 class LoadingComponentTest {
-    private val uiState = PropertyStateFlow<UIState<Int>>()
+    private val uiState = PropertyUIStateFlow<Int>()
 
     @Test
     fun shouldHideViewWhenStateIsNotLoading() {
         launchActivity<EmptyActivityFake>().onActivity { activity ->
+            // Given
             LoadingComponent(
                 uiState = uiState.stateFlow,
                 view = activity.root
             )
+            // When
             uiState.update(UIState.Idle)
+            // Then
             assertThat(activity.root.isVisible).isEqualTo(false)
         }
     }
@@ -30,11 +33,14 @@ class LoadingComponentTest {
     @Test
     fun shouldShowViewWhenStateIsLoading() {
         launchActivity<EmptyActivityFake>().onActivity { activity ->
+            // Given
             LoadingComponent(
                 uiState = uiState.stateFlow,
                 view = activity.root
             )
+            // When
             uiState.update(UIState.Loading)
+            // Then
             assertThat(activity.root.isVisible).isEqualTo(true)
         }
     }

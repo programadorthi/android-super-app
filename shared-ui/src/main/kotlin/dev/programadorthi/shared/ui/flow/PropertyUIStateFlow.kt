@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class PropertyStateFlow<T> {
+class PropertyUIStateFlow<T> {
     private val mutableStateFlow = MutableStateFlow<UIState<T>>(UIState.Idle)
     val stateFlow: StateFlow<UIState<T>>
         get() = mutableStateFlow.asStateFlow()

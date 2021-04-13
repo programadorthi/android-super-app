@@ -6,7 +6,7 @@ import dev.programadorthi.norris.domain.usecase.FactsUseCase
 import dev.programadorthi.shared.domain.exception.NetworkingError
 import dev.programadorthi.shared.domain.getOrDefault
 import dev.programadorthi.shared.ui.UIState
-import dev.programadorthi.shared.ui.flow.PropertyStateFlow
+import dev.programadorthi.shared.ui.flow.PropertyUIStateFlow
 import dev.programadorthi.shared.ui.resource.StringProvider
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
@@ -17,10 +17,10 @@ class SearchFactsViewModel(
     private val stringProvider: StringProvider,
     private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
-    private val mutableCategories = PropertyStateFlow<List<String>>()
+    private val mutableCategories = PropertyUIStateFlow<List<String>>()
     fun categories() = mutableCategories.stateFlow
 
-    private val mutableLastSearches = PropertyStateFlow<List<String>>()
+    private val mutableLastSearches = PropertyUIStateFlow<List<String>>()
     fun lastSearches() = mutableLastSearches.stateFlow
 
     fun fetchCategories() {

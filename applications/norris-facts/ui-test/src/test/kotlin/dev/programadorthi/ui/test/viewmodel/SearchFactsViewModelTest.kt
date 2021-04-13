@@ -11,12 +11,8 @@ import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Condition
 import org.assertj.core.api.InstanceOfAssertFactories
-import org.assertj.core.api.InstanceOfAssertFactory
-import org.assertj.core.internal.Conditions
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
