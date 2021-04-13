@@ -154,7 +154,7 @@ class FactsViewModelTest {
             // When
             stringProvider.stringToReturn = category
             styleProvider.headline = headline
-            factsUserCase.addFact(*facts.toTypedArray())
+            factsUserCase.addFacts(*facts.toTypedArray())
             val result = mutableListOf<UIState<List<FactViewData>>>()
             val job = launch { viewModel.facts().toList(result) }
             viewModel.search(text = "some term")
@@ -192,7 +192,7 @@ class FactsViewModelTest {
             )
             // When
             styleProvider.headline = headline
-            factsUserCase.addFact(*facts.toTypedArray())
+            factsUserCase.addFacts(*facts.toTypedArray())
             val result = mutableListOf<UIState<List<FactViewData>>>()
             val job = launch { viewModel.facts().toList(result) }
             viewModel.search(text = "some term")
@@ -231,7 +231,7 @@ class FactsViewModelTest {
             // When
             stringProvider.stringToReturn = category
             styleProvider.headline = headline
-            factsUserCase.addFact(*facts.toTypedArray())
+            factsUserCase.addFacts(*facts.toTypedArray())
             val result = mutableListOf<UIState<List<FactViewData>>>()
             val job = launch { viewModel.facts().toList(result) }
             viewModel.search(text = "some term")
@@ -270,7 +270,7 @@ class FactsViewModelTest {
             // When
             stringProvider.stringToReturn = category
             styleProvider.subtitle = subtitle
-            factsUserCase.addFact(*facts.toTypedArray())
+            factsUserCase.addFacts(*facts.toTypedArray())
             val result = mutableListOf<UIState<List<FactViewData>>>()
             val job = launch { viewModel.facts().toList(result) }
             viewModel.search(text = "some term")

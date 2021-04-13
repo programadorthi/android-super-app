@@ -3,7 +3,6 @@ package dev.programadorthi.norris.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dev.programadorthi.norris.domain.usecase.FactsUseCase
-import dev.programadorthi.shared.domain.Result
 import dev.programadorthi.shared.domain.exception.NetworkingError
 import dev.programadorthi.shared.domain.getOrDefault
 import dev.programadorthi.shared.ui.UIState
@@ -28,13 +27,9 @@ class SearchFactsViewModel(
         viewModelScope.launch(ioDispatcher) {
             val result = factsUseCase.categories(limit = MAX_VISIBLE_CATEGORIES, shuffle = true)
             val nextState = when {
-                result is Result.Business -> UIState.Business(
-                    result,
-                    stringProvider.getString(mainR.string.empty_text)
-                )
                 result.isFailure -> UIState.Error(
-                    result.exceptionOrNull(),
-                    stringProvider.getString(result.exceptionOrNull().toStringRes())
+                    cause = result.exceptionOrNull(),
+                    message = stringProvider.getString(result.exceptionOrNull().toStringRes())
                 )
                 else ->
                     result
@@ -51,8 +46,8 @@ class SearchFactsViewModel(
             val result = factsUseCase.lastSearches()
             val nextState = when {
                 result.isFailure -> UIState.Error(
-                    result.exceptionOrNull(),
-                    stringProvider.getString(result.exceptionOrNull().toStringRes())
+                    cause = result.exceptionOrNull(),
+                    message = stringProvider.getString(result.exceptionOrNull().toStringRes())
                 )
                 else ->
                     result

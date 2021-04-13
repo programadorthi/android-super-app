@@ -33,12 +33,14 @@ object Dependencies {
 
     object AndroidTest {
         val all = listOf(
+            "androidx.test:core-ktx:1.3.0",
             "androidx.test.ext:junit:1.1.2",
             "androidx.test.espresso:espresso-core:3.3.0"
         )
     }
 
     object UnitTest {
+        const val robolectric = "org.robolectric:robolectric:4.5.1"
         const val sqlDelight = "com.squareup.sqldelight:sqlite-driver:1.4.4"
         val all = listOf(
             "junit:junit:4.13.2",

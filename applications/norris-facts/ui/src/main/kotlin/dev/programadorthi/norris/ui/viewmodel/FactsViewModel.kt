@@ -61,7 +61,7 @@ class FactsViewModel(
             else -> mainR.string.something_wrong
         }
 
-    companion object {
-        const val HIGH_FONT_CHARACTERS_LIMIT = 80
+    private companion object {
+        private const val HIGH_FONT_CHARACTERS_LIMIT = 80
     }
 }

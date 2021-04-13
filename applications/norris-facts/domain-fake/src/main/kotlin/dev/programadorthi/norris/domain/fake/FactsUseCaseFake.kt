@@ -29,15 +29,15 @@ class FactsUseCaseFake : FactsUseCase {
     override suspend fun search(text: String): Result<List<Fact>> =
         mapResult(facts)
 
-    fun addCategory(vararg categories: Category) {
+    fun addCategories(vararg categories: Category) {
         this.categories += resultOrThrow(categories)
     }
 
-    fun addFact(vararg facts: Fact) {
+    fun addFacts(vararg facts: Fact) {
         this.facts += resultOrThrow(facts)
     }
 
-    fun addLastSearch(search: LastSearch) {
+    fun addLastSearches(vararg search: LastSearch) {
         lastSearches += resultOrThrow(search)
     }
 
