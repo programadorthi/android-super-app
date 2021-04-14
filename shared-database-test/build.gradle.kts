@@ -6,6 +6,6 @@ plugins {
 }
 
 dependencies {
-    testApi(project(":shared-database-fake"))
+    testImplementation(project(":shared-database-fake"))
     Dependencies.UnitTest.all.forEach { testImplementation(it) }
 }

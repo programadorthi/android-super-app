@@ -7,9 +7,9 @@ plugins {
 }
 
 dependencies {
-    testApi(project(":shared-ui-fake"))
-    testApi(project(":applications:norris-facts:domain-fake"))
-    testApi(project(":applications:norris-facts:ui-fake"))
+    testImplementation(project(":shared-ui-fake"))
+    testImplementation(project(":applications:norris-facts:domain-fake"))
+    testImplementation(project(":applications:norris-facts:ui-fake"))
     testImplementation(Dependencies.Android.lifecycleRuntime)
     testImplementation(Dependencies.UnitTest.robolectric)
     Dependencies.Android.common.forEach { testImplementation(it) }

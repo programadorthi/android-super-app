@@ -16,7 +16,7 @@ class LoadingComponentTest {
     private val uiState = PropertyUIStateFlow<Int>()
 
     @Test
-    fun shouldHideViewWhenStateIsNotLoading() {
+    fun `should hide view when state is not loading`() {
         launchActivity<EmptyActivityFake>().onActivity { activity ->
             // Given
             LoadingComponent(
@@ -26,12 +26,12 @@ class LoadingComponentTest {
             // When
             uiState.update(UIState.Idle)
             // Then
-            assertThat(activity.root.isVisible).isEqualTo(false)
+            assertThat(activity.root.isVisible).isFalse
         }
     }
 
     @Test
-    fun shouldShowViewWhenStateIsLoading() {
+    fun `should show view when state is loading`() {
         launchActivity<EmptyActivityFake>().onActivity { activity ->
             // Given
             LoadingComponent(
@@ -41,7 +41,7 @@ class LoadingComponentTest {
             // When
             uiState.update(UIState.Loading)
             // Then
-            assertThat(activity.root.isVisible).isEqualTo(true)
+            assertThat(activity.root.isVisible).isTrue
         }
     }
 }

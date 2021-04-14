@@ -31,7 +31,7 @@ class SearchEditTextComponentTest {
                 onDoSearch = action::onSearch
             )
             // Then
-            assertThat(action.term()).isEqualTo(null)
+            assertThat(action.term()).isNull()
         }
     }
 

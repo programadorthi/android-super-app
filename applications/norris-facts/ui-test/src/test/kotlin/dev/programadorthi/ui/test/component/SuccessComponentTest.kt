@@ -16,6 +16,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.shadows.ShadowLooper
 import kotlin.random.Random
 
 @RunWith(RobolectricTestRunner::class)
@@ -43,9 +44,9 @@ class SuccessComponentTest {
             // When
             uiState.update(UIState.Idle)
             // Then
-            assertThat(recyclerView.adapter?.itemCount).isEqualTo(0)
-            assertThat(successComponentActionsFake.emptyDataSet()).isEqualTo(false)
-            assertThat(successComponentActionsFake.shared()).isEqualTo(null)
+            assertThat(recyclerView.adapter?.itemCount).isZero
+            assertThat(successComponentActionsFake.emptyDataSet()).isFalse
+            assertThat(successComponentActionsFake.shared()).isNull()
         }
     }
 
@@ -72,8 +73,8 @@ class SuccessComponentTest {
             uiState.update(UIState.Success(facts))
             // Then
             assertThat(recyclerView.adapter?.itemCount).isEqualTo(5)
-            assertThat(successComponentActionsFake.emptyDataSet()).isEqualTo(false)
-            assertThat(successComponentActionsFake.shared()).isEqualTo(null)
+            assertThat(successComponentActionsFake.emptyDataSet()).isFalse
+            assertThat(successComponentActionsFake.shared()).isNull()
         }
     }
 
@@ -92,9 +93,9 @@ class SuccessComponentTest {
             // When
             uiState.update(UIState.Success(facts))
             // Then
-            assertThat(recyclerView.adapter?.itemCount).isEqualTo(0)
-            assertThat(successComponentActionsFake.emptyDataSet()).isEqualTo(true)
-            assertThat(successComponentActionsFake.shared()).isEqualTo(null)
+            assertThat(recyclerView.adapter?.itemCount).isZero
+            assertThat(successComponentActionsFake.emptyDataSet()).isTrue
+            assertThat(successComponentActionsFake.shared()).isNull()
         }
     }
 
@@ -121,14 +122,14 @@ class SuccessComponentTest {
             uiState.update(UIState.Success(facts))
             // Then
             assertThat(recyclerView.adapter?.itemCount).isEqualTo(5)
-            assertThat(successComponentActionsFake.emptyDataSet()).isEqualTo(false)
-            assertThat(successComponentActionsFake.shared()).isEqualTo(null)
+            assertThat(successComponentActionsFake.emptyDataSet()).isFalse
+            assertThat(successComponentActionsFake.shared()).isNull()
             // When
             uiState.update(UIState.Loading)
             // Then
-            assertThat(recyclerView.adapter?.itemCount).isEqualTo(0)
-            assertThat(successComponentActionsFake.emptyDataSet()).isEqualTo(false)
-            assertThat(successComponentActionsFake.shared()).isEqualTo(null)
+            assertThat(recyclerView.adapter?.itemCount).isZero
+            assertThat(successComponentActionsFake.emptyDataSet()).isFalse
+            assertThat(successComponentActionsFake.shared()).isNull()
         }
     }
 
@@ -167,9 +168,10 @@ class SuccessComponentTest {
                         ?: throw IllegalStateException(">>>> null holder")
                 }
             }
+            ShadowLooper.idleMainLooper()
             // Then
             assertThat(recyclerView.adapter?.itemCount).isEqualTo(5)
-            assertThat(successComponentActionsFake.emptyDataSet()).isEqualTo(false)
+            assertThat(successComponentActionsFake.emptyDataSet()).isFalse
             assertThat(successComponentActionsFake.shared()).isEqualTo(sharedFact)
         }
     }
