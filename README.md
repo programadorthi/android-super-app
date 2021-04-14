@@ -23,4 +23,4 @@ The project is using two gradle [includeBuild](https://docs.gradle.org/current/u
 
 ## Credits
 - [Reaktive team](https://github.com/badoo/Reaktive) and they build system structure.
-- [Ralf Wondratschek](https://github.com/vRallev) for [Android at Scale @Square](https://www.droidcon.com/media-detail?video=380843878)
+- [@vRallev](https://github.com/vRallev) for [Android at Scale @Square](https://www.droidcon.com/media-detail?video=380843878)
