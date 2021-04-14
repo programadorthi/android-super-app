@@ -9,9 +9,9 @@ The project is using two gradle [includeBuild](https://docs.gradle.org/current/u
 - **configurations**: It has plugins and configurations that must be applied to other projects. Apply build plugins, apply common plugins to any project type, setup JVM target and compatibilities and Android application or library default configs.
 
 ## Project structures
-<p>
-    <img src="module_graph.png" />
-</p>
+<img src="module_graph.png" />
+<br/>
+
 - **shared-module**: are modules that are base project to other feature concrete layers. 
 - **domain**: are modules with abstraction and contracts to be implemented. 
 - **module-di**: are modules that contains dependency injection setup only.
