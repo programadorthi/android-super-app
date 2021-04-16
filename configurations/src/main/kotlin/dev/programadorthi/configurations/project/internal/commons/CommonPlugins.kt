@@ -20,7 +20,10 @@ internal fun Project.applyCommonPlugins() {
 private fun Project.configureKotlinter() {
     tasks {
         "lintKotlinMain"(LintTask::class) {
-            exclude("**/generated/**")
+            exclude {
+                // Ignoring build dir because SQLDelight files are generated on it
+                it.file.path.startsWith(buildDir.path)
+            }
         }
     }
 }
