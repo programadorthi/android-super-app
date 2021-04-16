@@ -25,7 +25,7 @@ jobs:
       - name: Setup Java JDK
         uses: actions/setup-java@v2.0.0
         with:
-          java-version: '11'
+          java-version: '8'
           distribution: 'adopt'
 
       # WARNING: avoid run check function in large projects. It's an expansive task. I'll change this in the future.
