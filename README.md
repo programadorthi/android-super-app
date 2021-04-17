@@ -1,5 +1,5 @@
 # android-super-app
-[![Actions Status](https://github.com/programadorthi/android-super-app/workflows/actions/badge.svg)](https://github.com/programadorthi/android-super-app/actions)
+[![Actions Status](https://github.com/programadorthi/android-super-app/workflows/main/badge.svg)](https://github.com/programadorthi/android-super-app/actions)
 [![Kotlin](https://img.shields.io/badge/kotlin-1.4.30-blue.svg?logo=kotlin)](http://kotlinlang.org)
 [![Coroutines](https://img.shields.io/badge/Kotlin-Coroutines-orange)](https://kotlinlang.org/docs/coroutines-guide.html)
 <br/>
