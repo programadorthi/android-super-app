@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 
 class ViewModelFactory<R>(
-    private val viewModel: R,
+    private val viewModel: () -> R,
     owner: SavedStateRegistryOwner,
     defaultArgs: Bundle?
 ) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
@@ -16,5 +16,5 @@ class ViewModelFactory<R>(
         key: String,
         modelClass: Class<T>,
         handle: SavedStateHandle
-    ): T = ViewModelContainer(viewModel) as T
+    ): T = ViewModelContainer(viewModel.invoke()) as T
 }

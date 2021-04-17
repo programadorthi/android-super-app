@@ -7,11 +7,11 @@ import dev.programadorthi.shared.ui.viewmodel.ViewModelContainer
 import dev.programadorthi.shared.ui.viewmodel.ViewModelFactory
 import org.kodein.di.DIAware
 import org.kodein.di.direct
-import org.kodein.di.instance
+import org.kodein.type.erased
 
 inline fun <reified VM, T> T.viewModel(): Lazy<VM> where T : DIAware, T : ComponentActivity = lazy {
     val factory = ViewModelFactory<VM>(
-        viewModel = di.direct.instance(),
+        viewModel = { di.direct.Instance(erased()) }, // Lazy to avoid create an instance without needed
         owner = this,
         defaultArgs = bundleOf()
     )
