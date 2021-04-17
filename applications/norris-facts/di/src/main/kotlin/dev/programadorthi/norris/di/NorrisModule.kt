@@ -6,6 +6,8 @@ import dev.programadorthi.norris.domain.data.remote.FactsService
 import dev.programadorthi.norris.domain.data.remote.mapper.FactsMapper
 import dev.programadorthi.norris.domain.data.remote.repository.RemoteFactsRepositoryFactory
 import dev.programadorthi.norris.domain.usecase.FactsUseCaseFactory
+import dev.programadorthi.norris.domain.viewmodel.FactsViewModelFactory
+import dev.programadorthi.norris.domain.viewmodel.SearchFactsViewModelFactory
 import dev.programadorthi.shared.domain.DomainInjectionTags
 import org.kodein.di.DI
 import org.kodein.di.bindProvider
@@ -38,6 +40,23 @@ object NorrisModule {
                 ioDispatcher = instance(DomainInjectionTags.IO_DISPATCHER)
             )
         }
-        bindProvider { FactsUseCaseFactory(factsRepository = instance()) }
+        bindProvider {
+            FactsUseCaseFactory(factsRepository = instance())
+        }
+        bindProvider {
+            FactsViewModelFactory(
+                factsUseCase = instance(),
+                factsTextProvider = instance(),
+                factsStyleProvider = instance(),
+                ioDispatcher = instance(DomainInjectionTags.IO_DISPATCHER)
+            )
+        }
+        bindProvider {
+            SearchFactsViewModelFactory(
+                factsUseCase = instance(),
+                sharedTextProvider = instance(),
+                ioDispatcher = instance(DomainInjectionTags.IO_DISPATCHER)
+            )
+        }
     }
 }

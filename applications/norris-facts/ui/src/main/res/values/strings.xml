@@ -13,9 +13,4 @@
 
     <string name="item_fact_share_image_content_description">Share</string>
     <string name="item_fact_view_holder_uncategorized_label">Uncategorized</string>
-
-    <!-- TODO: Move text below to a shared UI Module -->
-    <string name="empty_text" />
-    <string name="no_internet_connection">You are not connected to the internet</string>
-    <string name="something_wrong">Who doesn\'t go wrong? This time was the Chuck Norris Server.</string>
 </resources>

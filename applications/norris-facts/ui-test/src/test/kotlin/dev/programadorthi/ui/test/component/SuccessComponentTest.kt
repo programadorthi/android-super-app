@@ -4,12 +4,12 @@ import android.content.Context
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.launchActivity
+import dev.programadorthi.norris.domain.model.presentation.FactViewData
 import dev.programadorthi.norris.ui.component.SuccessComponent
 import dev.programadorthi.norris.ui.fake.EmptyActivityFake
 import dev.programadorthi.norris.ui.fake.component.SuccessComponentActionsFake
-import dev.programadorthi.norris.ui.model.FactViewData
-import dev.programadorthi.shared.ui.UIState
-import dev.programadorthi.shared.ui.flow.PropertyUIStateFlow
+import dev.programadorthi.shared.domain.UIState
+import dev.programadorthi.shared.domain.flow.PropertyUIStateFlow
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Ignore

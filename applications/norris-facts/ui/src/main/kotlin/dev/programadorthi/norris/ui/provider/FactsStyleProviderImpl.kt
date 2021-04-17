@@ -1,8 +1,9 @@
 package dev.programadorthi.norris.ui.provider
 
 import com.google.android.material.R
+import dev.programadorthi.norris.domain.provider.FactsStyleProvider
 
-internal class StyleProviderImpl : StyleProvider {
+internal class FactsStyleProviderImpl : FactsStyleProvider {
     override fun providerHeadline(): Int =
         R.style.TextAppearance_MaterialComponents_Headline4
 

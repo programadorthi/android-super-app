@@ -5,10 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import dev.programadorthi.norris.domain.viewmodel.SearchFactsViewModel
 import dev.programadorthi.norris.ui.component.ChipsComponent
 import dev.programadorthi.norris.ui.component.SearchEditTextComponent
 import dev.programadorthi.norris.ui.databinding.ActivitySearchFactsBinding
-import dev.programadorthi.norris.ui.viewmodel.SearchFactsViewModel
 import dev.programadorthi.shared.ui.di.ext.viewModel
 import dev.programadorthi.shared.ui.ext.runScoped
 import org.kodein.di.DI
@@ -29,7 +29,7 @@ class SearchFactsActivity : AppCompatActivity(), DIAware {
 
         SearchEditTextComponent(viewBinding.searchFactsEditText, ::goToFactsList)
         ChipsComponent(
-            uiState = searchFactsViewModel.categories(),
+            uiState = searchFactsViewModel.categories,
             view = viewBinding.searchFactsCategoriesChipGroup,
             onChipClicked = ::goToFactsList,
             hasChipsListener = { hasChips ->
@@ -37,7 +37,7 @@ class SearchFactsActivity : AppCompatActivity(), DIAware {
             }
         )
         ChipsComponent(
-            uiState = searchFactsViewModel.lastSearches(),
+            uiState = searchFactsViewModel.lastSearches,
             view = viewBinding.searchFactsLastSearchesChipGroup,
             onChipClicked = ::goToFactsList,
             hasChipsListener = { hasChips ->

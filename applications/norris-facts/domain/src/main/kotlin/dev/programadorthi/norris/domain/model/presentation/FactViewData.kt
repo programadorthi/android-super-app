@@ -1,4 +1,4 @@
-package dev.programadorthi.norris.ui.model
+package dev.programadorthi.norris.domain.model.presentation
 
 data class FactViewData(
     val category: String,

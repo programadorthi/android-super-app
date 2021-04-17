@@ -1,35 +1,36 @@
-package dev.programadorthi.norris.ui.viewmodel
+package dev.programadorthi.norris.domain.viewmodel
 
 import dev.programadorthi.norris.domain.FactsBusiness
 import dev.programadorthi.norris.domain.model.Fact
+import dev.programadorthi.norris.domain.model.presentation.FactViewData
+import dev.programadorthi.norris.domain.provider.FactsStyleProvider
+import dev.programadorthi.norris.domain.provider.FactsTextProvider
 import dev.programadorthi.norris.domain.usecase.FactsUseCase
-import dev.programadorthi.norris.ui.model.FactViewData
-import dev.programadorthi.norris.ui.provider.StyleProvider
 import dev.programadorthi.shared.domain.Result
-import dev.programadorthi.shared.ui.UIState
-import dev.programadorthi.shared.ui.ext.toUIState
-import dev.programadorthi.shared.ui.flow.PropertyUIStateFlow
-import dev.programadorthi.shared.ui.resource.StringProvider
+import dev.programadorthi.shared.domain.UIState
+import dev.programadorthi.shared.domain.ext.toUIState
+import dev.programadorthi.shared.domain.flow.PropertyUIStateFlow
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.withContext
-import dev.programadorthi.norris.ui.R as mainR
 
-class FactsViewModel(
+internal class FactsViewModelImpl(
     private val factsUseCase: FactsUseCase,
-    private val stringProvider: StringProvider,
-    private val styleProvider: StyleProvider,
+    private val factsTextProvider: FactsTextProvider,
+    private val factsStyleProvider: FactsStyleProvider,
     private val ioDispatcher: CoroutineDispatcher
-) {
+) : FactsViewModel {
     private val mutableFacts = PropertyUIStateFlow<List<FactViewData>>()
-    fun facts() = mutableFacts.stateFlow
+    override val facts: StateFlow<UIState<List<FactViewData>>>
+        get() = mutableFacts.stateFlow
 
-    suspend fun search(text: String) {
+    override suspend fun search(text: String) {
         withContext(ioDispatcher) {
             mutableFacts.loading()
             val result = factsUseCase.search(text)
             val nextState = result.toUIState(
-                businessMessage = stringProvider.getString(result.businessToStringRes()),
-                failureMessage = stringProvider.getString(mainR.string.something_wrong),
+                businessMessage = result.businessToTextMessage(),
+                failureMessage = factsTextProvider.generalFailure(),
                 successMapper = ::successMapper
             )
             mutableFacts.update(nextState)
@@ -45,18 +46,18 @@ class FactsViewModel(
 
     private fun mapFact(fact: Fact) = FactViewData(
         category = fact.categories.firstOrNull()
-            ?: stringProvider.getString(mainR.string.item_fact_view_holder_uncategorized_label),
+            ?: factsTextProvider.withoutCategory(),
         url = fact.url,
         value = fact.value,
-        style = styleProvider.provideHeadlineOrSubtitle {
+        style = factsStyleProvider.provideHeadlineOrSubtitle {
             fact.value.length < HIGH_FONT_CHARACTERS_LIMIT
         }
     )
 
-    private fun <T> Result<T>.businessToStringRes(): Int =
+    private fun <T> Result<T>.businessToTextMessage(): String =
         when (this.businessOrNull()) {
-            is FactsBusiness.EmptySearch -> mainR.string.activity_facts_empty_search_term
-            else -> mainR.string.something_wrong
+            is FactsBusiness.EmptySearch -> factsTextProvider.emptySearchTerm()
+            else -> factsTextProvider.generalFailure()
         }
 
     private companion object {

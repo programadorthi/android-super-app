@@ -1,7 +1,7 @@
-package dev.programadorthi.shared.ui.ext
+package dev.programadorthi.shared.domain.ext
 
 import dev.programadorthi.shared.domain.Result
-import dev.programadorthi.shared.ui.UIState
+import dev.programadorthi.shared.domain.UIState
 
 fun <T, R> Result<T>.toUIState(
     businessMessage: String = "",

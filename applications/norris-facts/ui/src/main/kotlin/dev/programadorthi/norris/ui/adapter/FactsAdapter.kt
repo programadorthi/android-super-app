@@ -3,8 +3,8 @@ package dev.programadorthi.norris.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import dev.programadorthi.norris.domain.model.presentation.FactViewData
 import dev.programadorthi.norris.ui.databinding.ItemFactBinding
-import dev.programadorthi.norris.ui.model.FactViewData
 
 internal class FactsAdapter(
     private val shareAction: (FactViewData) -> Unit

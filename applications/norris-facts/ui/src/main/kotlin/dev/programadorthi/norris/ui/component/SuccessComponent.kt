@@ -1,9 +1,9 @@
 package dev.programadorthi.norris.ui.component
 
 import androidx.recyclerview.widget.RecyclerView
+import dev.programadorthi.norris.domain.model.presentation.FactViewData
 import dev.programadorthi.norris.ui.adapter.FactsAdapter
-import dev.programadorthi.norris.ui.model.FactViewData
-import dev.programadorthi.shared.ui.UIState
+import dev.programadorthi.shared.domain.UIState
 import dev.programadorthi.shared.ui.ext.lifecycleScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect

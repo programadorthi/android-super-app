@@ -1,6 +1,4 @@
-package dev.programadorthi.shared.ui
-
-import dev.programadorthi.shared.domain.Result
+package dev.programadorthi.shared.domain
 
 sealed class UIState<out T> {
     object Idle : UIState<Nothing>()

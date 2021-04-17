@@ -1,6 +1,6 @@
-package dev.programadorthi.shared.ui.flow
+package dev.programadorthi.shared.domain.flow
 
-import dev.programadorthi.shared.ui.UIState
+import dev.programadorthi.shared.domain.UIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

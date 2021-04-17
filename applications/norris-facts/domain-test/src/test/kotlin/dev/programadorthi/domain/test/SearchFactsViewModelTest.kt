@@ -1,11 +1,12 @@
-package dev.programadorthi.ui.test.viewmodel
+package dev.programadorthi.domain.test
 
-import dev.programadorthi.norris.domain.fake.FactsUseCaseFake
+import dev.programadorthi.norris.domain.fake.usecase.FactsUseCaseFake
 import dev.programadorthi.norris.domain.model.Category
 import dev.programadorthi.norris.domain.model.LastSearch
-import dev.programadorthi.norris.ui.viewmodel.SearchFactsViewModel
-import dev.programadorthi.shared.ui.UIState
-import dev.programadorthi.shared.ui.fake.StringProviderFake
+import dev.programadorthi.norris.domain.viewmodel.SearchFactsViewModel
+import dev.programadorthi.norris.domain.viewmodel.SearchFactsViewModelFactory
+import dev.programadorthi.shared.domain.UIState
+import dev.programadorthi.shared.domain.fake.SharedTextProviderFake
 import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
@@ -22,17 +23,17 @@ class SearchFactsViewModelTest {
 
     private val random = Random.Default
     private val dispatcher = TestCoroutineDispatcher()
-    private lateinit var stringProvider: StringProviderFake
+    private lateinit var sharedTextProvider: SharedTextProviderFake
     private lateinit var factsUserCase: FactsUseCaseFake
     private lateinit var viewModel: SearchFactsViewModel
 
     @Before
     fun `before each test`() {
-        stringProvider = StringProviderFake()
+        sharedTextProvider = SharedTextProviderFake()
         factsUserCase = FactsUseCaseFake()
-        viewModel = SearchFactsViewModel(
+        viewModel = SearchFactsViewModelFactory(
             factsUseCase = factsUserCase,
-            stringProvider = stringProvider,
+            sharedTextProvider = sharedTextProvider,
             ioDispatcher = dispatcher
         )
     }
@@ -48,7 +49,7 @@ class SearchFactsViewModelTest {
         val expected = listOf<UIState<List<String>>>(UIState.Idle)
         val result = mutableListOf<UIState<List<String>>>()
         // When
-        val job = launch { viewModel.categories().toList(result) }
+        val job = launch { viewModel.categories.toList(result) }
         job.cancelAndJoin()
         // Then
         assertThat(result).isEqualTo(expected)
@@ -60,7 +61,7 @@ class SearchFactsViewModelTest {
         val expected = listOf<UIState<List<String>>>(UIState.Idle)
         val result = mutableListOf<UIState<List<String>>>()
         // When
-        val job = launch { viewModel.lastSearches().toList(result) }
+        val job = launch { viewModel.lastSearches.toList(result) }
         job.cancelAndJoin()
         // Then
         assertThat(result).isEqualTo(expected)
@@ -80,9 +81,9 @@ class SearchFactsViewModelTest {
         )
         val result = mutableListOf<UIState<List<String>>>()
         // When
-        stringProvider.stringToReturn = message
+        sharedTextProvider.somethingWrong = message
         factsUserCase.exceptionResult = throwable
-        val job = launch { viewModel.categories().toList(result) }
+        val job = launch { viewModel.categories.toList(result) }
         viewModel.fetchCategories()
         job.cancelAndJoin()
         // Then
@@ -103,9 +104,9 @@ class SearchFactsViewModelTest {
         )
         val result = mutableListOf<UIState<List<String>>>()
         // When
-        stringProvider.stringToReturn = message
+        sharedTextProvider.somethingWrong = message
         factsUserCase.exceptionResult = throwable
-        val job = launch { viewModel.lastSearches().toList(result) }
+        val job = launch { viewModel.lastSearches.toList(result) }
         viewModel.fetchLastSearches()
         job.cancelAndJoin()
         // Then
@@ -121,7 +122,7 @@ class SearchFactsViewModelTest {
         )
         val result = mutableListOf<UIState<List<String>>>()
         // When
-        val job = launch { viewModel.categories().toList(result) }
+        val job = launch { viewModel.categories.toList(result) }
         viewModel.fetchCategories()
         job.cancelAndJoin()
         // Then
@@ -138,7 +139,7 @@ class SearchFactsViewModelTest {
             )
             val result = mutableListOf<UIState<List<String>>>()
             // When
-            val job = launch { viewModel.lastSearches().toList(result) }
+            val job = launch { viewModel.lastSearches.toList(result) }
             viewModel.fetchLastSearches()
             job.cancelAndJoin()
             // Then
@@ -156,7 +157,7 @@ class SearchFactsViewModelTest {
             // When
             factsUserCase.addCategories(*categories.toTypedArray())
             val result = mutableListOf<UIState<List<String>>>()
-            val job = launch { viewModel.categories().toList(result) }
+            val job = launch { viewModel.categories.toList(result) }
             viewModel.fetchCategories()
             job.cancelAndJoin()
             // Then
@@ -186,7 +187,7 @@ class SearchFactsViewModelTest {
             // When
             factsUserCase.addLastSearches(*lastSearches.toTypedArray())
             val result = mutableListOf<UIState<List<String>>>()
-            val job = launch { viewModel.lastSearches().toList(result) }
+            val job = launch { viewModel.lastSearches.toList(result) }
             viewModel.fetchLastSearches()
             job.cancelAndJoin()
             // Then

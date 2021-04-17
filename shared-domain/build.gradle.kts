@@ -6,5 +6,6 @@ plugins {
 }
 
 dependencies {
+    implementation(Dependencies.Kotlin.coroutines)
     implementation(Dependencies.Kotlin.serialization)
 }

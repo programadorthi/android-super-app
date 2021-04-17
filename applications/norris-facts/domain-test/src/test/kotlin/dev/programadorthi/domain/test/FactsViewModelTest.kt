@@ -1,19 +1,20 @@
-package dev.programadorthi.ui.test.viewmodel
+package dev.programadorthi.domain.test
 
 import dev.programadorthi.norris.domain.FactsBusiness
-import dev.programadorthi.norris.domain.fake.FactsUseCaseFake
+import dev.programadorthi.norris.domain.fake.provider.FactsStyleProviderFake
+import dev.programadorthi.norris.domain.fake.provider.FactsTextProviderFake
+import dev.programadorthi.norris.domain.fake.usecase.FactsUseCaseFake
 import dev.programadorthi.norris.domain.model.Fact
-import dev.programadorthi.norris.ui.fake.provider.StyleProviderFake
-import dev.programadorthi.norris.ui.model.FactViewData
-import dev.programadorthi.norris.ui.viewmodel.FactsViewModel
-import dev.programadorthi.shared.ui.UIState
-import dev.programadorthi.shared.ui.fake.StringProviderFake
+import dev.programadorthi.norris.domain.model.presentation.FactViewData
+import dev.programadorthi.norris.domain.viewmodel.FactsViewModel
+import dev.programadorthi.norris.domain.viewmodel.FactsViewModelFactory
+import dev.programadorthi.shared.domain.UIState
 import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
-import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -23,20 +24,20 @@ class FactsViewModelTest {
 
     private val random = Random.Default
     private val dispatcher = TestCoroutineDispatcher()
-    private lateinit var stringProvider: StringProviderFake
-    private lateinit var styleProvider: StyleProviderFake
+    private lateinit var factsTextProvider: FactsTextProviderFake
+    private lateinit var factsStyleProvider: FactsStyleProviderFake
     private lateinit var factsUserCase: FactsUseCaseFake
     private lateinit var viewModel: FactsViewModel
 
     @Before
     fun `before each test`() {
-        stringProvider = StringProviderFake()
-        styleProvider = StyleProviderFake()
+        factsTextProvider = FactsTextProviderFake()
+        factsStyleProvider = FactsStyleProviderFake()
         factsUserCase = FactsUseCaseFake()
-        viewModel = FactsViewModel(
+        viewModel = FactsViewModelFactory(
             factsUseCase = factsUserCase,
-            stringProvider = stringProvider,
-            styleProvider = styleProvider,
+            factsTextProvider = factsTextProvider,
+            factsStyleProvider = factsStyleProvider,
             ioDispatcher = dispatcher
         )
     }
@@ -52,10 +53,10 @@ class FactsViewModelTest {
         val expected = listOf<UIState<List<FactViewData>>>(UIState.Idle)
         val result = mutableListOf<UIState<List<FactViewData>>>()
         // When
-        val job = launch { viewModel.facts().toList(result) }
+        val job = launch { viewModel.facts.toList(result) }
         job.cancelAndJoin()
         // Then
-        assertThat(result).isEqualTo(expected)
+        Assertions.assertThat(result).isEqualTo(expected)
     }
 
     @Test
@@ -74,13 +75,13 @@ class FactsViewModelTest {
             )
             val result = mutableListOf<UIState<List<FactViewData>>>()
             // When
-            stringProvider.stringToReturn = message
+            factsTextProvider.emptySearchTermText = message
             factsUserCase.businessToResult = cause
-            val job = launch { viewModel.facts().toList(result) }
+            val job = launch { viewModel.facts.toList(result) }
             viewModel.search(text = "")
             job.cancelAndJoin()
             // Then
-            assertThat(result).isEqualTo(expected)
+            Assertions.assertThat(result).isEqualTo(expected)
         }
 
     @Test
@@ -98,13 +99,13 @@ class FactsViewModelTest {
         )
         val result = mutableListOf<UIState<List<FactViewData>>>()
         // When
-        stringProvider.stringToReturn = message
+        factsTextProvider.generalFailureText = message
         factsUserCase.exceptionResult = throwable
-        val job = launch { viewModel.facts().toList(result) }
+        val job = launch { viewModel.facts.toList(result) }
         viewModel.search(text = "some term")
         job.cancelAndJoin()
         // Then
-        assertThat(result).isEqualTo(expected)
+        Assertions.assertThat(result).isEqualTo(expected)
     }
 
     @Test
@@ -117,11 +118,11 @@ class FactsViewModelTest {
         )
         val result = mutableListOf<UIState<List<FactViewData>>>()
         // When
-        val job = launch { viewModel.facts().toList(result) }
+        val job = launch { viewModel.facts.toList(result) }
         viewModel.search(text = "some term")
         job.cancelAndJoin()
         // Then
-        assertThat(result).isEqualTo(expected)
+        Assertions.assertThat(result).isEqualTo(expected)
     }
 
     @Test
@@ -152,15 +153,15 @@ class FactsViewModelTest {
                 UIState.Success(data)
             )
             // When
-            stringProvider.stringToReturn = category
-            styleProvider.headline = headline
+            factsTextProvider.withoutCategoryText = category
+            factsStyleProvider.headlineStyle = headline
             factsUserCase.addFacts(*facts.toTypedArray())
             val result = mutableListOf<UIState<List<FactViewData>>>()
-            val job = launch { viewModel.facts().toList(result) }
+            val job = launch { viewModel.facts.toList(result) }
             viewModel.search(text = "some term")
             job.cancelAndJoin()
             // Then
-            assertThat(result).isEqualTo(expected)
+            Assertions.assertThat(result).isEqualTo(expected)
         }
 
     @Test
@@ -191,14 +192,14 @@ class FactsViewModelTest {
                 UIState.Success(data)
             )
             // When
-            styleProvider.headline = headline
+            factsStyleProvider.headlineStyle = headline
             factsUserCase.addFacts(*facts.toTypedArray())
             val result = mutableListOf<UIState<List<FactViewData>>>()
-            val job = launch { viewModel.facts().toList(result) }
+            val job = launch { viewModel.facts.toList(result) }
             viewModel.search(text = "some term")
             job.cancelAndJoin()
             // Then
-            assertThat(result).isEqualTo(expected)
+            Assertions.assertThat(result).isEqualTo(expected)
         }
 
     @Test
@@ -229,15 +230,15 @@ class FactsViewModelTest {
                 UIState.Success(data)
             )
             // When
-            stringProvider.stringToReturn = category
-            styleProvider.headline = headline
+            factsTextProvider.withoutCategoryText = category
+            factsStyleProvider.headlineStyle = headline
             factsUserCase.addFacts(*facts.toTypedArray())
             val result = mutableListOf<UIState<List<FactViewData>>>()
-            val job = launch { viewModel.facts().toList(result) }
+            val job = launch { viewModel.facts.toList(result) }
             viewModel.search(text = "some term")
             job.cancelAndJoin()
             // Then
-            assertThat(result).isEqualTo(expected)
+            Assertions.assertThat(result).isEqualTo(expected)
         }
 
     @Test
@@ -268,14 +269,14 @@ class FactsViewModelTest {
                 UIState.Success(data)
             )
             // When
-            stringProvider.stringToReturn = category
-            styleProvider.subtitle = subtitle
+            factsTextProvider.withoutCategoryText = category
+            factsStyleProvider.subtitleStyle = subtitle
             factsUserCase.addFacts(*facts.toTypedArray())
             val result = mutableListOf<UIState<List<FactViewData>>>()
-            val job = launch { viewModel.facts().toList(result) }
+            val job = launch { viewModel.facts.toList(result) }
             viewModel.search(text = "some term")
             job.cancelAndJoin()
             // Then
-            assertThat(result).isEqualTo(expected)
+            Assertions.assertThat(result).isEqualTo(expected)
         }
 }

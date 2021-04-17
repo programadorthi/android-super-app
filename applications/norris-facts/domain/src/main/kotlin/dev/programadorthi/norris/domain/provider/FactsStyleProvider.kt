@@ -1,6 +1,6 @@
-package dev.programadorthi.norris.ui.provider
+package dev.programadorthi.norris.domain.provider
 
-interface StyleProvider {
+interface FactsStyleProvider {
     fun providerHeadline(): Int
     fun providerSubtitle(): Int
 
@@ -10,9 +10,5 @@ interface StyleProvider {
      * @return Headline style if predicate returns true. Subtitle style otherwise
      */
     fun provideHeadlineOrSubtitle(predicate: () -> Boolean): Int =
-        if (predicate.invoke()) providerSubtitle() else providerHeadline()
-
-    companion object Instance {
-        operator fun invoke(): StyleProvider = StyleProviderImpl()
-    }
+        if (predicate.invoke()) providerHeadline() else providerSubtitle()
 }

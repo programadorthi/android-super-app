@@ -2,6 +2,7 @@ package dev.programadorthi.shared.ui.di
 
 import dev.programadorthi.shared.domain.DomainInjectionTags
 import dev.programadorthi.shared.ui.network.ConnectionCheckFactory
+import dev.programadorthi.shared.ui.provider.SharedTextProviderFactory
 import dev.programadorthi.shared.ui.report.CrashReportFactory
 import dev.programadorthi.shared.ui.resource.StringProvider
 import kotlinx.coroutines.Dispatchers
@@ -19,6 +20,9 @@ object SharedUIModule {
         bindSingleton { CrashReportFactory() }
         bindSingleton {
             StringProvider(context = instance())
+        }
+        bindProvider {
+            SharedTextProviderFactory(context = instance())
         }
     }
 }

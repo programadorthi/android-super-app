@@ -3,8 +3,8 @@ package dev.programadorthi.ui.test.component
 import androidx.test.core.app.launchActivity
 import dev.programadorthi.norris.ui.component.ErrorComponent
 import dev.programadorthi.norris.ui.fake.EmptyActivityFake
-import dev.programadorthi.shared.ui.UIState
-import dev.programadorthi.shared.ui.flow.PropertyUIStateFlow
+import dev.programadorthi.shared.domain.UIState
+import dev.programadorthi.shared.domain.flow.PropertyUIStateFlow
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith

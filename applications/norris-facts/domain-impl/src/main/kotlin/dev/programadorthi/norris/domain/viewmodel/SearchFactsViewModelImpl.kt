@@ -1,33 +1,36 @@
-package dev.programadorthi.norris.ui.viewmodel
+package dev.programadorthi.norris.domain.viewmodel
 
 import dev.programadorthi.norris.domain.usecase.FactsUseCase
+import dev.programadorthi.shared.domain.UIState
 import dev.programadorthi.shared.domain.exception.NetworkingError
+import dev.programadorthi.shared.domain.flow.PropertyUIStateFlow
 import dev.programadorthi.shared.domain.getOrDefault
-import dev.programadorthi.shared.ui.UIState
-import dev.programadorthi.shared.ui.flow.PropertyUIStateFlow
-import dev.programadorthi.shared.ui.resource.StringProvider
+import dev.programadorthi.shared.domain.provider.SharedTextProvider
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.withContext
-import dev.programadorthi.norris.ui.R as mainR
 
-class SearchFactsViewModel(
+internal class SearchFactsViewModelImpl(
     private val factsUseCase: FactsUseCase,
-    private val stringProvider: StringProvider,
+    private val sharedTextProvider: SharedTextProvider,
     private val ioDispatcher: CoroutineDispatcher
-) {
+) : SearchFactsViewModel {
     private val mutableCategories = PropertyUIStateFlow<List<String>>()
-    fun categories() = mutableCategories.stateFlow
-
     private val mutableLastSearches = PropertyUIStateFlow<List<String>>()
-    fun lastSearches() = mutableLastSearches.stateFlow
 
-    suspend fun fetchCategories() {
+    override val categories: StateFlow<UIState<List<String>>>
+        get() = mutableCategories.stateFlow
+
+    override val lastSearches: StateFlow<UIState<List<String>>>
+        get() = mutableLastSearches.stateFlow
+
+    override suspend fun fetchCategories() {
         withContext(ioDispatcher) {
             val result = factsUseCase.categories(limit = MAX_VISIBLE_CATEGORIES, shuffle = true)
             val nextState = when {
                 result.isFailure -> UIState.Error(
                     cause = result.exceptionOrNull(),
-                    message = stringProvider.getString(result.exceptionOrNull().toStringRes())
+                    message = result.exceptionOrNull().toTextMessage()
                 )
                 else ->
                     result
@@ -39,13 +42,13 @@ class SearchFactsViewModel(
         }
     }
 
-    suspend fun fetchLastSearches() {
+    override suspend fun fetchLastSearches() {
         withContext(ioDispatcher) {
             val result = factsUseCase.lastSearches()
             val nextState = when {
                 result.isFailure -> UIState.Error(
                     cause = result.exceptionOrNull(),
-                    message = stringProvider.getString(result.exceptionOrNull().toStringRes())
+                    message = result.exceptionOrNull().toTextMessage()
                 )
                 else ->
                     result
@@ -57,10 +60,10 @@ class SearchFactsViewModel(
         }
     }
 
-    private fun Throwable?.toStringRes() =
+    private fun Throwable?.toTextMessage() =
         when (this) {
-            is NetworkingError.NoInternetConnection -> mainR.string.no_internet_connection
-            else -> mainR.string.something_wrong
+            is NetworkingError.NoInternetConnection -> sharedTextProvider.noInternetConnection()
+            else -> sharedTextProvider.somethingWrong()
         }
 
     private companion object {

@@ -2,7 +2,7 @@ package dev.programadorthi.norris.ui.component
 
 import android.view.View
 import androidx.core.view.isVisible
-import dev.programadorthi.shared.ui.UIState
+import dev.programadorthi.shared.domain.UIState
 import dev.programadorthi.shared.ui.ext.lifecycleScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect

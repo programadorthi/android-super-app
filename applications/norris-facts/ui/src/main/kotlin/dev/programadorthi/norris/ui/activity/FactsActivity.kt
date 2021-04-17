@@ -7,13 +7,13 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import dev.programadorthi.norris.domain.model.presentation.FactViewData
+import dev.programadorthi.norris.domain.viewmodel.FactsViewModel
 import dev.programadorthi.norris.ui.R
 import dev.programadorthi.norris.ui.component.ErrorComponent
 import dev.programadorthi.norris.ui.component.LoadingComponent
 import dev.programadorthi.norris.ui.component.SuccessComponent
 import dev.programadorthi.norris.ui.databinding.ActivityFactsBinding
-import dev.programadorthi.norris.ui.model.FactViewData
-import dev.programadorthi.norris.ui.viewmodel.FactsViewModel
 import dev.programadorthi.shared.ui.di.ext.viewModel
 import dev.programadorthi.shared.ui.ext.runScoped
 import org.kodein.di.DI
@@ -33,15 +33,15 @@ class FactsActivity : AppCompatActivity(), DIAware {
         setContentView(binding.root)
         // TODO: using facts container but could be a Error Custom View managed by ErrorComponent
         ErrorComponent(
-            uiState = factsViewModel.facts(),
+            uiState = factsViewModel.facts,
             view = binding.factsContainer
         )
         LoadingComponent(
-            uiState = factsViewModel.facts(),
+            uiState = factsViewModel.facts,
             view = binding.factsProgressBar
         )
         SuccessComponent(
-            uiState = factsViewModel.facts(),
+            uiState = factsViewModel.facts,
             view = binding.factsRecyclerView,
             shareFact = ::shareFact,
             onEmptyDataSet = {

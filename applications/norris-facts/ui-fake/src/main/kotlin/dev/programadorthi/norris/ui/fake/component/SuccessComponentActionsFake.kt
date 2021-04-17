@@ -1,13 +1,13 @@
 package dev.programadorthi.norris.ui.fake.component
 
-import dev.programadorthi.norris.ui.model.FactViewData
+import dev.programadorthi.norris.domain.model.presentation.FactViewData
 
 class SuccessComponentActionsFake {
     private var emptyDataSet: Boolean = false
     private var shared: FactViewData? = null
 
     fun emptyDataSet() = emptyDataSet
-    fun shared(): FactViewData? = shared
+    fun shared() = shared
 
     fun onEmptyDataSet() {
         emptyDataSet = true

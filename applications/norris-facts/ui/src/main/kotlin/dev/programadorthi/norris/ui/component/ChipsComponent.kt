@@ -5,7 +5,7 @@ import android.widget.TextView
 import androidx.core.view.children
 import com.google.android.material.chip.ChipGroup
 import dev.programadorthi.norris.ui.R
-import dev.programadorthi.shared.ui.UIState
+import dev.programadorthi.shared.domain.UIState
 import dev.programadorthi.shared.ui.ext.lifecycleScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
