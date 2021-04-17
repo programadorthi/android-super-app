@@ -1,21 +1,25 @@
 package dev.programadorthi.shared.database.android
 
+import android.content.Context
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
-import dev.programadorthi.shared.database.DatabaseInjectionTags
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.migration.DisableInstallInCheck
 import dev.programadorthi.shared.database.SuperApp
-import org.kodein.di.DI
-import org.kodein.di.bindSingleton
-import org.kodein.di.instance
+import javax.inject.Singleton
 
+@DisableInstallInCheck
+@Module
 object SharedDatabaseAndroidModule {
-    operator fun invoke() = DI.Module(name = "shared-database-android") {
-        bindSingleton<SqlDriver> {
-            AndroidSqliteDriver(
-                schema = SuperApp.Schema,
-                context = instance(),
-                name = instance(DatabaseInjectionTags.DATABASE_NAME)
-            )
-        }
-    }
+    @Singleton
+    @Provides
+    fun provideSqlDriver(
+        @ApplicationContext context: Context
+    ): SqlDriver = AndroidSqliteDriver(
+        schema = SuperApp.Schema,
+        context = context,
+        name = "superapp"
+    )
 }

@@ -1,6 +1,6 @@
 package dev.programadorthi.shared.ui.di.ext
 
-import androidx.activity.ComponentActivity
+/*import androidx.activity.ComponentActivity
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import dev.programadorthi.shared.ui.viewmodel.ViewModelContainer
@@ -21,4 +21,4 @@ inline fun <reified VM, T> T.viewModel(): Lazy<VM> where T : DIAware, T : Compon
         .viewModel
     viewModel as? VM
         ?: throw IllegalStateException("${VM::class} not created/found on ViewModelStore")
-}
+}*/

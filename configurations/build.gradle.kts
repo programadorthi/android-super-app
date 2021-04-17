@@ -18,6 +18,7 @@ dependencies {
     implementation(BuildPlugins.ktlint)
     implementation(BuildPlugins.sqlDelight)
     implementation(BuildPlugins.testLogger)
+    implementation(BuildPlugins.hilt)
 }
 
 kotlin.sourceSets.getByName("main").kotlin.srcDir("../dependencies/src/main/kotlin")

@@ -1,20 +1,25 @@
 package dev.programadorthi.shared.database.di
 
 import com.squareup.sqldelight.db.SqlDriver
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.migration.DisableInstallInCheck
+import dev.programadorthi.shared.database.NorrisQueries
 import dev.programadorthi.shared.database.SuperApp
-import org.kodein.di.DI
-import org.kodein.di.bindSingleton
-import org.kodein.di.instance
+import javax.inject.Singleton
 
+@DisableInstallInCheck
+@Module
 object SharedDatabaseModule {
-    operator fun invoke() = DI.Module(name = "shared-database") {
-        bindSingleton {
-            val driver = instance<SqlDriver>()
-            SuperApp(driver)
-        }
+    @Singleton
+    @Provides
+    fun provideDatabase(
+        driver: SqlDriver
+    ): SuperApp = SuperApp(driver)
 
-        bindSingleton {
-            instance<SuperApp>().norrisQueries
-        }
-    }
+    @Singleton
+    @Provides
+    fun provideNorrisQueries(
+        superApp: SuperApp
+    ): NorrisQueries = superApp.norrisQueries
 }

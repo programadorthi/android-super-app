@@ -5,23 +5,22 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import dagger.hilt.android.AndroidEntryPoint
 import dev.programadorthi.norris.domain.viewmodel.SearchFactsViewModel
 import dev.programadorthi.norris.ui.component.ChipsComponent
 import dev.programadorthi.norris.ui.component.SearchEditTextComponent
 import dev.programadorthi.norris.ui.databinding.ActivitySearchFactsBinding
-import dev.programadorthi.shared.ui.di.ext.viewModel
 import dev.programadorthi.shared.ui.ext.runScoped
-import org.kodein.di.DI
-import org.kodein.di.DIAware
-import org.kodein.di.android.closestDI
+import javax.inject.Inject
 
-class SearchFactsActivity : AppCompatActivity(), DIAware {
-    override val di: DI by closestDI()
-
-    private val searchFactsViewModel: SearchFactsViewModel by viewModel()
+@AndroidEntryPoint
+class SearchFactsActivity : AppCompatActivity() {
     private val viewBinding by lazy {
         ActivitySearchFactsBinding.inflate(layoutInflater)
     }
+
+    @Inject
+    lateinit var searchFactsViewModel: SearchFactsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

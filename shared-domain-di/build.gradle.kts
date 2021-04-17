@@ -11,10 +11,8 @@ kapt {
 }
 
 dependencies {
-    api(project(":shared-network"))
-    api(project(":shared-retrofit"))
+    api(project(":shared-domain"))
+    implementation(Dependencies.Kotlin.coroutines)
     implementation(Dependencies.DI.hilt)
-    implementation(Dependencies.Kotlin.serialization)
-    implementation(Dependencies.Network.retrofit)
     kapt(Dependencies.DI.hiltCompiler)
 }

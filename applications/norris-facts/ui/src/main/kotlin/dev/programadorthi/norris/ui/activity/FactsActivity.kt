@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 import dev.programadorthi.norris.domain.model.presentation.FactViewData
 import dev.programadorthi.norris.domain.viewmodel.FactsViewModel
 import dev.programadorthi.norris.ui.R
@@ -14,19 +15,17 @@ import dev.programadorthi.norris.ui.component.ErrorComponent
 import dev.programadorthi.norris.ui.component.LoadingComponent
 import dev.programadorthi.norris.ui.component.SuccessComponent
 import dev.programadorthi.norris.ui.databinding.ActivityFactsBinding
-import dev.programadorthi.shared.ui.di.ext.viewModel
 import dev.programadorthi.shared.ui.ext.runScoped
-import org.kodein.di.DI
-import org.kodein.di.DIAware
-import org.kodein.di.android.closestDI
+import javax.inject.Inject
 
-class FactsActivity : AppCompatActivity(), DIAware {
-    override val di: DI by closestDI()
-
-    private val factsViewModel: FactsViewModel by viewModel()
+@AndroidEntryPoint
+class FactsActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityFactsBinding.inflate(layoutInflater)
     }
+
+    @Inject
+    lateinit var factsViewModel: FactsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

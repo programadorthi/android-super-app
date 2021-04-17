@@ -1,28 +1,33 @@
 package dev.programadorthi.shared.ui.di
 
-import dev.programadorthi.shared.domain.DomainInjectionTags
+import android.content.Context
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.migration.DisableInstallInCheck
+import dev.programadorthi.shared.domain.network.ConnectionCheck
+import dev.programadorthi.shared.domain.provider.SharedTextProvider
+import dev.programadorthi.shared.domain.report.CrashReport
 import dev.programadorthi.shared.ui.network.ConnectionCheckFactory
 import dev.programadorthi.shared.ui.provider.SharedTextProviderFactory
 import dev.programadorthi.shared.ui.report.CrashReportFactory
-import dev.programadorthi.shared.ui.resource.StringProvider
-import kotlinx.coroutines.Dispatchers
-import org.kodein.di.DI
-import org.kodein.di.bindProvider
-import org.kodein.di.bindSingleton
-import org.kodein.di.instance
+import javax.inject.Singleton
 
+@DisableInstallInCheck
+@Module
 object SharedUIModule {
-    operator fun invoke() = DI.Module("shared-ui") {
-        bindProvider(DomainInjectionTags.IO_DISPATCHER) { Dispatchers.IO }
-        bindSingleton {
-            ConnectionCheckFactory(context = instance())
-        }
-        bindSingleton { CrashReportFactory() }
-        bindSingleton {
-            StringProvider(context = instance())
-        }
-        bindProvider {
-            SharedTextProviderFactory(context = instance())
-        }
-    }
+    @Singleton
+    @Provides
+    fun provideConnectionCheck(
+        @ApplicationContext context: Context
+    ): ConnectionCheck = ConnectionCheckFactory(context)
+
+    @Singleton
+    @Provides
+    fun provideCrashReport(): CrashReport = CrashReportFactory()
+
+    @Provides
+    fun provideSharedTextProvider(
+        @ApplicationContext context: Context
+    ): SharedTextProvider = SharedTextProviderFactory(context)
 }

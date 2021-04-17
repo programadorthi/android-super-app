@@ -27,8 +27,9 @@ object Dependencies {
     }
 
     object DI {
-        const val kodein = "org.kodein.di:kodein-di:7.5.0"
-        const val kodeinAndroid = "org.kodein.di:kodein-di-framework-android-x:7.5.0"
+        const val hilt = "com.google.dagger:hilt-core:2.34.1-beta"
+        const val hiltAndroid = "com.google.dagger:hilt-android:2.34.1-beta"
+        const val hiltCompiler = "com.google.dagger:hilt-compiler:2.34.1-beta"
     }
 
     object AndroidTest {
