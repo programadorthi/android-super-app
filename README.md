@@ -2,7 +2,9 @@
 [![Actions Status](https://github.com/programadorthi/android-super-app/workflows/actions/badge.svg)](https://github.com/programadorthi/android-super-app/actions)
 [![Kotlin](https://img.shields.io/badge/kotlin-1.4.30-blue.svg?logo=kotlin)](http://kotlinlang.org)
 [![Coroutines](https://img.shields.io/badge/Kotlin-Coroutines-orange)](https://kotlinlang.org/docs/coroutines-guide.html)
-An Android app with many challenge modules and SOLID at all .
+<br/>
+<br/>
+An Android app with many challenge modules and SOLID at all.
 
 ## Features
 * [Kotlin Coroutines](https://github.com/Kotlin/kotlinx.coroutines) with Flow (State Flow)
