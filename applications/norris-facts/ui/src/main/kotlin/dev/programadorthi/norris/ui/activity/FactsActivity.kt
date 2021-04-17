@@ -6,26 +6,26 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import dev.programadorthi.norris.domain.model.presentation.FactViewData
-import dev.programadorthi.norris.domain.viewmodel.FactsViewModel
 import dev.programadorthi.norris.ui.R
 import dev.programadorthi.norris.ui.component.ErrorComponent
 import dev.programadorthi.norris.ui.component.LoadingComponent
 import dev.programadorthi.norris.ui.component.SuccessComponent
 import dev.programadorthi.norris.ui.databinding.ActivityFactsBinding
+import dev.programadorthi.norris.ui.viewmodel.FactsViewModelWrapper
 import dev.programadorthi.shared.ui.ext.runScoped
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class FactsActivity : AppCompatActivity() {
+    private val factsViewModelWrapper by viewModels<FactsViewModelWrapper>()
+    private val factsViewModel by lazy { factsViewModelWrapper.viewModel }
+
     private val binding by lazy {
         ActivityFactsBinding.inflate(layoutInflater)
     }
-
-    @Inject
-    lateinit var factsViewModel: FactsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
