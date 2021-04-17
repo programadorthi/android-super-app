@@ -1,8 +1,8 @@
 package dev.programadorthi.norris.ui.component
 
 import android.view.LayoutInflater
+import android.widget.TextView
 import androidx.core.view.children
-import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import dev.programadorthi.norris.ui.R
 import dev.programadorthi.shared.ui.UIState
@@ -36,7 +36,7 @@ class ChipsComponent(
             // Because we passing view as root, inflate function returns it instead of inflated layout
             val chipGroup = inflater.inflate(R.layout.item_search_fact_category, view) as ChipGroup
             // Inflate function also call addView when passing a root. So in the ChipGroup our inflated layout is the last added view
-            val chip = chipGroup.children.last() as Chip
+            val chip = chipGroup.children.last() as TextView
             chip.text = category
             chip.setOnClickListener { onChipClicked(category) }
         }

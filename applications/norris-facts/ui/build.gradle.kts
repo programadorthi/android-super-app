@@ -1,7 +1,7 @@
 import dev.programadorthi.dependencies.Dependencies
 
 plugins {
-    id("com.android.library")
+    id("com.android.application")
     id("kotlin-android")
     id("super-module")
 }

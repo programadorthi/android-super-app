@@ -1,7 +1,5 @@
 package dev.programadorthi.norris.ui.viewmodel
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import dev.programadorthi.norris.domain.usecase.FactsUseCase
 import dev.programadorthi.shared.domain.exception.NetworkingError
 import dev.programadorthi.shared.domain.getOrDefault
@@ -9,22 +7,22 @@ import dev.programadorthi.shared.ui.UIState
 import dev.programadorthi.shared.ui.flow.PropertyUIStateFlow
 import dev.programadorthi.shared.ui.resource.StringProvider
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import dev.programadorthi.norris.ui.R as mainR
 
 class SearchFactsViewModel(
     private val factsUseCase: FactsUseCase,
     private val stringProvider: StringProvider,
     private val ioDispatcher: CoroutineDispatcher
-) : ViewModel() {
+) {
     private val mutableCategories = PropertyUIStateFlow<List<String>>()
     fun categories() = mutableCategories.stateFlow
 
     private val mutableLastSearches = PropertyUIStateFlow<List<String>>()
     fun lastSearches() = mutableLastSearches.stateFlow
 
-    fun fetchCategories() {
-        viewModelScope.launch(ioDispatcher) {
+    suspend fun fetchCategories() {
+        withContext(ioDispatcher) {
             val result = factsUseCase.categories(limit = MAX_VISIBLE_CATEGORIES, shuffle = true)
             val nextState = when {
                 result.isFailure -> UIState.Error(
@@ -41,8 +39,8 @@ class SearchFactsViewModel(
         }
     }
 
-    fun fetchLastSearches() {
-        viewModelScope.launch(ioDispatcher) {
+    suspend fun fetchLastSearches() {
+        withContext(ioDispatcher) {
             val result = factsUseCase.lastSearches()
             val nextState = when {
                 result.isFailure -> UIState.Error(

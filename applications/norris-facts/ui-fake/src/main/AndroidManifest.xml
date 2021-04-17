@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dev.programadorthi.norris.ui.fake">
 
-    <application>
+    <application
+        android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
         <activity android:name=".EmptyActivityFake" />
     </application>
 
