@@ -10,7 +10,7 @@ An Android app with many challenge modules and SOLID at all.
 * [Kotlin Coroutines](https://github.com/Kotlin/kotlinx.coroutines) with Flow (State Flow)
 * [Kotlin Serialization](https://github.com/Kotlin/kotlinx.serialization)
 * [SQLDelight](https://github.com/cashapp/sqldelight) for local persistence
-* [Kodein](https://github.com/Kodein-Framework/Kodein-DI) as dependency injection framework
+* [Dagger Hilt](https://dagger.dev/hilt/) provides a standard way to incorporate Dagger dependency injection into an Android application.
 * [Retrofit](https://github.com/square/retrofit) a type-safe HTTP client for Android and the JVM
 * Clean Architecture with MVVM
 * Kotlin Gradle DSL
