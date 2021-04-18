@@ -13,17 +13,8 @@ import dev.programadorthi.shared.retrofit.di.SharedRetrofitModule
 import dev.programadorthi.shared.retrofit.di.qualifier.BaseUrl
 import dev.programadorthi.shared.ui.di.SharedUIModule
 
+@Module
 @InstallIn(SingletonComponent::class)
-@Module(
-    includes = [
-        SharedDatabaseModule::class,
-        SharedDatabaseAndroidModule::class,
-        SharedDomainModule::class,
-        SharedRetrofitModule::class,
-        SharedNetworkModule::class,
-        SharedUIModule::class
-    ]
-)
 object NorrisApplicationModule {
     @BaseUrl
     @Provides

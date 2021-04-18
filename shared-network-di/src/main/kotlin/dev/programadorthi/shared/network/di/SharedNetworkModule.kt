@@ -2,7 +2,8 @@ package dev.programadorthi.shared.network.di
 
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.migration.DisableInstallInCheck
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import dev.programadorthi.shared.domain.di.qualifier.IODispatcher
 import dev.programadorthi.shared.domain.exception.NetworkingErrorMapper
 import dev.programadorthi.shared.domain.network.ConnectionCheck
@@ -12,8 +13,8 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.serialization.json.Json
 import javax.inject.Singleton
 
-@DisableInstallInCheck
 @Module
+@InstallIn(SingletonComponent::class)
 object SharedNetworkModule {
     @Singleton
     @Provides
