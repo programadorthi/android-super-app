@@ -7,6 +7,7 @@ import dev.programadorthi.norris.ui.di.NorrisUIModule
 import dev.programadorthi.shared.database.DatabaseInjectionTags
 import dev.programadorthi.shared.database.android.SharedDatabaseAndroidModule
 import dev.programadorthi.shared.database.di.SharedDatabaseModule
+import dev.programadorthi.shared.domain.di.SharedDomainModule
 import dev.programadorthi.shared.network.NetworkInjectionTags
 import dev.programadorthi.shared.network.di.SharedNetworkModule
 import dev.programadorthi.shared.retrofit.di.SharedRetrofitModule
@@ -19,6 +20,7 @@ class NorrisApplication : Application(), DIAware {
     override val di: DI by DI.lazy {
         import(SharedDatabaseModule())
         import(SharedDatabaseAndroidModule())
+        import(SharedDomainModule())
         import(SharedRetrofitModule())
         import(SharedNetworkModule())
         import(SharedUIModule())

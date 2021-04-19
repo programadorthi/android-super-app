@@ -15,6 +15,7 @@ android {
 
 dependencies {
     implementation(project(":shared-database-di-android"))
+    implementation(project(":shared-domain-di"))
     implementation(project(":shared-network-di"))
     implementation(project(":shared-retrofit-di"))
     implementation(project(":shared-ui-di"))
