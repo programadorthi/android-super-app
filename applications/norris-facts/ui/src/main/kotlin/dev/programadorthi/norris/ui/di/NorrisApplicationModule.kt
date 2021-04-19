@@ -5,13 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.programadorthi.norris.ui.BuildConfig
-import dev.programadorthi.shared.database.android.SharedDatabaseAndroidModule
-import dev.programadorthi.shared.database.di.SharedDatabaseModule
-import dev.programadorthi.shared.domain.di.SharedDomainModule
-import dev.programadorthi.shared.network.di.SharedNetworkModule
-import dev.programadorthi.shared.retrofit.di.SharedRetrofitModule
 import dev.programadorthi.shared.retrofit.di.qualifier.BaseUrl
-import dev.programadorthi.shared.ui.di.SharedUIModule
 
 @Module
 @InstallIn(SingletonComponent::class)
