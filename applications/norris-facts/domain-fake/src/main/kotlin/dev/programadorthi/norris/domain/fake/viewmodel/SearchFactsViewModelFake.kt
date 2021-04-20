@@ -15,11 +15,15 @@ class SearchFactsViewModelFake : SearchFactsViewModel {
     override val lastSearches: StateFlow<UIState<List<String>>>
         get() = mutableLastSearches.stateFlow
 
-    override suspend fun fetchCategories() {
+    override fun fetchCategories() {
         // no-op
     }
 
-    override suspend fun fetchLastSearches() {
+    override fun fetchLastSearches() {
+        // no-op
+    }
+
+    override fun dispose() {
         // no-op
     }
 

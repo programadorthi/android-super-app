@@ -7,6 +7,7 @@ import dev.programadorthi.norris.domain.viewmodel.SearchFactsViewModel
 import dev.programadorthi.norris.domain.viewmodel.SearchFactsViewModelFactory
 import dev.programadorthi.shared.domain.UIState
 import dev.programadorthi.shared.domain.fake.SharedTextProviderFake
+import dev.programadorthi.shared.domain.viewmodel.ViewModelScope
 import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
@@ -34,7 +35,7 @@ class SearchFactsViewModelTest {
         viewModel = SearchFactsViewModelFactory(
             factsUseCase = factsUserCase,
             sharedTextProvider = sharedTextProvider,
-            ioDispatcher = dispatcher
+            viewModelScope = ViewModelScope(dispatcher)
         )
     }
 

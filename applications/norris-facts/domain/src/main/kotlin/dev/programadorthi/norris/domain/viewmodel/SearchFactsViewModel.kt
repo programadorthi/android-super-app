@@ -1,12 +1,13 @@
 package dev.programadorthi.norris.domain.viewmodel
 
 import dev.programadorthi.shared.domain.UIState
+import dev.programadorthi.shared.domain.viewmodel.ViewModel
 import kotlinx.coroutines.flow.StateFlow
 
-interface SearchFactsViewModel {
+interface SearchFactsViewModel : ViewModel {
     val categories: StateFlow<UIState<List<String>>>
     val lastSearches: StateFlow<UIState<List<String>>>
 
-    suspend fun fetchCategories()
-    suspend fun fetchLastSearches()
+    fun fetchCategories()
+    fun fetchLastSearches()
 }

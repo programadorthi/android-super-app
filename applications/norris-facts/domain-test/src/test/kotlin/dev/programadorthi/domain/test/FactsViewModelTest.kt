@@ -9,6 +9,7 @@ import dev.programadorthi.norris.domain.model.presentation.FactViewData
 import dev.programadorthi.norris.domain.viewmodel.FactsViewModel
 import dev.programadorthi.norris.domain.viewmodel.FactsViewModelFactory
 import dev.programadorthi.shared.domain.UIState
+import dev.programadorthi.shared.domain.viewmodel.ViewModelScope
 import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
@@ -38,7 +39,7 @@ class FactsViewModelTest {
             factsUseCase = factsUserCase,
             factsTextProvider = factsTextProvider,
             factsStyleProvider = factsStyleProvider,
-            ioDispatcher = dispatcher
+            viewModelScope = ViewModelScope(dispatcher)
         )
     }
 

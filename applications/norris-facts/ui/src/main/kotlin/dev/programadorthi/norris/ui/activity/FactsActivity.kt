@@ -15,7 +15,6 @@ import dev.programadorthi.norris.ui.component.LoadingComponent
 import dev.programadorthi.norris.ui.component.SuccessComponent
 import dev.programadorthi.norris.ui.databinding.ActivityFactsBinding
 import dev.programadorthi.shared.ui.di.ext.viewModel
-import dev.programadorthi.shared.ui.ext.runScoped
 import org.kodein.di.DI
 import org.kodein.di.DIAware
 import org.kodein.di.android.closestDI
@@ -71,9 +70,7 @@ class FactsActivity : AppCompatActivity(), DIAware {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == SEARCH_FACT_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             val query = data?.getStringExtra(SEARCH_RESULT_EXTRA_KEY) ?: EMPTY_TEXT
-            runScoped {
-                factsViewModel.search(query)
-            }
+            factsViewModel.search(query)
         }
     }
 

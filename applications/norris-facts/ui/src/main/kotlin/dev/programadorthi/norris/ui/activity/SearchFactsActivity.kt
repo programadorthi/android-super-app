@@ -10,7 +10,6 @@ import dev.programadorthi.norris.ui.component.ChipsComponent
 import dev.programadorthi.norris.ui.component.SearchEditTextComponent
 import dev.programadorthi.norris.ui.databinding.ActivitySearchFactsBinding
 import dev.programadorthi.shared.ui.di.ext.viewModel
-import dev.programadorthi.shared.ui.ext.runScoped
 import org.kodein.di.DI
 import org.kodein.di.DIAware
 import org.kodein.di.android.closestDI
@@ -45,11 +44,9 @@ class SearchFactsActivity : AppCompatActivity(), DIAware {
             }
         )
 
-        runScoped {
-            searchFactsViewModel.run {
-                fetchCategories()
-                fetchLastSearches()
-            }
+        searchFactsViewModel.run {
+            fetchCategories()
+            fetchLastSearches()
         }
     }
 

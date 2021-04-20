@@ -48,14 +48,14 @@ object NorrisModule {
                 factsUseCase = instance(),
                 factsTextProvider = instance(),
                 factsStyleProvider = instance(),
-                ioDispatcher = instance(DomainInjectionTags.IO_DISPATCHER)
+                viewModelScope = instance(DomainInjectionTags.VIEW_MODEL_SCOPE)
             )
         }
         bindProvider {
             SearchFactsViewModelFactory(
                 factsUseCase = instance(),
                 sharedTextProvider = instance(),
-                ioDispatcher = instance(DomainInjectionTags.IO_DISPATCHER)
+                viewModelScope = instance(DomainInjectionTags.VIEW_MODEL_SCOPE)
             )
         }
     }

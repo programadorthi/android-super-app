@@ -6,15 +6,16 @@ import dev.programadorthi.shared.domain.exception.NetworkingError
 import dev.programadorthi.shared.domain.flow.PropertyUIStateFlow
 import dev.programadorthi.shared.domain.getOrDefault
 import dev.programadorthi.shared.domain.provider.SharedTextProvider
-import kotlinx.coroutines.CoroutineDispatcher
+import dev.programadorthi.shared.domain.viewmodel.ViewModel
+import dev.programadorthi.shared.domain.viewmodel.ViewModelScope
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.launch
 
 internal class SearchFactsViewModelImpl(
     private val factsUseCase: FactsUseCase,
     private val sharedTextProvider: SharedTextProvider,
-    private val ioDispatcher: CoroutineDispatcher
-) : SearchFactsViewModel {
+    private val viewModelScope: ViewModelScope
+) : SearchFactsViewModel, ViewModel by viewModelScope {
     private val mutableCategories = PropertyUIStateFlow<List<String>>()
     private val mutableLastSearches = PropertyUIStateFlow<List<String>>()
 
@@ -24,8 +25,8 @@ internal class SearchFactsViewModelImpl(
     override val lastSearches: StateFlow<UIState<List<String>>>
         get() = mutableLastSearches.stateFlow
 
-    override suspend fun fetchCategories() {
-        withContext(ioDispatcher) {
+    override fun fetchCategories() {
+        viewModelScope.launch {
             val result = factsUseCase.categories(limit = MAX_VISIBLE_CATEGORIES, shuffle = true)
             val nextState = when {
                 result.isFailure -> UIState.Error(
@@ -42,8 +43,8 @@ internal class SearchFactsViewModelImpl(
         }
     }
 
-    override suspend fun fetchLastSearches() {
-        withContext(ioDispatcher) {
+    override fun fetchLastSearches() {
+        viewModelScope.launch {
             val result = factsUseCase.lastSearches()
             val nextState = when {
                 result.isFailure -> UIState.Error(
