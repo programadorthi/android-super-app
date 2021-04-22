@@ -8,4 +8,9 @@ import javax.inject.Inject
 @HiltViewModel
 class FactsViewModelWrapper @Inject constructor(
     val viewModel: FactsViewModel
-) : ViewModel()
+) : ViewModel() {
+    override fun onCleared() {
+        super.onCleared()
+        viewModel.dispose()
+    }
+}

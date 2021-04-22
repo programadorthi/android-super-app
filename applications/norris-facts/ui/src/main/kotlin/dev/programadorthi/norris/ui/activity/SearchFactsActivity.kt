@@ -11,7 +11,6 @@ import dev.programadorthi.norris.ui.component.ChipsComponent
 import dev.programadorthi.norris.ui.component.SearchEditTextComponent
 import dev.programadorthi.norris.ui.databinding.ActivitySearchFactsBinding
 import dev.programadorthi.norris.ui.viewmodel.SearchFactsViewModelWrapper
-import dev.programadorthi.shared.ui.ext.runScoped
 
 @AndroidEntryPoint
 class SearchFactsActivity : AppCompatActivity() {
@@ -43,12 +42,9 @@ class SearchFactsActivity : AppCompatActivity() {
                 viewBinding.lastSearchesContainer.isVisible = hasChips
             }
         )
-
-        runScoped {
-            searchFactsViewModel.run {
-                fetchCategories()
-                fetchLastSearches()
-            }
+        searchFactsViewModel.run {
+            fetchCategories()
+            fetchLastSearches()
         }
     }
 

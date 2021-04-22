@@ -8,4 +8,9 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchFactsViewModelWrapper @Inject constructor(
     val viewModel: SearchFactsViewModel
-) : ViewModel()
+) : ViewModel() {
+    override fun onCleared() {
+        super.onCleared()
+        viewModel.dispose()
+    }
+}

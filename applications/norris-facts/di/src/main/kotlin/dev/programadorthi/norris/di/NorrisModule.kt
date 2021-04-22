@@ -22,6 +22,7 @@ import dev.programadorthi.norris.domain.viewmodel.SearchFactsViewModelFactory
 import dev.programadorthi.shared.database.NorrisQueries
 import dev.programadorthi.shared.domain.di.qualifier.IODispatcher
 import dev.programadorthi.shared.domain.provider.SharedTextProvider
+import dev.programadorthi.shared.domain.viewmodel.ViewModelScope
 import dev.programadorthi.shared.network.manager.NetworkManager
 import kotlinx.coroutines.CoroutineDispatcher
 import retrofit2.Retrofit
@@ -70,22 +71,22 @@ object NorrisModule {
         factsUseCase: FactsUseCase,
         factsTextProvider: FactsTextProvider,
         factsStyleProvider: FactsStyleProvider,
-        @IODispatcher ioDispatcher: CoroutineDispatcher
+        viewModelScope: ViewModelScope
     ): FactsViewModel = FactsViewModelFactory(
         factsUseCase = factsUseCase,
         factsTextProvider = factsTextProvider,
         factsStyleProvider = factsStyleProvider,
-        ioDispatcher = ioDispatcher
+        viewModelScope = viewModelScope
     )
 
     @Provides
     fun provideSearchFactsViewModel(
         factsUseCase: FactsUseCase,
         sharedTextProvider: SharedTextProvider,
-        @IODispatcher ioDispatcher: CoroutineDispatcher
+        viewModelScope: ViewModelScope
     ): SearchFactsViewModel = SearchFactsViewModelFactory(
         factsUseCase = factsUseCase,
         sharedTextProvider = sharedTextProvider,
-        ioDispatcher = ioDispatcher
+        viewModelScope = viewModelScope
     )
 }
