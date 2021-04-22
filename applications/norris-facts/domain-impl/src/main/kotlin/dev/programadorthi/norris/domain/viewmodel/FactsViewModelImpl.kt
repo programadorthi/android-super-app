@@ -10,22 +10,23 @@ import dev.programadorthi.shared.domain.Result
 import dev.programadorthi.shared.domain.UIState
 import dev.programadorthi.shared.domain.ext.toUIState
 import dev.programadorthi.shared.domain.flow.PropertyUIStateFlow
-import kotlinx.coroutines.CoroutineDispatcher
+import dev.programadorthi.shared.domain.viewmodel.ViewModel
+import dev.programadorthi.shared.domain.viewmodel.ViewModelScope
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.launch
 
 internal class FactsViewModelImpl(
     private val factsUseCase: FactsUseCase,
     private val factsTextProvider: FactsTextProvider,
     private val factsStyleProvider: FactsStyleProvider,
-    private val ioDispatcher: CoroutineDispatcher
-) : FactsViewModel {
+    private val viewModelScope: ViewModelScope
+) : FactsViewModel, ViewModel by viewModelScope {
     private val mutableFacts = PropertyUIStateFlow<List<FactViewData>>()
     override val facts: StateFlow<UIState<List<FactViewData>>>
         get() = mutableFacts.stateFlow
 
-    override suspend fun search(text: String) {
-        withContext(ioDispatcher) {
+    override fun search(text: String) {
+        viewModelScope.launch {
             mutableFacts.loading()
             val result = factsUseCase.search(text)
             val nextState = result.toUIState(

@@ -11,7 +11,11 @@ class FactsViewModelFake : FactsViewModel {
     override val facts: StateFlow<UIState<List<FactViewData>>>
         get() = mutableFacts.stateFlow
 
-    override suspend fun search(text: String) {
+    override fun search(text: String) {
+        // no-op by default
+    }
+
+    override fun dispose() {
         // no-op by default
     }
 
