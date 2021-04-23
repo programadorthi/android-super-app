@@ -3,19 +3,18 @@ package dev.programadorthi.norris.ui.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import dagger.hilt.android.AndroidEntryPoint
+import dev.programadorthi.norris.domain.viewmodel.SearchFactsViewModel
 import dev.programadorthi.norris.ui.component.ChipsComponent
 import dev.programadorthi.norris.ui.component.SearchEditTextComponent
 import dev.programadorthi.norris.ui.databinding.ActivitySearchFactsBinding
-import dev.programadorthi.norris.ui.viewmodel.SearchFactsViewModelWrapper
+import dev.programadorthi.shared.ui.di.viewmodel.viewModel
 
 @AndroidEntryPoint
 class SearchFactsActivity : AppCompatActivity() {
-    private val searchFactsViewModelWrapper by viewModels<SearchFactsViewModelWrapper>()
-    private val searchFactsViewModel by lazy { searchFactsViewModelWrapper.viewModel }
+    private val searchFactsViewModel: SearchFactsViewModel by viewModel()
 
     private val viewBinding by lazy {
         ActivitySearchFactsBinding.inflate(layoutInflater)
