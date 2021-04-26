@@ -1,23 +1,16 @@
 import dev.programadorthi.dependencies.Dependencies
 
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("kotlin-android")
     id("super-module")
 }
 
-android {
-    defaultConfig {
-        buildConfigField("String", "BASE_URL", "\"https://api.chucknorris.io/jokes/\"")
-        buildConfigField("String", "DATABASE_NAME", "\"norris.db\"")
-    }
-}
-
 dependencies {
-    implementation(project(":shared-database-di-android"))
+    /*implementation(project(":shared-database-di-android"))
     implementation(project(":shared-domain-di"))
     implementation(project(":shared-network-di"))
-    implementation(project(":shared-retrofit-di"))
+    implementation(project(":shared-retrofit-di"))*/
     implementation(project(":shared-ui-di"))
     implementation(project(":features:norris-facts:di"))
     implementation(Dependencies.Android.lifecycleRuntime)
