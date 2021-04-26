@@ -10,7 +10,7 @@ plugins {
 dependencies {
     api(project(":shared-database"))
     api(project(":shared-network"))
-    api(project(":applications:norris-facts:domain"))
+    api(project(":features:norris-facts:domain"))
     implementation(Dependencies.Kotlin.coroutines)
     implementation(Dependencies.Kotlin.serialization)
     implementation(Dependencies.Network.retrofit)

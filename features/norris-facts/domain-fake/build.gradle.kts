@@ -7,6 +7,6 @@ plugins {
 
 dependencies {
     // TODO: fake project has impl dependency is WRONG. Still here because FactsService is a retrofit interface inside impl module only
-    api(project(":applications:norris-facts:domain-impl"))
+    api(project(":features:norris-facts:domain-impl"))
     implementation(Dependencies.Kotlin.coroutines)
 }

@@ -19,7 +19,7 @@ dependencies {
     implementation(project(":shared-network-di"))
     implementation(project(":shared-retrofit-di"))
     implementation(project(":shared-ui-di"))
-    implementation(project(":applications:norris-facts:di"))
+    implementation(project(":features:norris-facts:di"))
     implementation(Dependencies.Android.lifecycleRuntime)
     implementation(Dependencies.Android.lifecycleViewModel)
     implementation(Dependencies.Android.recyclerView)
