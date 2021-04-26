@@ -12,6 +12,7 @@ rootProject.name = "Super App"
 includeBuild("dependencies")
 includeBuild("configurations")
 
+include(":app")
 include(":shared-database")
 include(":shared-database-di")
 include(":shared-database-di-android")
