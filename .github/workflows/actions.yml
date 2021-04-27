@@ -33,8 +33,8 @@ jobs:
 
       # WARNING: avoid run check function in large projects. It's an expansive task. I'll change this in the future.
       - name: Run all check tasks
-        run: ./gradlew check
+        run: ./super-app-challenge/gradlew check
 
       # WARNING: building one feature only. Update in the future
       - name: Build debug APK on development flavor
-        run: ./gradlew :features:norris-facts:ui:assembleDevDebug
+        run: ./super-app-challenge/gradlew :features:norris-facts:ui:assembleDevDebug
