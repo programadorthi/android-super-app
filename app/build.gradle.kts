@@ -15,11 +15,11 @@ android {
 }
 
 dependencies {
-    implementation(project(":shared-database-di-android"))
-    implementation(project(":shared-domain-di"))
-    implementation(project(":shared-network-di"))
-    implementation(project(":shared-retrofit-di"))
-    implementation(project(":features:norris-facts:ui"))
+    implementation(project(JavaModules.SHARED_DOMAIN_DI))
+    implementation(project(JavaModules.SHARED_NETWORK_DI))
+    implementation(project(JavaModules.SHARED_RETROFIT_DI))
+    implementation(project(LibraryModules.SHARED_DATABASE_DI_ANDROID))
+    implementation(project(LibraryModules.Features.NorrisFacts.UI))
     implementation(Dependencies.DI.kodein)
     implementation(Dependencies.DI.kodeinAndroid)
     Dependencies.Android.common.forEach { implementation(it) }

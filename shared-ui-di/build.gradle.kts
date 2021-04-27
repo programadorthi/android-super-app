@@ -7,7 +7,7 @@ plugins {
 }
 
 dependencies {
-    api(project(":shared-ui"))
+    api(project(LibraryModules.SHARED_UI))
     implementation(Dependencies.Android.lifecycleViewModel)
     implementation(Dependencies.DI.kodein)
     implementation(Dependencies.DI.kodeinAndroid)

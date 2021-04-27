@@ -6,7 +6,7 @@ plugins {
 }
 
 dependencies {
-    api(project(":features:norris-facts:domain-impl"))
+    api(project(JavaModules.Features.NorrisFacts.DOMAIN_IMPL))
     implementation(Dependencies.Kotlin.coroutines)
     implementation(Dependencies.DI.kodein)
     implementation(Dependencies.Network.retrofit)

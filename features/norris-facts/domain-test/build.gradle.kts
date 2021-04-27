@@ -6,9 +6,9 @@ plugins {
 }
 
 dependencies {
-    testImplementation(project(":shared-database-fake"))
-    testImplementation(project(":shared-domain-fake"))
-    testImplementation(project(":shared-network-fake"))
-    testImplementation(project(":features:norris-facts:domain-fake"))
+    testImplementation(project(JavaModules.SHARED_DATABASE_FAKE))
+    testImplementation(project(JavaModules.SHARED_DOMAIN_FAKE))
+    testImplementation(project(JavaModules.SHARED_NETWORK_FAKE))
+    testImplementation(project(JavaModules.Features.NorrisFacts.DOMAIN_FAKE))
     Dependencies.UnitTest.all.forEach { testImplementation(it) }
 }

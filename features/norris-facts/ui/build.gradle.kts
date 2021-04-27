@@ -7,8 +7,8 @@ plugins {
 }
 
 dependencies {
-    api(project(":shared-ui-di"))
-    api(project(":features:norris-facts:di"))
+    api(project(JavaModules.Features.NorrisFacts.DI))
+    api(project(LibraryModules.SHARED_UI_DI))
     implementation(Dependencies.Android.lifecycleRuntime)
     implementation(Dependencies.Android.lifecycleViewModel)
     implementation(Dependencies.Android.recyclerView)

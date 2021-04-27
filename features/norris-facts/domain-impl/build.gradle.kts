@@ -8,9 +8,9 @@ plugins {
 }
 
 dependencies {
-    api(project(":shared-database"))
-    api(project(":shared-network"))
-    api(project(":features:norris-facts:domain"))
+    api(project(JavaModules.SHARED_DATABASE))
+    api(project(JavaModules.SHARED_NETWORK))
+    api(project(JavaModules.Features.NorrisFacts.DOMAIN))
     implementation(Dependencies.Kotlin.coroutines)
     implementation(Dependencies.Kotlin.serialization)
     implementation(Dependencies.Network.retrofit)

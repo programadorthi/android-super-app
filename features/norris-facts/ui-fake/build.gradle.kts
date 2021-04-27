@@ -7,8 +7,8 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":features:norris-facts:domain"))
-    implementation(project(":features:norris-facts:ui"))
+    implementation(project(JavaModules.Features.NorrisFacts.DOMAIN))
+    implementation(project(LibraryModules.Features.NorrisFacts.UI))
     implementation(Dependencies.Android.lifecycleRuntime)
     implementation(Dependencies.Android.lifecycleViewModel)
     implementation(Dependencies.Android.recyclerView)
