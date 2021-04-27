@@ -18,7 +18,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.github.programadorthi:magic-modules:0.0.5")
+        classpath("com.github.programadorthi:magic-modules:0.0.6")
     }
 }
 
