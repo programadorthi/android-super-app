@@ -1,4 +1,4 @@
-package dev.programadorthi.domain.test
+package dev.programadorthi.norris.domain.test
 
 import dev.programadorthi.norris.domain.data.LocalFactsRepository
 import dev.programadorthi.norris.domain.data.local.LocalFactsRepositoryFactory

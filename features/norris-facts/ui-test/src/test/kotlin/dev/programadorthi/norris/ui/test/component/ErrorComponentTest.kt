@@ -1,4 +1,4 @@
-package dev.programadorthi.ui.test.component
+package dev.programadorthi.norris.ui.test.component
 
 import androidx.test.core.app.launchActivity
 import dev.programadorthi.norris.ui.component.ErrorComponent

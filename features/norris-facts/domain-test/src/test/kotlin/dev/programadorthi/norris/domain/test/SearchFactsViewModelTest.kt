@@ -1,4 +1,4 @@
-package dev.programadorthi.domain.test
+package dev.programadorthi.norris.domain.test
 
 import dev.programadorthi.norris.domain.fake.usecase.FactsUseCaseFake
 import dev.programadorthi.norris.domain.model.Category

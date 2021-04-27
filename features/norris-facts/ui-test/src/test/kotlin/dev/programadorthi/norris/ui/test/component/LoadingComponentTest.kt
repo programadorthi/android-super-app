@@ -1,4 +1,4 @@
-package dev.programadorthi.ui.test.component
+package dev.programadorthi.norris.ui.test.component
 
 import androidx.core.view.isVisible
 import androidx.test.core.app.launchActivity

@@ -1,4 +1,4 @@
-package dev.programadorthi.domain.test
+package dev.programadorthi.norris.domain.test
 
 import dev.programadorthi.norris.domain.data.RemoteFactsRepository
 import dev.programadorthi.norris.domain.data.remote.raw.FactRaw
