@@ -3,7 +3,13 @@ import dev.programadorthi.dependencies.Dependencies
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("dagger.hilt.android.plugin")
+    kotlin("kapt")
     id("super-module")
+}
+
+kapt {
+    correctErrorTypes = true
 }
 
 dependencies {
@@ -12,7 +18,8 @@ dependencies {
     implementation(Dependencies.Android.lifecycleRuntime)
     implementation(Dependencies.Android.lifecycleViewModel)
     implementation(Dependencies.Android.recyclerView)
-    implementation(Dependencies.DI.kodein)
-    implementation(Dependencies.DI.kodeinAndroid)
+    implementation(Dependencies.DI.hilt)
+    implementation(Dependencies.DI.hiltAndroid)
+    kapt(Dependencies.DI.hiltCompiler)
     Dependencies.Android.common.forEach { implementation(it) }
 }

@@ -11,6 +11,7 @@ kapt {
 }
 
 dependencies {
+    api(project(JavaModules.SHARED_DOMAIN_DI))
     api(project(JavaModules.Features.NorrisFacts.DOMAIN_IMPL))
     implementation(Dependencies.Kotlin.coroutines)
     implementation(Dependencies.DI.hilt)
