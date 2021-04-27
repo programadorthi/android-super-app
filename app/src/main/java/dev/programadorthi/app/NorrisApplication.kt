@@ -2,6 +2,8 @@ package dev.programadorthi.app
 
 import android.app.Application
 import android.content.Context
+import dev.programadorthi.norris.di.NorrisModule
+import dev.programadorthi.norris.ui.di.NorrisUIModule
 import dev.programadorthi.shared.database.DatabaseInjectionTags
 import dev.programadorthi.shared.database.android.SharedDatabaseAndroidModule
 import dev.programadorthi.shared.database.di.SharedDatabaseModule
@@ -22,6 +24,11 @@ class NorrisApplication : Application(), DIAware {
         import(SharedRetrofitModule())
         import(SharedNetworkModule())
         import(SharedUIModule())
+        // Importing global to avoid having imports on Activities
+        // Importing on activities create a couple that is hard to test using Espresso ;D
+        // TODO: But should other modules know norris modules? :thinking
+        import(NorrisModule())
+        import(NorrisUIModule())
 
         bindProvider<Context> { this@NorrisApplication }
         bindProvider(tag = DatabaseInjectionTags.DATABASE_NAME) { BuildConfig.DATABASE_NAME }

@@ -7,12 +7,8 @@ plugins {
 }
 
 dependencies {
-    /*implementation(project(":shared-database-di-android"))
-    implementation(project(":shared-domain-di"))
-    implementation(project(":shared-network-di"))
-    implementation(project(":shared-retrofit-di"))*/
-    implementation(project(":shared-ui-di"))
-    implementation(project(":features:norris-facts:di"))
+    api(project(":shared-ui-di"))
+    api(project(":features:norris-facts:di"))
     implementation(Dependencies.Android.lifecycleRuntime)
     implementation(Dependencies.Android.lifecycleViewModel)
     implementation(Dependencies.Android.recyclerView)

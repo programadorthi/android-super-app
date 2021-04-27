@@ -19,11 +19,7 @@ dependencies {
     implementation(project(":shared-domain-di"))
     implementation(project(":shared-network-di"))
     implementation(project(":shared-retrofit-di"))
-    implementation(project(":shared-ui-di"))
     implementation(project(":features:norris-facts:ui"))
-    implementation(Dependencies.Android.lifecycleRuntime)
-    implementation(Dependencies.Android.lifecycleViewModel)
-    implementation(Dependencies.Android.recyclerView)
     implementation(Dependencies.DI.kodein)
     implementation(Dependencies.DI.kodeinAndroid)
     Dependencies.Android.common.forEach { implementation(it) }

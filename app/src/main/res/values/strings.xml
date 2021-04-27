@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">app</string>
+    <string name="app_name">Super App</string>
+    <string name="splash_text">Splash Screen</string>
 </resources>
