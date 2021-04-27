@@ -34,4 +34,4 @@ jobs:
 
       # WARNING: building one feature only. Update in the future
       - name: Build debug APK on development flavor
-        run: ./gradlew :features:norris-facts:ui:assembleDevDebug
+        run: ./gradlew :app:assembleDevDebug
