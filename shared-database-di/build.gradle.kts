@@ -6,6 +6,6 @@ plugins {
 }
 
 dependencies {
-    api(project(":shared-database"))
+    api(project(JavaModules.SHARED_DATABASE))
     implementation(Dependencies.DI.kodein)
 }

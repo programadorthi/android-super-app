@@ -6,7 +6,7 @@ plugins {
 }
 
 dependencies {
-    testImplementation(project(":shared-domain-fake"))
+    testImplementation(project(JavaModules.SHARED_DOMAIN_FAKE))
     testImplementation(Dependencies.Kotlin.serialization)
     Dependencies.UnitTest.all.forEach { testImplementation(it) }
 }

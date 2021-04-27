@@ -6,8 +6,8 @@ plugins {
 }
 
 dependencies {
-    api(project(":shared-network"))
-    api(project(":shared-retrofit"))
+    api(project(JavaModules.SHARED_NETWORK))
+    api(project(JavaModules.SHARED_RETROFIT))
     implementation(Dependencies.DI.kodein)
     implementation(Dependencies.Kotlin.serialization)
     implementation(Dependencies.Network.retrofit)

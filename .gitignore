@@ -71,3 +71,8 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+# Magic modules files
+ApplicationModules.kt
+JavaModules.kt
+LibraryModules.kt
