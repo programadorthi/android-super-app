@@ -1,4 +1,4 @@
-package dev.programadorthi.ui.test.component
+package dev.programadorthi.norris.ui.test.component
 
 import android.content.Context
 import androidx.recyclerview.widget.LinearLayoutManager

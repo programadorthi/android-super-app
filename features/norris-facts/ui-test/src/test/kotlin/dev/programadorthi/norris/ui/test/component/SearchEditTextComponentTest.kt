@@ -1,4 +1,4 @@
-package dev.programadorthi.ui.test.component
+package dev.programadorthi.norris.ui.test.component
 
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText

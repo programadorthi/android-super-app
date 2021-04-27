@@ -1,4 +1,4 @@
-package dev.programadorthi.domain.test
+package dev.programadorthi.norris.domain.test
 
 import dev.programadorthi.norris.domain.FactsBusiness
 import dev.programadorthi.norris.domain.fake.provider.FactsStyleProviderFake
