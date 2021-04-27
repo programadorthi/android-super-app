@@ -11,8 +11,7 @@ kapt {
 }
 
 dependencies {
-    api(project(":shared-domain-di"))
-    api(project(":shared-network"))
+    api(project(JavaModules.SHARED_NETWORK))
     implementation(Dependencies.Kotlin.coroutines)
     implementation(Dependencies.Kotlin.serialization)
     implementation(Dependencies.DI.hilt)

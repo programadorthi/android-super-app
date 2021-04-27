@@ -12,7 +12,7 @@ kapt {
 }
 
 dependencies {
-    api(project(":shared-database-di"))
+    api(project(JavaModules.SHARED_DATABASE_DI))
     implementation(Dependencies.Android.sqldelightDriver)
     implementation(Dependencies.DI.hiltAndroid)
     kapt(Dependencies.DI.hiltCompiler)

@@ -11,7 +11,7 @@ kapt {
 }
 
 dependencies {
-    api(project(":shared-database"))
+    api(project(JavaModules.SHARED_DATABASE))
     implementation(Dependencies.DI.hilt)
     kapt(Dependencies.DI.hiltCompiler)
 }

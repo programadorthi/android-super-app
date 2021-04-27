@@ -6,6 +6,6 @@ plugins {
 }
 
 dependencies {
-    testImplementation(project(":shared-database-fake"))
+    testImplementation(project(JavaModules.SHARED_DATABASE_FAKE))
     Dependencies.UnitTest.all.forEach { testImplementation(it) }
 }

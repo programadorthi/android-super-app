@@ -1,0 +1,15 @@
+<resources>
+    <string name="search_facts_name">Search Facts</string>
+
+    <string name="menu_search_title">Search</string>
+
+    <string name="activity_facts_empty_search_result">No result for entered term</string>
+    <string name="activity_facts_empty_search_term">Please, enter a term to search!</string>
+
+    <string name="activity_search_facts_categories_title">Suggestions</string>
+    <string name="activity_search_facts_edittext_hint">Enter your search term</string>
+    <string name="activity_search_facts_last_searches_title">Past Searches</string>
+
+    <string name="item_fact_share_image_content_description">Share</string>
+    <string name="item_fact_view_holder_uncategorized_label">Uncategorized</string>
+</resources>

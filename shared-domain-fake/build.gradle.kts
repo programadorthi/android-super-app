@@ -4,5 +4,5 @@ plugins {
 }
 
 dependencies {
-    api(project(":shared-domain"))
+    api(project(JavaModules.SHARED_DOMAIN))
 }

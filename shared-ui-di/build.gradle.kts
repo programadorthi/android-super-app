@@ -12,7 +12,7 @@ kapt {
 }
 
 dependencies {
-    api(project(":shared-ui"))
+    api(project(LibraryModules.SHARED_UI))
     implementation(Dependencies.Android.lifecycleViewModel)
     implementation(Dependencies.DI.hiltAndroid)
     Dependencies.Android.common.forEach { implementation(it) }

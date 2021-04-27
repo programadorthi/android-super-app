@@ -6,8 +6,8 @@ plugins {
 }
 
 dependencies {
-    testImplementation(project(":shared-domain-fake"))
-    testImplementation(project(":shared-network-fake"))
+    testImplementation(project(JavaModules.SHARED_DOMAIN_FAKE))
+    testImplementation(project(JavaModules.SHARED_NETWORK_FAKE))
     testImplementation(Dependencies.Kotlin.serialization)
     Dependencies.UnitTest.all.forEach { testImplementation(it) }
 }

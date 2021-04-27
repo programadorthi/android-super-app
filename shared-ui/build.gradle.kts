@@ -7,7 +7,7 @@ plugins {
 }
 
 dependencies {
-    api(project(":shared-domain"))
+    api(project(JavaModules.SHARED_DOMAIN))
     implementation(Dependencies.Android.lifecycleRuntime)
     implementation(Dependencies.Android.lifecycleViewModel)
     Dependencies.Android.common.forEach { implementation(it) }
