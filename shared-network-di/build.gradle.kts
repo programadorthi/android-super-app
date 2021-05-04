@@ -1,13 +1,12 @@
-import dev.programadorthi.dependencies.Dependencies
+apply(from = "../gradle/commons.gradle")
 
 plugins {
     kotlin("jvm")
-    id("super-module")
 }
 
 dependencies {
-    api(project(JavaModules.SHARED_NETWORK))
-    implementation(Dependencies.Kotlin.coroutines)
-    implementation(Dependencies.Kotlin.serialization)
-    implementation(Dependencies.DI.kodein)
+    api(projects.sharedNetwork)
+    implementation(libs.kodein.di)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.serialization)
 }

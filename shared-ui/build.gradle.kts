@@ -1,14 +1,13 @@
-import dev.programadorthi.dependencies.Dependencies
+apply(from = "../gradle/android-library.gradle")
 
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("super-module")
 }
 
 dependencies {
-    api(project(JavaModules.SHARED_DOMAIN))
-    implementation(Dependencies.Android.lifecycleRuntime)
-    implementation(Dependencies.Android.lifecycleViewModel)
-    Dependencies.Android.common.forEach { implementation(it) }
+    api(projects.sharedDomain)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.bundles.android.common)
 }

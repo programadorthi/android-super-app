@@ -1,13 +1,12 @@
-import dev.programadorthi.dependencies.Dependencies
+apply(from = "../gradle/commons.gradle")
 
 plugins {
     kotlin("jvm")
-    id("super-module")
 }
 
 dependencies {
-    implementation(Dependencies.Kotlin.serialization)
-    implementation(Dependencies.Network.okhttp)
-    implementation(Dependencies.Network.retrofit)
-    implementation(Dependencies.Network.serializationConverter)
+    implementation(libs.kotlinx.serialization)
+    implementation(libs.okhttp)
+    implementation(libs.retrofit)
+    implementation(libs.serializationConverter)
 }

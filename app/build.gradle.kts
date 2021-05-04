@@ -1,9 +1,8 @@
-import dev.programadorthi.dependencies.Dependencies
+apply(from = "../gradle/android-application.gradle")
 
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("super-module")
 }
 
 android {
@@ -15,12 +14,12 @@ android {
 }
 
 dependencies {
-    implementation(project(JavaModules.SHARED_DOMAIN_DI))
-    implementation(project(JavaModules.SHARED_NETWORK_DI))
-    implementation(project(JavaModules.SHARED_RETROFIT_DI))
-    implementation(project(LibraryModules.SHARED_DATABASE_DI_ANDROID))
-    implementation(project(LibraryModules.Features.NorrisFacts.UI))
-    implementation(Dependencies.DI.kodein)
-    implementation(Dependencies.DI.kodeinAndroid)
-    Dependencies.Android.common.forEach { implementation(it) }
+    implementation(projects.sharedDomainDi)
+    implementation(projects.sharedNetworkDi)
+    implementation(projects.sharedRetrofitDi)
+    implementation(projects.sharedDatabaseDiAndroid)
+    implementation(projects.features.norrisFacts.ui)
+    implementation(libs.kodein.di)
+    implementation(libs.kodein.android)
+    implementation(libs.bundles.android.common)
 }

@@ -1,13 +1,12 @@
-import dev.programadorthi.dependencies.Dependencies
+apply(from = "../../../gradle/commons.gradle")
 
 plugins {
     kotlin("jvm")
-    id("super-module")
 }
 
 dependencies {
-    api(project(JavaModules.Features.NorrisFacts.DOMAIN_IMPL))
-    implementation(Dependencies.Kotlin.coroutines)
-    implementation(Dependencies.DI.kodein)
-    implementation(Dependencies.Network.retrofit)
+    api(projects.features.norrisFacts.domainImpl)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kodein.di)
+    implementation(libs.retrofit)
 }

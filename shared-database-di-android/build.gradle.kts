@@ -1,13 +1,12 @@
-import dev.programadorthi.dependencies.Dependencies
+apply(from = "../gradle/android-library.gradle")
 
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("super-module")
 }
 
 dependencies {
-    api(project(JavaModules.SHARED_DATABASE_DI))
-    implementation(Dependencies.Android.sqldelightDriver)
-    implementation(Dependencies.DI.kodein)
+    api(projects.sharedDatabaseDi)
+    implementation(libs.sqldelight.android.driver)
+    implementation(libs.kodein.di)
 }

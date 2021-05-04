@@ -1,12 +1,11 @@
-import dev.programadorthi.dependencies.Dependencies
+apply(from = "../gradle/commons.gradle")
 
 plugins {
     kotlin("jvm")
-    id("super-module")
 }
 
 dependencies {
-    testImplementation(project(JavaModules.SHARED_DOMAIN_FAKE))
-    testImplementation(Dependencies.Kotlin.serialization)
-    Dependencies.UnitTest.all.forEach { testImplementation(it) }
+    testImplementation(projects.sharedDomainFake)
+    testImplementation(libs.kotlinx.serialization)
+    testImplementation(libs.bundles.unit.test)
 }

@@ -1,8 +1,9 @@
+apply(from = "../gradle/commons.gradle")
+
 plugins {
     kotlin("jvm")
-    id("super-module")
 }
 
 dependencies {
-    api(project(JavaModules.SHARED_DOMAIN))
+    api(projects.sharedDomain)
 }

@@ -1,14 +1,13 @@
-import dev.programadorthi.dependencies.Dependencies
+apply(from = "../../../gradle/commons.gradle")
 
 plugins {
     kotlin("jvm")
-    id("super-module")
 }
 
 dependencies {
-    testImplementation(project(JavaModules.SHARED_DATABASE_FAKE))
-    testImplementation(project(JavaModules.SHARED_DOMAIN_FAKE))
-    testImplementation(project(JavaModules.SHARED_NETWORK_FAKE))
-    testImplementation(project(JavaModules.Features.NorrisFacts.DOMAIN_FAKE))
-    Dependencies.UnitTest.all.forEach { testImplementation(it) }
+    testImplementation(projects.sharedDatabaseFake)
+    testImplementation(projects.sharedDomainFake)
+    testImplementation(projects.sharedNetworkFake)
+    testImplementation(projects.features.norrisFacts.domainFake)
+    testImplementation(libs.bundles.unit.test)
 }

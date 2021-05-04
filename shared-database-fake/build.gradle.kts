@@ -1,11 +1,10 @@
-import dev.programadorthi.dependencies.Dependencies
+apply(from = "../gradle/commons.gradle")
 
 plugins {
     kotlin("jvm")
-    id("super-module")
 }
 
 dependencies {
-    api(project(JavaModules.SHARED_DATABASE))
-    implementation(Dependencies.UnitTest.sqlDelight)
+    api(projects.sharedDatabase)
+    implementation(libs.sqldelight.sqlite.driver)
 }

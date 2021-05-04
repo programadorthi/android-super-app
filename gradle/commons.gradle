@@ -1,0 +1,24 @@
+apply plugin: 'org.jmailen.kotlinter'
+apply plugin: 'com.adarshr.test-logger'
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java', 'src/main/kotlin']
+        }
+    }
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+lintKotlinMain {
+    exclude buildDir.path
+}
+
+testlogger {
+    theme 'mocha'
+}

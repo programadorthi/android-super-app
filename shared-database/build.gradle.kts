@@ -1,7 +1,8 @@
+apply(from = "../gradle/commons.gradle")
+
 plugins {
     kotlin("jvm")
     id("com.squareup.sqldelight")
-    id("super-module")
 }
 
 sqldelight {

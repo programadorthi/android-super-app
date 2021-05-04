@@ -1,11 +1,10 @@
-import dev.programadorthi.dependencies.Dependencies
+apply(from = "../../../gradle/commons.gradle")
 
 plugins {
     kotlin("jvm")
-    id("super-module")
 }
 
 dependencies {
-    api(project(JavaModules.SHARED_DOMAIN))
-    implementation(Dependencies.Kotlin.coroutines)
+    api(projects.sharedDomain)
+    implementation(libs.kotlinx.coroutines.core)
 }

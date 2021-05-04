@@ -1,17 +1,16 @@
-import dev.programadorthi.dependencies.Dependencies
+apply(from = "../../../gradle/commons.gradle")
 
 plugins {
     kotlin("jvm")
     // We need set using complete classpath instead of import the class Version
-    kotlin("plugin.serialization") version dev.programadorthi.dependencies.Version.KOTLIN
-    id("super-module")
+    kotlin("plugin.serialization") version "1.4.31"
 }
 
 dependencies {
-    api(project(JavaModules.SHARED_DATABASE))
-    api(project(JavaModules.SHARED_NETWORK))
-    api(project(JavaModules.Features.NorrisFacts.DOMAIN))
-    implementation(Dependencies.Kotlin.coroutines)
-    implementation(Dependencies.Kotlin.serialization)
-    implementation(Dependencies.Network.retrofit)
+    api(projects.sharedDatabase)
+    api(projects.sharedNetwork)
+    api(projects.features.norrisFacts.domain)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.serialization)
+    implementation(libs.retrofit)
 }

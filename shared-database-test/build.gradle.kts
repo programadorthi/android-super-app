@@ -1,11 +1,10 @@
-import dev.programadorthi.dependencies.Dependencies
+apply(from = "../gradle/commons.gradle")
 
 plugins {
     kotlin("jvm")
-    id("super-module")
 }
 
 dependencies {
-    testImplementation(project(JavaModules.SHARED_DATABASE_FAKE))
-    Dependencies.UnitTest.all.forEach { testImplementation(it) }
+    testImplementation(projects.sharedDatabaseFake)
+    testImplementation(libs.bundles.unit.test)
 }
