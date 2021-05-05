@@ -1,4 +1,4 @@
-apply(from = "../gradle/commons.gradle")
+apply(from = "../gradle/jvm-library.gradle")
 
 plugins {
     kotlin("jvm")

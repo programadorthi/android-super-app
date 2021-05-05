@@ -55,7 +55,7 @@ sqldelight-sqlite-driver = { module = "com.squareup.sqldelight:sqlite-driver", v
 # Unit test
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertjCore" }
 junit = { module = "junit:junit", version.ref = "junit" }
-robolectric = { module = "org.robolectric:robolectric", version.ref = "junit" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 
 [bundles]
 android-common = ["android-material", "androidx-activity-ktx", "androidx-appcompat", "androidx-core-ktx"]
