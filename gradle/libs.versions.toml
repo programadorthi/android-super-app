@@ -12,7 +12,6 @@ androidXTestEspressoCore = "3.3.0"
 # Dependency injection
 kodeinDI = "7.5.0"
 # Kotlin
-kotlin = "1.4.31"
 kotlinCoroutines = "1.4.3"
 kotlinSerialization = "1.1.0"
 # Network

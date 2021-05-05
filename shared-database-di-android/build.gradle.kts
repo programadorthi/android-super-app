@@ -1,8 +1,6 @@
-apply(from = "../gradle/android-library.gradle")
-
 plugins {
     id("com.android.library")
-    id("kotlin-android")
+    id("android-project")
 }
 
 dependencies {

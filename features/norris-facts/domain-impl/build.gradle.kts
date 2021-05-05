@@ -1,9 +1,7 @@
-apply(from = "../../../gradle/jvm-library.gradle")
-
 plugins {
-    kotlin("jvm")
+    id("jvm-project")
     // We need set using complete classpath instead of import the class Version
-    kotlin("plugin.serialization") version "1.4.31"
+    kotlin("plugin.serialization")
 }
 
 dependencies {

@@ -1,7 +1,5 @@
-apply(from = "../gradle/jvm-library.gradle")
-
 plugins {
-    kotlin("jvm")
+    id("jvm-project")
     id("com.squareup.sqldelight")
 }
 
