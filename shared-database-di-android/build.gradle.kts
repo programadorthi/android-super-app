@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
-    kotlin("kapt")
     id("android-project")
+    kotlin("kapt")
 }
 
 kapt {
@@ -11,6 +11,6 @@ kapt {
 dependencies {
     api(projects.sharedDatabaseDi)
     implementation(libs.sqldelight.android.driver)
-    implementation(libs.hilt.core)
+    implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
 }

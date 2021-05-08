@@ -1,6 +1,6 @@
 plugins {
-    kotlin("kapt")
     id("jvm-project")
+    kotlin("kapt")
 }
 
 kapt {

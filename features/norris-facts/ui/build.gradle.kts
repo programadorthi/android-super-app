@@ -1,8 +1,9 @@
 plugins {
     id("com.android.library")
-    id("dagger.hilt.android.plugin")
-    kotlin("kapt")
     id("android-project")
+    // Gradle plugins are declared on buildSrc
+    kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 kapt {
