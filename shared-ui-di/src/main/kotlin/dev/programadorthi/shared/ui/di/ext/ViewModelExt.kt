@@ -8,13 +8,16 @@ import org.kodein.di.DIAware
 import org.kodein.di.direct
 import org.kodein.type.erased
 
-inline fun <reified VM, T> T.viewModel(): Lazy<VM> where VM : ViewModel, T : DIAware, T : ComponentActivity =
+inline fun <reified VM, T> T.viewModel(): Lazy<VM> where VM : ViewModel,
+                                                         T : DIAware,
+                                                         T : ComponentActivity =
     ViewModelLazy(
         viewModelClass = VM::class,
         storeProducer = { viewModelStore },
         factoryProducer = {
             ViewModelFactory<VM>(
-                viewModel = { di.direct.Instance(erased()) }, // Lazy to avoid create an instance without needed
+                // Lazy to avoid create an instance without needed
+                viewModel = { di.direct.Instance(erased()) },
                 owner = this,
                 defaultArgs = intent.extras
             )

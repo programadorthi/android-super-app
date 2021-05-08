@@ -6,6 +6,7 @@ import dev.programadorthi.shared.domain.network.ConnectionCheck
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.withContext
+import java.io.IOException
 
 internal class DefaultNetworkManager(
     private val connectionCheck: ConnectionCheck,
@@ -20,7 +21,7 @@ internal class DefaultNetworkManager(
         }
         try {
             request.invoke(this)
-        } catch (ex: Throwable) {
+        } catch (ex: IOException) {
             throw networkingErrorMapper.mapper(ex)
         }
     }

@@ -16,4 +16,5 @@ dependencies {
     implementation("com.squareup.sqldelight:gradle-plugin:1.4.4")
     implementation("org.jmailen.gradle:kotlinter-gradle:3.4.4")
     implementation("com.adarshr:gradle-test-logger-plugin:3.0.0")
+    implementation("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.16.0")
 }

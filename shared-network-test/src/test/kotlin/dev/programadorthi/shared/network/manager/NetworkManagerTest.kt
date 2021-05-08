@@ -53,7 +53,7 @@ class NetworkManagerTest {
         }
 
     @Test
-    fun `should has EssentialParamMissing error when is missing required fields in the server response data`() =
+    fun `should has EssentialParamMissing error when missing required fields server response`() =
         testDispatcher.runBlockingTest {
             assertThatThrownBy {
                 runBlocking {
@@ -66,7 +66,7 @@ class NetworkManagerTest {
         }
 
     @Test
-    fun `should has InvalidDataFormat error when the server response json data has invalid format`() =
+    fun `should has InvalidDataFormat error when server response json data has invalid format`() =
         testDispatcher.runBlockingTest {
             val completableError = SerializationException("field")
 

@@ -16,7 +16,7 @@ import org.kodein.di.DI
 import org.kodein.di.DIAware
 import org.kodein.di.bindProvider
 
-class NorrisApplication : Application(), DIAware {
+class SuperApplication : Application(), DIAware {
     override val di: DI by DI.lazy {
         import(SharedDatabaseModule())
         import(SharedDatabaseAndroidModule())
@@ -30,7 +30,7 @@ class NorrisApplication : Application(), DIAware {
         import(NorrisModule())
         import(NorrisUIModule())
 
-        bindProvider<Context> { this@NorrisApplication }
+        bindProvider<Context> { this@SuperApplication }
         bindProvider(tag = DatabaseInjectionTags.DATABASE_NAME) { BuildConfig.DATABASE_NAME }
         bindProvider(tag = NetworkInjectionTags.BASE_URL) { BuildConfig.BASE_URL }
     }

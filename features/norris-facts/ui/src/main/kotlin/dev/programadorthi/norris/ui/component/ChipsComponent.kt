@@ -33,9 +33,11 @@ class ChipsComponent(
         view.removeAllViews()
         val inflater = LayoutInflater.from(view.context)
         for (category in items) {
-            // Because we passing view as root, inflate function returns it instead of inflated layout
+            // Because we passing view as root, inflate function returns it
+            // instead of inflated layout
             val chipGroup = inflater.inflate(R.layout.item_search_fact_category, view) as ChipGroup
-            // Inflate function also call addView when passing a root. So in the ChipGroup our inflated layout is the last added view
+            // Inflate function also call addView when passing a root.
+            // So in the ChipGroup our inflated layout is the last added view
             val chip = chipGroup.children.last() as TextView
             chip.text = category
             chip.setOnClickListener { onChipClicked(category) }
