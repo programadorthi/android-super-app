@@ -6,6 +6,7 @@ import dev.programadorthi.shared.domain.network.ConnectionCheck
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.SerializationException
 import java.io.IOException
 
 internal class DefaultNetworkManager(
@@ -21,7 +22,11 @@ internal class DefaultNetworkManager(
         }
         try {
             request.invoke(this)
+        } catch (ex: SerializationException) {
+            throw networkingErrorMapper.mapper(ex)
         } catch (ex: IOException) {
+            throw networkingErrorMapper.mapper(ex)
+        } catch (ex: Throwable) {
             throw networkingErrorMapper.mapper(ex)
         }
     }
