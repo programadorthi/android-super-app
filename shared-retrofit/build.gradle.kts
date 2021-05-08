@@ -1,13 +1,10 @@
-import dev.programadorthi.dependencies.Dependencies
-
 plugins {
-    kotlin("jvm")
-    id("super-module")
+    id("jvm-project")
 }
 
 dependencies {
-    implementation(Dependencies.Kotlin.serialization)
-    implementation(Dependencies.Network.okhttp)
-    implementation(Dependencies.Network.retrofit)
-    implementation(Dependencies.Network.serializationConverter)
+    implementation(libs.kotlinx.serialization)
+    implementation(libs.okhttp)
+    implementation(libs.retrofit)
+    implementation(libs.serializationConverter)
 }

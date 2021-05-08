@@ -1,9 +1,6 @@
-import dev.programadorthi.dependencies.Dependencies
-
 plugins {
-    kotlin("jvm")
     kotlin("kapt")
-    id("super-module")
+    id("jvm-project")
 }
 
 kapt {
@@ -11,10 +8,10 @@ kapt {
 }
 
 dependencies {
-    api(project(JavaModules.SHARED_DOMAIN_DI))
-    api(project(JavaModules.Features.NorrisFacts.DOMAIN_IMPL))
-    implementation(Dependencies.Kotlin.coroutines)
-    implementation(Dependencies.DI.hilt)
-    implementation(Dependencies.Network.retrofit)
-    kapt(Dependencies.DI.hiltCompiler)
+    api(projects.sharedDomainDi)
+    api(projects.features.norrisFacts.domainImpl)
+    implementation(libs.hilt.core)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.retrofit)
+    kapt(libs.hilt.compiler)
 }

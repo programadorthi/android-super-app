@@ -1,16 +1,13 @@
-import dev.programadorthi.dependencies.Dependencies
-
 plugins {
     id("com.android.library")
-    id("kotlin-android")
-    id("super-module")
+    id("android-project")
 }
 
 dependencies {
-    implementation(project(JavaModules.Features.NorrisFacts.DOMAIN))
-    implementation(project(LibraryModules.Features.NorrisFacts.UI))
-    implementation(Dependencies.Android.lifecycleRuntime)
-    implementation(Dependencies.Android.lifecycleViewModel)
-    implementation(Dependencies.Android.recyclerView)
-    Dependencies.Android.common.forEach { implementation(it) }
+    implementation(projects.features.norrisFacts.domain)
+    implementation(projects.features.norrisFacts.ui)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.bundles.android.common)
 }

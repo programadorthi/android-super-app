@@ -1,10 +1,7 @@
-import dev.programadorthi.dependencies.Dependencies
-
 plugins {
     id("com.android.library")
-    id("kotlin-android")
     kotlin("kapt")
-    id("super-module")
+    id("android-project")
 }
 
 kapt {
@@ -12,8 +9,8 @@ kapt {
 }
 
 dependencies {
-    api(project(JavaModules.SHARED_DATABASE_DI))
-    implementation(Dependencies.Android.sqldelightDriver)
-    implementation(Dependencies.DI.hiltAndroid)
-    kapt(Dependencies.DI.hiltCompiler)
+    api(projects.sharedDatabaseDi)
+    implementation(libs.sqldelight.android.driver)
+    implementation(libs.hilt.core)
+    kapt(libs.hilt.compiler)
 }

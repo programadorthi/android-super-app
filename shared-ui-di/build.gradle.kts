@@ -1,10 +1,7 @@
-import dev.programadorthi.dependencies.Dependencies
-
 plugins {
     id("com.android.library")
-    id("kotlin-android")
     kotlin("kapt")
-    id("super-module")
+    id("android-project")
 }
 
 kapt {
@@ -12,9 +9,10 @@ kapt {
 }
 
 dependencies {
-    api(project(LibraryModules.SHARED_UI))
-    implementation(Dependencies.Android.lifecycleViewModel)
-    implementation(Dependencies.DI.hiltAndroid)
-    Dependencies.Android.common.forEach { implementation(it) }
-    kapt(Dependencies.DI.hiltCompiler)
+    api(projects.sharedUi)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.hilt.core)
+    implementation(libs.hilt.android)
+    implementation(libs.bundles.android.common)
+    kapt(libs.hilt.compiler)
 }

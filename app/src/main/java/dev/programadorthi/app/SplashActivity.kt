@@ -16,7 +16,11 @@ class SplashActivity : AppCompatActivity() {
             {
                 startActivity(Intent(this@SplashActivity, FactsActivity::class.java))
             },
-            500
+            DELAY_IN_MILLIS
         )
+    }
+
+    private companion object {
+        private const val DELAY_IN_MILLIS = 500L
     }
 }

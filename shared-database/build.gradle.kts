@@ -1,7 +1,6 @@
 plugins {
-    kotlin("jvm")
+    id("jvm-project")
     id("com.squareup.sqldelight")
-    id("super-module")
 }
 
 sqldelight {

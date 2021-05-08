@@ -1,8 +1,7 @@
 plugins {
-    kotlin("jvm")
-    id("super-module")
+    id("jvm-project")
 }
 
 dependencies {
-    api(project(JavaModules.SHARED_DOMAIN))
+    api(projects.sharedDomain)
 }

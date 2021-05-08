@@ -12,12 +12,10 @@ internal class ConnectionCheckImpl(context: Context) : ConnectionCheck {
 
     override suspend fun hasInternetConnection(): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val network = service?.activeNetwork ?: return false
-            val capabilities = service.getNetworkCapabilities(network) ?: return false
-            return capabilities.run {
+            return service?.getNetworkCapabilities(service.activeNetwork)?.run {
                 hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
                     hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
-            }
+            } ?: false
         }
         return service?.activeNetworkInfo?.isConnectedOrConnecting ?: false
     }

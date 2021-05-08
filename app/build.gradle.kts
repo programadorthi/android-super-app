@@ -1,11 +1,9 @@
-import dev.programadorthi.dependencies.Dependencies
-
 plugins {
     id("com.android.application")
     id("kotlin-android")
     id("dagger.hilt.android.plugin")
     kotlin("kapt")
-    id("super-module")
+    id("android-project")
 }
 
 android {
@@ -21,15 +19,15 @@ kapt {
 }
 
 dependencies {
-    implementation(project(JavaModules.SHARED_DOMAIN_DI))
-    implementation(project(JavaModules.SHARED_NETWORK_DI))
-    implementation(project(JavaModules.SHARED_RETROFIT_DI))
-    implementation(project(LibraryModules.SHARED_DATABASE_DI_ANDROID))
-    implementation(project(LibraryModules.Features.NorrisFacts.UI))
-    implementation(Dependencies.DI.hilt)
-    implementation(Dependencies.DI.hiltAndroid)
-    implementation(Dependencies.Kotlin.serialization)
-    implementation(Dependencies.Network.retrofit)
-    kapt(Dependencies.DI.hiltCompiler)
-    Dependencies.Android.common.forEach { implementation(it) }
+    implementation(projects.sharedDomainDi)
+    implementation(projects.sharedNetworkDi)
+    implementation(projects.sharedRetrofitDi)
+    implementation(projects.sharedDatabaseDiAndroid)
+    implementation(projects.features.norrisFacts.ui)
+    implementation(libs.hilt.core)
+    implementation(libs.hilt.android)
+    implementation(libs.kotlinx.serialization)
+    implementation(libs.retrofit)
+    implementation(libs.bundles.android.common)
+    kapt(libs.hilt.compiler)
 }

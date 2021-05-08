@@ -38,7 +38,7 @@ The project is using two gradle [includeBuild](https://docs.gradle.org/current/u
 ## Prerequisite
 To build this project, you require:
 - Android Studio 4.1.3
-- Gradle 6.8.3
+- Gradle 7.0
 
 ## Credits
 - [Reaktive team](https://github.com/badoo/Reaktive) and they build system structure.

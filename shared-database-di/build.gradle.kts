@@ -1,9 +1,6 @@
-import dev.programadorthi.dependencies.Dependencies
-
 plugins {
-    kotlin("jvm")
     kotlin("kapt")
-    id("super-module")
+    id("jvm-project")
 }
 
 kapt {
@@ -11,7 +8,7 @@ kapt {
 }
 
 dependencies {
-    api(project(JavaModules.SHARED_DATABASE))
-    implementation(Dependencies.DI.hilt)
-    kapt(Dependencies.DI.hiltCompiler)
+    api(projects.sharedDatabase)
+    implementation(libs.hilt.core)
+    kapt(libs.hilt.compiler)
 }

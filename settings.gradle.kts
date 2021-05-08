@@ -1,34 +1,37 @@
-import io.labs.dotanuki.magicmodules.MagicModulesExtension
+// Enable Gradle's Type-safe dependency accessors
+// https://docs.gradle.org/7.0/userguide/declaring_dependencies.html#sec:type-safe-project-accessors
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+// Enable Gradle's version catalog support
+// https://docs.gradle.org/current/userguide/platforms.html
+enableFeaturePreview("VERSION_CATALOGS")
 
-pluginManagement {
-    repositories {
-        google()
-        gradlePluginPortal()
-        jcenter()
-        mavenCentral()
-    }
-}
+rootProject.name = "super-app"
 
-rootProject.name = "Super App"
-
-buildscript {
-    repositories {
-        mavenCentral()
-        maven(url = "https://jitpack.io")
-    }
-
-    dependencies {
-        classpath("com.github.programadorthi:magic-modules:0.0.6")
-    }
-}
-
-apply(plugin = "io.labs.dotanuki.magicmodules")
-
-configure<MagicModulesExtension> {
-    includeBuildDir = "dependencies"
-    maxDepthToBuildScript = 4
-    modulesToSkip = listOf(":configurations")
-}
-
-includeBuild("dependencies")
-includeBuild("configurations")
+include(
+    ":app",
+    ":shared-database",
+    ":shared-database-di",
+    ":shared-database-di-android",
+    ":shared-database-fake",
+    ":shared-database-test",
+    ":shared-domain",
+    ":shared-domain-di",
+    ":shared-domain-fake",
+    ":shared-domain-test",
+    ":shared-network",
+    ":shared-network-di",
+    ":shared-network-fake",
+    ":shared-network-test",
+    ":shared-retrofit",
+    ":shared-retrofit-di",
+    ":shared-ui",
+    ":shared-ui-di"
+)
+include(":features:norris-facts:di")
+include(":features:norris-facts:domain")
+include(":features:norris-facts:domain-fake")
+include(":features:norris-facts:domain-impl")
+include(":features:norris-facts:domain-test")
+include(":features:norris-facts:ui")
+include(":features:norris-facts:ui-fake")
+include(":features:norris-facts:ui-test")

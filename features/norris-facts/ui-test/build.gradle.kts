@@ -1,18 +1,15 @@
-import dev.programadorthi.dependencies.Dependencies
-
 plugins {
     id("com.android.library")
-    id("kotlin-android")
-    id("super-module")
+    id("android-project")
 }
 
 dependencies {
-    testImplementation(project(JavaModules.Features.NorrisFacts.DOMAIN_FAKE))
-    testImplementation(project(LibraryModules.Features.NorrisFacts.UI))
-    testImplementation(project(LibraryModules.Features.NorrisFacts.UI_FAKE))
-    testImplementation(Dependencies.Android.lifecycleRuntime)
-    testImplementation(Dependencies.UnitTest.robolectric)
-    Dependencies.Android.common.forEach { testImplementation(it) }
-    Dependencies.UnitTest.all.forEach { testImplementation(it) }
-    Dependencies.AndroidTest.all.forEach { testImplementation(it) }
+    testImplementation(projects.features.norrisFacts.domainFake)
+    testImplementation(projects.features.norrisFacts.ui)
+    testImplementation(projects.features.norrisFacts.uiFake)
+    testImplementation(libs.androidx.lifecycle.runtime.ktx)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.bundles.android.common)
+    testImplementation(libs.bundles.unit.test)
+    testImplementation(libs.bundles.android.test)
 }

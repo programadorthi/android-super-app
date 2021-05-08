@@ -1,11 +1,8 @@
-import dev.programadorthi.dependencies.Dependencies
-
 plugins {
-    kotlin("jvm")
-    id("super-module")
+    id("jvm-project")
 }
 
 dependencies {
-    api(project(JavaModules.SHARED_NETWORK))
-    implementation(Dependencies.Kotlin.coroutines)
+    api(projects.sharedNetwork)
+    implementation(libs.kotlinx.coroutines.core)
 }

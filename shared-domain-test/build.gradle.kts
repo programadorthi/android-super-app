@@ -1,12 +1,9 @@
-import dev.programadorthi.dependencies.Dependencies
-
 plugins {
-    kotlin("jvm")
-    id("super-module")
+    id("jvm-project")
 }
 
 dependencies {
-    testImplementation(project(JavaModules.SHARED_DOMAIN_FAKE))
-    testImplementation(Dependencies.Kotlin.serialization)
-    Dependencies.UnitTest.all.forEach { testImplementation(it) }
+    testImplementation(projects.sharedDomainFake)
+    testImplementation(libs.kotlinx.serialization)
+    testImplementation(libs.bundles.unit.test)
 }
